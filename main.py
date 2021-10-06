@@ -1,9 +1,18 @@
 # This is a sample Python script.
 from prueba import *
+from windowaviso import *
 import sys, var, events
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
+class DialogAviso(QtWidgets.QDialog):
+    def __init__(self):
+        '''
+        Clase que inicia la ventana de aviso al salir.
+        '''
+        super(DialogAviso, self).__init__()
+        var.dlgaviso = Ui_windowaviso()
+        var.dlgaviso.setupUi(self)
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -22,5 +31,6 @@ class Main(QtWidgets.QMainWindow):
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()
+    var.dlgaviso = DialogAviso()
     window.show()
     sys.exit(app.exec())
