@@ -46,8 +46,6 @@ class Ui_windowaviso(object):
         self.lblImageAviso.setObjectName("lblImageAviso")
 
         self.retranslateUi(windowaviso)
-        self.btnBoxAviso.accepted.connect(windowaviso.accept)
-        self.btnBoxAviso.rejected.connect(windowaviso.reject)
         QtCore.QMetaObject.connectSlotsByName(windowaviso)
 
     def retranslateUi(self, windowaviso):
