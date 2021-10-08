@@ -22,11 +22,36 @@ class Clientes():
                 if len(dni)==len([n for n in dni if n in numeros]) and tabla[int(dni)%23]==dig_control:
                     var.ui.lblValidoDNI.setStyleSheet('QLabel{color:green;}')
                     var.ui.lblValidoDNI.setText(' V')
+                    var.ui.txtDNI.setStyleSheet('')
                 else:
+                    var.ui.txtDNI.setStyleSheet('QLineEdit{background-color:pink;}')
                     var.ui.lblValidoDNI.setStyleSheet('QLabel{color:red;}')
                     var.ui.lblValidoDNI.setText(' X')
             else:
+                var.ui.txtDNI.setStyleSheet('QLineEdit{background-color:pink;}')
                 var.ui.lblValidoDNI.setStyleSheet('QLabel{color:red;}')
                 var.ui.lblValidoDNI.setText(' X')
         except Exception as error:
             print('Error en módilo validar DNI: ', error)
+
+    def SelSexo(self):
+        try:
+            if var.ui.rbtFem.isChecked():
+                print('Marcado femenino.')
+            if var.ui.rbtHom.isChecked():
+                print('Marcado masculino.')
+        except Exception as error:
+            print('Error en módulo seleccionar sexo: ',error)
+
+    def SelPago(self):
+        try:
+            if var.ui.chkEfectivo.isChecked():
+                print('Has seleccionado efectivo')
+            if var.ui.chkTarjeta.isChecked():
+                print('Has seleccionado tarjeta.')
+            if var.ui.chkCargoCuenta.isChecked():
+                print('Has seleccionado cargo en la cuenta.')
+            if var.ui.chkTransfe.isChecked():
+                print('Has seleccionado transferencia.')
+        except Exception as error:
+            print('Error en módulo seleccionar forma de pago: ',error)
