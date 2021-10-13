@@ -55,3 +55,35 @@ class Clientes():
                 print('Has seleccionado transferencia.')
         except Exception as error:
             print('Error en módulo seleccionar forma de pago: ',error)
+
+    def cargaProv(self):
+        try:
+            var.ui.cmbProv.clear()
+            prov=['','A Coruña','Lugo','Ourense','Pontevedra','Vigo']
+            for i in prov:
+                var.ui.cmbProv.addItem(i)
+        except Exception as error:
+            print('Error en módulos al cargar provinvia, ',error)
+
+    def selProv(prov):
+        try:
+            print('Has seleccionado la provincia de ',prov)
+            return prov
+        except Exception as error:
+            print('Error en módulos de seleccionar provincia, ',error)
+
+    def cargaMun(self):
+        try:
+            var.ui.cmbMun.clear()
+            mun=['','Cangas do Morrazo','Moaña','Vigo']
+            for i in mun:
+                var.ui.cmbMun.addItem(i)
+        except Exception as error:
+            print('Error en módulo de cargar municipio, ',error)
+
+    def selMun(mun):
+        try:
+            print('Has seleccionado el municipio de ',mun)
+            return mun
+        except Exception as error:
+            print('Error en módulo de seleccionar municipio, ',error)

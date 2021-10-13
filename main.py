@@ -36,6 +36,13 @@ class Main(QtWidgets.QMainWindow):
         Eventos de la caja de texto
         '''
         var.ui.txtDNI.editingFinished.connect(clients.Clientes.validarDNI)
+        '''
+        Eventos de comboBox
+        '''
+        clients.Clientes.cargaProv(self)
+        var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
+        clients.Clientes.cargaMun(self)
+        var.ui.cmbMun.activated[str].connect(clients.Clientes.selMun)
 
 
 if __name__ == '__main__':
