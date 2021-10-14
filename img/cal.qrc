@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="calPrefijo">
+    <file>iconoCal1.png</file>
+  </qresource>
+</RCC>

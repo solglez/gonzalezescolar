@@ -55,6 +55,12 @@
      </property>
      <item>
       <widget class="QLabel" name="lblApel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -67,6 +73,12 @@
      </item>
      <item>
       <widget class="QLineEdit" name="txtApel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
@@ -76,6 +88,12 @@
      </item>
      <item>
       <widget class="QLabel" name="lblNome">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -88,6 +106,12 @@
      </item>
      <item>
       <widget class="QLineEdit" name="txtNome">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
@@ -363,6 +387,12 @@
      </property>
      <item>
       <widget class="QLabel" name="lblDNI">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -377,6 +407,12 @@
      </item>
      <item>
       <widget class="QLineEdit" name="txtDNI">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
@@ -390,6 +426,12 @@
         <size>
          <width>25</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
         </size>
        </property>
        <property name="font">
@@ -422,6 +464,12 @@
      </property>
      <item>
       <widget class="QLabel" name="lblDir">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -434,6 +482,12 @@
      </item>
      <item>
       <widget class="QLineEdit" name="txtDir">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
@@ -480,6 +534,12 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -502,6 +562,12 @@
         <size>
          <width>100</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
         </size>
        </property>
        <property name="font">
@@ -531,6 +597,12 @@
          <height>0</height>
         </size>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -558,6 +630,12 @@
          <height>0</height>
         </size>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -583,6 +661,12 @@
         <size>
          <width>100</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
         </size>
        </property>
        <property name="font">
@@ -622,7 +706,7 @@
       <x>10</x>
       <y>190</y>
       <width>315</width>
-      <height>21</height>
+      <height>25</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -631,6 +715,12 @@
      </property>
      <item>
       <widget class="QLabel" name="lblSexo">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -643,6 +733,12 @@
      </item>
      <item>
       <widget class="QRadioButton" name="rbtFem">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -658,6 +754,12 @@
      </item>
      <item>
       <widget class="QRadioButton" name="rbtHom">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -694,6 +796,12 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -712,6 +820,12 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
       </widget>
      </item>
      <item>
@@ -721,6 +835,12 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
        </property>
        <property name="font">
         <font>
@@ -740,6 +860,12 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
       </widget>
      </item>
     </layout>
@@ -750,7 +876,7 @@
       <x>520</x>
       <y>70</y>
       <width>261</width>
-      <height>31</height>
+      <height>26</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -759,6 +885,12 @@
      </property>
      <item>
       <widget class="QLabel" name="lblAlta">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -771,6 +903,12 @@
      </item>
      <item>
       <widget class="QLineEdit" name="txtAlta">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>11</pointsize>
@@ -779,13 +917,19 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnAlta">
+      <widget class="QPushButton" name="btnCalendar">
+       <property name="maximumSize">
+        <size>
+         <width>20</width>
+         <height>19</height>
+        </size>
+       </property>
        <property name="text">
         <string/>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../Desktop/iconoCal1.png</normaloff>../../Desktop/iconoCal1.png</iconset>
+         <normaloff>img/iconoCal1.png</normaloff>img/iconoCal1.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -805,7 +949,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -841,7 +985,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="D:/DI/cal.qrc"/>
+ </resources>
  <connections/>
  <buttongroups>
   <buttongroup name="chkGroupPago">

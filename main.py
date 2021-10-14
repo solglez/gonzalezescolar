@@ -1,10 +1,25 @@
 # This is a sample Python script.
-import clients
+import clients, sys, var, events, datetime
 from prueba import *
 from windowaviso import *
-import sys, var, events
+from windowcal import *
+from datetime import *
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+class DialogCalendar(QtWidgets.QDialog):
+    def __init__(self):
+        '''
+        Clase ventana calendario
+        '''
+        super(DialogCalendar, self).__init__()
+        var.dlgcalendar= Ui_windowcal()
+        var.dlgcalendar.setupUi(self)
+        diaactual=datetime.now().day
+        mesactual=datetime.now().month
+        anoactual=datetime.now().year
+        var.dlgcalendar.Calendar.setSelectedDate((QtCore.QDate(anoactual,mesactual,diaactual)))
+        var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
+
 
 class DialogAviso(QtWidgets.QDialog):
     def __init__(self):
@@ -28,6 +43,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnSalir.clicked.connect(events.Eventos.salir)
         var.ui.rbtGroupSex.buttonClicked.connect(clients.Clientes.SelSexo)
         var.ui.chkGroupPago.buttonClicked.connect(clients.Clientes.SelPago)
+        var.ui.btnCalendar.clicked.connect(events.Eventos.abrirCal)
         '''
         Eventos de la barra de menús
         '''
@@ -49,5 +65,6 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()
     var.dlgaviso = DialogAviso()
+    var.dlgcalendar=DialogCalendar()
     window.show()
     sys.exit(app.exec())

@@ -87,3 +87,10 @@ class Clientes():
             return mun
         except Exception as error:
             print('Error en módulo de seleccionar municipio, ',error)
+
+    def cargarFecha(self):
+        try:
+            pass
+            #Aun no hay nada
+        except Exception as error:
+            print('Error en módulo de cargar fecha ', error)
