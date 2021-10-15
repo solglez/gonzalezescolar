@@ -88,9 +88,22 @@ class Clientes():
         except Exception as error:
             print('Error en módulo de seleccionar municipio, ',error)
 
-    def cargarFecha(self):
+    def cargarFecha(qDate):
         try:
-            pass
-            #Aun no hay nada
+            #qDate pondría por orden año, mes y día. Usamos format para variar el orden y darle formato.
+            data=('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+            var.ui.txtAltaCli.setText(str(data))
+            var.dlgcalendar.hide()
         except Exception as error:
             print('Error en módulo de cargar fecha ', error)
+
+    def formatoMayus():
+        try:
+            if len(var.ui.txtNome.text())>0:
+                var.ui.txtNome.setText(var.ui.txtNome.text().title())
+            if len(var.ui.txtApel.text()) > 0:
+                var.ui.txtApel.setText(var.ui.txtApel.text().title())
+            if len(var.ui.txtDir.text()) > 0:
+                var.ui.txtDir.setText(var.ui.txtDir.text().title())
+        except Exception as error:
+            print('Error al aplicar formato de texto ',error)

@@ -44,6 +44,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.rbtGroupSex.buttonClicked.connect(clients.Clientes.SelSexo)
         var.ui.chkGroupPago.buttonClicked.connect(clients.Clientes.SelPago)
         var.ui.btnCalendar.clicked.connect(events.Eventos.abrirCal)
+
         '''
         Eventos de la barra de menús
         '''
@@ -52,6 +53,10 @@ class Main(QtWidgets.QMainWindow):
         Eventos de la caja de texto
         '''
         var.ui.txtDNI.editingFinished.connect(clients.Clientes.validarDNI)
+        var.ui.txtNome.editingFinished.connect(clients.Clientes.formatoMayus)
+        var.ui.txtApel.editingFinished.connect(clients.Clientes.formatoMayus)
+        var.ui.txtDir.editingFinished.connect(clients.Clientes.formatoMayus)
+
         '''
         Eventos de comboBox
         '''
