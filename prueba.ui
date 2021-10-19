@@ -736,7 +736,7 @@
       <string>Salir</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnAceptar">
+    <widget class="QPushButton" name="btnGrabaCli">
      <property name="geometry">
       <rect>
        <x>350</x>
@@ -941,7 +941,24 @@
       </font>
      </property>
      <property name="text">
-      <string>Aceptar</string>
+      <string>Guardar</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnLimpiaCli">
+     <property name="geometry">
+      <rect>
+       <x>844</x>
+       <y>192</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/reloadBtn.png</normaloff>img/reloadBtn.png</iconset>
      </property>
     </widget>
    </widget>
@@ -981,6 +998,9 @@
       <width>761</width>
       <height>261</height>
      </size>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
     </property>
     <column>
      <property name="text">
@@ -1050,11 +1070,11 @@
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="rbtGroupSex"/>
   <buttongroup name="chkGroupPago">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="rbtGroupSex"/>
  </buttongroups>
 </ui>

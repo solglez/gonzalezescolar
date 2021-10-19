@@ -107,3 +107,43 @@ class Clientes():
                 var.ui.txtDir.setText(var.ui.txtDir.text().title())
         except Exception as error:
             print('Error al aplicar formato de texto ',error)
+
+    def guardaCli(self):
+        try:
+            #Preparamos el registro
+            newCli=[]
+            client=[ var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
+            for i in client:
+                newCli.append(i.text())
+            #Cargamos en la tabla
+            row = 0
+            column = 0
+            var.ui.tabClientes.insertRow(row)
+            for campo in newCli:
+                cell=QtWidgets.QTableWidgetItem(campo)
+                var.ui.tabClientes.setItem(row, column,cell)
+                column+=1
+
+        except Exception as error:
+            print('Error en módulo guardar cliente ', error)
+
+    def limpiaFormCli(self):
+        try:
+            cajas = [var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli, var.ui.txtDNI, var.ui.txtDir]
+            for i in cajas:
+                i.setText('')
+            var.ui.chkTarjeta.setChecked(False)
+            var.ui.chkEfectivo.setChecked(False)
+            var.ui.chkTransfe.setChecked(False)
+            var.ui.chkCargoCuenta.setChecked(False)
+            var.ui.rbtGroupSex.setExclusive(False)
+            var.ui.rbtHom.setChecked(False)
+            var.ui.rbtFem.setChecked(False)
+            var.ui.rbtGroupSex.setExclusive(True)
+            var.ui.cmbProv.setCurrentIndex(0)
+            var.ui.cmbMun.setCurrentIndex(0)
+            var.ui.lblValidoDNI.setStyleSheet('')
+            var.ui.lblValidoDNI.setText('')
+            var.ui.txtDNI.setStyleSheet('')
+        except Exception as error:
+            print('Error en módulo limpiar formulario ',error)
