@@ -1,6 +1,7 @@
 '''
 Funciones gestión clientes
 '''
+import events
 from prueba import *
 import var
 
@@ -110,20 +111,37 @@ class Clientes():
 
     def guardaCli(self):
         try:
-            #Preparamos el registro
-            newCli=[]
-            client=[ var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
-            for i in client:
-                newCli.append(i.text())
-            #Cargamos en la tabla
-            row = 0
-            column = 0
-            var.ui.tabClientes.insertRow(row)
-            for campo in newCli:
-                cell=QtWidgets.QTableWidgetItem(campo)
-                var.ui.tabClientes.setItem(row, column,cell)
-                column+=1
+            if(var.ui.lblValidoDNI.text()==' V'):
+                #Preparamos el registro
+                newCli=[] #Para la base de datos
+                tabcli= [] # Para representación en tableView
+                client= [var.ui.txtDNI, var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
+                pagos = []
+                #Código para cargar en tabla
+                for i in client:
+                    tabcli.append(i.text())
+                if var.ui.chkCargoCuenta.isChecked():
+                    pagos.append('Cargo Cuenta')
+                if var.ui.chkTransfe.isChecked():
+                    pagos.append('Transferencia')
+                if var.ui.chkTarjeta.isChecked():
+                    pagos.append('Tarjeta')
+                if var.ui.chkEfectivo.isChecked():
+                    pagos.append('Efectivo')
+                pagos = set(pagos)
+                tabcli.append(', '.join(pagos))
+                row = 0
+                column = 0
+                var.ui.tabClientes.insertRow(row)
+                for campo in tabcli:
+                    cell=QtWidgets.QTableWidgetItem(str(campo))
+                    var.ui.tabClientes.setItem(row, column,cell)
+                    column+=1
+                #Codigo para grabar en base de datos
 
+            else:
+                #Mensaje de error
+                events.Eventos.errorDNI(self)
         except Exception as error:
             print('Error en módulo guardar cliente ', error)
 
