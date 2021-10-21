@@ -1,6 +1,7 @@
 '''
 Funciones gestión clientes
 '''
+import clients
 import events
 from prueba import *
 import var
@@ -137,6 +138,7 @@ class Clientes():
                     cell=QtWidgets.QTableWidgetItem(str(campo))
                     var.ui.tabClientes.setItem(row, column,cell)
                     column+=1
+
                 #Codigo para grabar en base de datos
 
             else:
@@ -165,3 +167,25 @@ class Clientes():
             var.ui.txtDNI.setStyleSheet('')
         except Exception as error:
             print('Error en módulo limpiar formulario ',error)
+
+    def cargaCli(self):
+        try:
+            fila=var.ui.tabClientes.selectedItems()
+            datos=[var.ui.txtDNI, var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
+            if fila:
+                row=[dato.text() for dato in fila]
+            for i, dato in enumerate(datos):
+                dato.setText(row[i])
+            pagos=row[4]
+            if 'Tarjeta' in pagos:
+                var.ui.chkTarjeta.setChecked(True)
+            if 'Efectivo' in pagos:
+                var.ui.chkEfectivo.setChecked(True)
+            if 'Transferencia' in pagos:
+                var.ui.chkTransfe.setChecked(True)
+            if 'Cargo Cuenta' in pagos:
+                var.ui.chkCargoCuenta.setChecked(True)
+            #Para que aparezca el DNI como válido en caso de querer guardarse:
+            clients.Clientes.validarDNI()
+        except Exception as error:
+            print('Error en módulo cargar cliente ',error)
