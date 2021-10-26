@@ -1,5 +1,6 @@
 # This is a sample Python script.
 import clients, sys, var, events, datetime
+import conexion
 from prueba import *
 from windowaviso import *
 from windowcal import *
@@ -73,6 +74,10 @@ class Main(QtWidgets.QMainWindow):
         events.Eventos.resizeTablaCli(self)
         var.ui.tabClientes.clicked.connect(clients.Clientes.cargaCli)
         var.ui.tabClientes.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        '''
+        Base de datos
+        '''
+        conexion.Conexion.db_connect(var.filedb)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

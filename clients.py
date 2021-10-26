@@ -2,6 +2,7 @@
 Funciones gestión clientes
 '''
 import clients
+import conexion
 import events
 from prueba import *
 import var
@@ -114,13 +115,24 @@ class Clientes():
         try:
             if(var.ui.lblValidoDNI.text()==' V'):
                 #Preparamos el registro
-                newCli=[] #Para la base de datos
-                tabcli= [] # Para representación en tableView
+                # Para la base de datos
+                newCli=[]
+                cliente=[var.ui.txtDNI, var.ui.txtAltaCli, var.ui.txtApel, var.ui.txtNome, var.ui.txtDir]
+                # Para representación en tableView
+                tabcli= []
                 client= [var.ui.txtDNI, var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
                 pagos = []
                 #Código para cargar en tabla
+                for i in cliente:
+                    newCli.append(i.text())
                 for i in client:
                     tabcli.append(i.text())
+                newCli.append(var.ui.cmbProv.currentText())
+                newCli.append(var.ui.cmbMun.currentText())
+                if var.ui.rbtFem.isChecked():
+                    newCli.append('Mujer')
+                elif var.ui.rbtHom.isChecked():
+                    newCli.append('Hombre')
                 if var.ui.chkCargoCuenta.isChecked():
                     pagos.append('Cargo Cuenta')
                 if var.ui.chkTransfe.isChecked():
@@ -130,6 +142,7 @@ class Clientes():
                 if var.ui.chkEfectivo.isChecked():
                     pagos.append('Efectivo')
                 pagos = set(pagos)
+                newCli.append(', '.join(pagos))
                 tabcli.append(', '.join(pagos))
                 row = 0
                 column = 0
@@ -140,7 +153,7 @@ class Clientes():
                     column+=1
 
                 #Codigo para grabar en base de datos
-
+                conexion.Conexion.altaCli(newCli)
             else:
                 #Mensaje de error
                 events.Eventos.errorDNI(self)
