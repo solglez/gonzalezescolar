@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
+    <width>903</width>
     <height>650</height>
    </rect>
   </property>
@@ -35,7 +35,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true"> QWidget{background-color: qlineargradient(spread:pad, x1:0.414, y1:1, x2:0.46, y2:0, stop:0 rgba(55, 155, 255, 255), stop:1 rgba(255, 255, 255, 255));} </string>
+    <string notr="true"/>
    </property>
    <widget class="QLabel" name="lblClientes">
     <property name="geometry">
@@ -131,7 +131,7 @@
         <x>0</x>
         <y>10</y>
         <width>881</width>
-        <height>281</height>
+        <height>271</height>
        </rect>
       </property>
       <property name="font">
@@ -151,8 +151,8 @@
        <property name="geometry">
         <rect>
          <x>12</x>
-         <y>170</y>
-         <width>271</width>
+         <y>160</y>
+         <width>341</width>
          <height>25</height>
         </rect>
        </property>
@@ -174,7 +174,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Sexo:</string>
+           <string>Sexo:  </string>
           </property>
          </widget>
         </item>
@@ -226,7 +226,7 @@
        <property name="geometry">
         <rect>
          <x>12</x>
-         <y>110</y>
+         <y>100</y>
          <width>861</width>
          <height>26</height>
         </rect>
@@ -252,7 +252,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Dirección:</string>
+           <string>Dirección:  </string>
           </property>
          </widget>
         </item>
@@ -277,7 +277,7 @@
        <property name="geometry">
         <rect>
          <x>12</x>
-         <y>50</y>
+         <y>40</y>
          <width>311</width>
          <height>26</height>
         </rect>
@@ -305,7 +305,7 @@
            </font>
           </property>
           <property name="text">
-           <string>DNI: </string>
+           <string>DNI:         </string>
           </property>
          </widget>
         </item>
@@ -354,7 +354,7 @@
        <property name="geometry">
         <rect>
          <x>532</x>
-         <y>50</y>
+         <y>40</y>
          <width>241</width>
          <height>26</height>
         </rect>
@@ -377,7 +377,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Fecha de alta:</string>
+           <string>Fecha de alta:  </string>
           </property>
          </widget>
         </item>
@@ -428,7 +428,7 @@
        <property name="geometry">
         <rect>
          <x>12</x>
-         <y>80</y>
+         <y>70</y>
          <width>861</width>
          <height>26</height>
         </rect>
@@ -454,7 +454,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Apellidos:</string>
+           <string>Apellidos:  </string>
           </property>
          </widget>
         </item>
@@ -487,7 +487,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Nombre:</string>
+           <string>     Nombre:  </string>
           </property>
          </widget>
         </item>
@@ -512,7 +512,7 @@
        <property name="geometry">
         <rect>
          <x>12</x>
-         <y>140</y>
+         <y>130</y>
          <width>861</width>
          <height>21</height>
         </rect>
@@ -541,7 +541,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Provincia:</string>
+           <string>Provincia:  </string>
           </property>
          </widget>
         </item>
@@ -581,7 +581,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Municipio:</string>
+           <string>     Municipio:  </string>
           </property>
          </widget>
         </item>
@@ -606,7 +606,7 @@
       <widget class="Line" name="line_2">
        <property name="geometry">
         <rect>
-         <x>2</x>
+         <x>0</x>
          <y>20</y>
          <width>881</width>
          <height>20</height>
@@ -623,8 +623,8 @@
        <property name="geometry">
         <rect>
          <x>12</x>
-         <y>200</y>
-         <width>751</width>
+         <y>190</y>
+         <width>581</width>
          <height>25</height>
         </rect>
        </property>
@@ -652,7 +652,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Forma de pago:</string>
+           <string>Forma de pago:  </string>
           </property>
          </widget>
         </item>
@@ -794,7 +794,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>230</y>
+         <y>220</y>
          <width>881</width>
          <height>20</height>
         </rect>
@@ -809,8 +809,8 @@
       <widget class="QPushButton" name="btnLimpiaCli">
        <property name="geometry">
         <rect>
-         <x>844</x>
-         <y>192</y>
+         <x>830</x>
+         <y>190</y>
          <width>31</width>
          <height>31</height>
         </rect>
@@ -827,7 +827,7 @@
        <property name="geometry">
         <rect>
          <x>300</x>
-         <y>250</y>
+         <y>240</y>
          <width>320</width>
          <height>21</height>
         </rect>
@@ -1499,7 +1499,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>903</width>
      <height>21</height>
     </rect>
    </property>
