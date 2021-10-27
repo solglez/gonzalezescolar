@@ -36,7 +36,7 @@ class Clientes():
                 var.ui.lblValidoDNI.setText(' X')
         except Exception as error:
             print('Error en módilo validar DNI: ', error)
-
+    '''
     def SelSexo(self):
         try:
             if var.ui.rbtFem.isChecked():
@@ -58,7 +58,7 @@ class Clientes():
                 print('Has seleccionado transferencia.')
         except Exception as error:
             print('Error en módulo seleccionar forma de pago: ',error)
-
+    '''
     def cargaProv(self):
         try:
             var.ui.cmbProv.clear()
@@ -67,14 +67,14 @@ class Clientes():
                 var.ui.cmbProv.addItem(i)
         except Exception as error:
             print('Error en módulos al cargar provinvia, ',error)
-
+    '''
     def selProv(prov):
         try:
             print('Has seleccionado la provincia de ',prov)
             return prov
         except Exception as error:
             print('Error en módulos de seleccionar provincia, ',error)
-
+    '''
     def cargaMun(self):
         try:
             var.ui.cmbMun.clear()
@@ -182,6 +182,10 @@ class Clientes():
             print('Error en módulo limpiar formulario ',error)
 
     def cargaCli(self):
+        '''
+        Carga los datos del cliente al seleccionar en tabla
+        :return:
+        '''
         try:
             fila=var.ui.tabClientes.selectedItems()
             datos=[var.ui.txtDNI, var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
