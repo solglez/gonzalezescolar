@@ -1,6 +1,7 @@
 '''
 Funciones gestión clientes
 '''
+from PyQt5 import QtSql
 import clients
 import conexion
 import events
@@ -194,6 +195,12 @@ class Clientes():
             for i, dato in enumerate(datos):
                 dato.setText(row[i])
             pagos=row[4]
+            #Primero limpiamos los checks y luego refrescamos:
+            var.ui.chkTarjeta.setChecked(False)
+            var.ui.chkEfectivo.setChecked(False)
+            var.ui.chkTransfe.setChecked(False)
+            var.ui.chkCargoCuenta.setChecked(False)
+
             if 'Tarjeta' in pagos:
                 var.ui.chkTarjeta.setChecked(True)
             if 'Efectivo' in pagos:
@@ -202,6 +209,22 @@ class Clientes():
                 var.ui.chkTransfe.setChecked(True)
             if 'Cargo Cuenta' in pagos:
                 var.ui.chkCargoCuenta.setChecked(True)
+            #Ahora los datos desde la base de datos:
+            query = QtSql.QSqlQuery()
+            orden=('SELECT direccion, provincia, municipio, sexo FROM clientes WHERE dni="'+var.ui.txtDNI.text()+'"')
+            query.prepare(orden)
+            if query.exec_():
+                while query.next():
+                    var.ui.txtDir.setText(query.value(0))
+                    index = var.ui.cmbProv.findText(query.value(1), QtCore.Qt.MatchFixedString)
+                    var.ui.cmbProv.setCurrentIndex(index)
+                    #Falta cargar el municipio -> query.value(2)
+                    if (query.value(3)=='Mujer'):
+                        var.ui.rbtFem.setChecked(True)
+                        var.ui.rbtHom.setChecked(False)
+                    elif (query.value(3)=='Hombre'):
+                        var.ui.rbtFem.setChecked(False)
+                        var.ui.rbtHom.setChecked(True)
             #Para que aparezca el DNI como válido en caso de querer guardarse:
             clients.Clientes.validarDNI()
         except Exception as error:
