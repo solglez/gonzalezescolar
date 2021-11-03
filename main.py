@@ -47,6 +47,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnCalendar.clicked.connect(events.Eventos.abrirCal)
         var.ui.btnGrabaCli.clicked.connect(clients.Clientes.guardaCli)
         var.ui.btnLimpiaCli.clicked.connect(clients.Clientes.limpiaFormCli)
+        var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCli)
 
         '''
         Eventos de la barra de menús

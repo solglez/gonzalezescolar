@@ -61,7 +61,7 @@ class Conexion():
         try:
             index = 0
             query = QtSql.QSqlQuery()
-            query.prepare('select dni, apellidos, nombre, alta, pago from clientes')
+            query.prepare('select dni, apellidos, nombre, alta, pago from clientes order by apellidos')
             if query.exec_():
                 while query.next():
                     dni = query.value(0)
@@ -79,3 +79,23 @@ class Conexion():
                     index+=1
         except Exception as error:
             print('Error al cargar tabla clientes ', error)
+
+    def bajaCli(dni):
+        try:
+            query=QtSql.QSqlQuery()
+            query.prepare('DELETE FROM clientes WHERE dni =:dni')
+            query.bindValue(':dni', str(dni))
+            if query.exec_():
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                    texto=str('Cliente con dni '+str(dni)+' dado de baja.')
+                    msgBox.setText(texto)
+                    msgBox.setWindowTitle("Aviso")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje cliente eliminado ', error)
+            print(dni)
+        except Exception as error:
+            print('Error en baja cliente (conexión) ', error)

@@ -120,14 +120,15 @@ class Clientes():
                 newCli=[]
                 cliente=[var.ui.txtDNI, var.ui.txtAltaCli, var.ui.txtApel, var.ui.txtNome, var.ui.txtDir]
                 # Para representación en tableView
-                tabcli= []
-                client= [var.ui.txtDNI, var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
+                #tabcli= []
+                #client= [var.ui.txtDNI, var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
                 pagos = []
                 #Código para cargar en tabla
+
                 for i in cliente:
                     newCli.append(i.text())
-                for i in client:
-                    tabcli.append(i.text())
+                #for i in client:
+                    #tabcli.append(i.text())
                 newCli.append(var.ui.cmbProv.currentText())
                 newCli.append(var.ui.cmbMun.currentText())
                 if var.ui.rbtFem.isChecked():
@@ -144,17 +145,20 @@ class Clientes():
                     pagos.append('Efectivo')
                 pagos = set(pagos)
                 newCli.append(', '.join(pagos))
+                '''
                 tabcli.append(', '.join(pagos))
                 row = 0
                 column = 0
-                var.ui.tabClientes.insertRow(row)
+                var.ui.tabClientes.insertRow(row)               
                 for campo in tabcli:
                     cell=QtWidgets.QTableWidgetItem(str(campo))
                     var.ui.tabClientes.setItem(row, column,cell)
                     column+=1
-
+                
+                '''
                 #Codigo para grabar en base de datos
                 conexion.Conexion.altaCli(newCli)
+                conexion.Conexion.cargaTabCli(self)
             else:
                 #Mensaje de error
                 events.Eventos.errorDNI(self)
@@ -229,3 +233,11 @@ class Clientes():
             clients.Clientes.validarDNI()
         except Exception as error:
             print('Error en módulo cargar cliente ',error)
+
+    def bajaCli(self):
+        try:
+            dni=var.ui.txtDNI.text()
+            conexion.Conexion.bajaCli(dni)
+            conexion.Conexion.cargaTabCli(self)
+        except Exception as error:
+            print('Error al dar de baja cliente ', error)
