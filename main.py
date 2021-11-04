@@ -48,6 +48,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnGrabaCli.clicked.connect(clients.Clientes.guardaCli)
         var.ui.btnLimpiaCli.clicked.connect(clients.Clientes.limpiaFormCli)
         var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCli)
+        var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscaCli)
 
         '''
         Eventos de la barra de menús
@@ -64,10 +65,10 @@ class Main(QtWidgets.QMainWindow):
         '''
         Eventos de comboBox
         '''
-        clients.Clientes.cargaProv(self)
+        var.ui.cmbProv.currentIndexChanged.connect(clients.Clientes.cargaMun)
         #var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
-        clients.Clientes.cargaMun(self)
-        var.ui.cmbMun.activated[str].connect(clients.Clientes.selMun)
+        #clients.Clientes.cargaMun(self)
+        #var.ui.cmbMun.activated[str].connect(clients.Clientes.selMun)
 
         '''
         Eventos QTabWidget
@@ -80,6 +81,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         conexion.Conexion.db_connect(var.filedb)
         conexion.Conexion.cargaTabCli(self)
+        clients.Clientes.cargaProv(self)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

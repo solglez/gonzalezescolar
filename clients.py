@@ -63,7 +63,7 @@ class Clientes():
     def cargaProv(self):
         try:
             var.ui.cmbProv.clear()
-            prov=['','A Coruña','Lugo','Ourense','Pontevedra','Vigo']
+            prov=conexion.Conexion.listaProvincias(self)
             for i in prov:
                 var.ui.cmbProv.addItem(i)
         except Exception as error:
@@ -79,7 +79,8 @@ class Clientes():
     def cargaMun(self):
         try:
             var.ui.cmbMun.clear()
-            mun=['','Cangas do Morrazo','Moaña','Vigo']
+            prov=var.ui.cmbProv.currentText()
+            mun=conexion.Conexion.listaMunicipios(prov)
             for i in mun:
                 var.ui.cmbMun.addItem(i)
         except Exception as error:
@@ -222,7 +223,8 @@ class Clientes():
                     var.ui.txtDir.setText(query.value(0))
                     index = var.ui.cmbProv.findText(query.value(1), QtCore.Qt.MatchFixedString)
                     var.ui.cmbProv.setCurrentIndex(index)
-                    #Falta cargar el municipio -> query.value(2)
+                    indexM = var.ui.cmbMun.findText(query.value(2), QtCore.Qt.MatchFixedString)
+                    var.ui.cmbMun.setCurrentIndex(indexM)
                     if (query.value(3)=='Mujer'):
                         var.ui.rbtFem.setChecked(True)
                         var.ui.rbtHom.setChecked(False)
@@ -241,3 +243,37 @@ class Clientes():
             conexion.Conexion.cargaTabCli(self)
         except Exception as error:
             print('Error al dar de baja cliente ', error)
+
+    def buscaCli(self):
+        try:
+            dni=var.ui.txtDNI.text()
+            datos=conexion.Conexion.selecCliente(dni)
+            print(datos)
+            var.ui.txtDir.setText(datos[3])
+            var.ui.txtNome.setText(datos[2])
+            var.ui.txtApel.setText(datos[1])
+            var.ui.txtAltaCli.setText(datos[0])
+            pagos = datos[7]
+            # Primero limpiamos los checks y luego refrescamos:
+            var.ui.chkTarjeta.setChecked(False)
+            var.ui.chkEfectivo.setChecked(False)
+            var.ui.chkTransfe.setChecked(False)
+            var.ui.chkCargoCuenta.setChecked(False)
+            if 'Tarjeta' in pagos:
+                var.ui.chkTarjeta.setChecked(True)
+            if 'Efectivo' in pagos:
+                var.ui.chkEfectivo.setChecked(True)
+            if 'Transferencia' in pagos:
+                var.ui.chkTransfe.setChecked(True)
+            if 'Cargo Cuenta' in pagos:
+                var.ui.chkCargoCuenta.setChecked(True)
+            if (datos[6] == 'Mujer'):
+                var.ui.rbtFem.setChecked(True)
+                var.ui.rbtHom.setChecked(False)
+            elif (datos[6] == 'Hombre'):
+                var.ui.rbtFem.setChecked(False)
+                var.ui.rbtHom.setChecked(True)
+
+            #Falta provincia y actualizar la tabla
+        except Exception as error:
+            print('Error al buscar cliente ', error)

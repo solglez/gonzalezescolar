@@ -829,7 +829,7 @@
          <x>300</x>
          <y>240</y>
          <width>320</width>
-         <height>21</height>
+         <height>31</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -1452,6 +1452,24 @@
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QPushButton" name="btnBuscarCli">
+       <property name="geometry">
+        <rect>
+         <x>724</x>
+         <y>240</y>
+         <width>141</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Buscar cliente</string>
+       </property>
       </widget>
      </widget>
     </widget>

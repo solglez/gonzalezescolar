@@ -60,6 +60,7 @@ class Conexion():
     def cargaTabCli(self):
         try:
             index = 0
+            var.ui.tabClientes.setRowCount(index)
             query = QtSql.QSqlQuery()
             query.prepare('select dni, apellidos, nombre, alta, pago from clientes order by apellidos')
             if query.exec_():
@@ -96,6 +97,51 @@ class Conexion():
                     msgBox.exec()
                 except Exception as error:
                     print('Error en mensaje cliente eliminado ', error)
-            print(dni)
         except Exception as error:
             print('Error en baja cliente (conexión) ', error)
+
+    def listaMunicipios(prov):
+        municipios = []
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT municipio FROM municipios WHERE provincia_id = (SELECT id FROM provincias WHERE provincia =:prov)')
+            query.bindValue(':prov', str(prov))
+            if query.exec_():
+                while query.next():
+                    municipios.append(query.value(0))
+        except Exception as error:
+            print('Error en lista municipios (conexión) ', error)
+        return municipios
+
+    def listaProvincias(self):
+        provincias = []
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT provincia FROM provincias')
+            if query.exec_():
+                while query.next():
+                    provincias.append(query.value(0))
+        except Exception as error:
+            print('Error en lista municipios (conexión) ', error)
+        return provincias
+
+    def selecCliente(dni):
+        datosCli = []
+        try:
+            query=QtSql.QSqlQuery()
+            query.prepare('SELECT alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago  FROM clientes WHERE dni =:dni')
+            query.bindValue(':dni', str(dni))
+            if query.exec_():
+                while query.next():
+                    datosCli.append(query.value(0))
+                    datosCli.append(query.value(1))
+                    datosCli.append(query.value(2))
+                    datosCli.append(query.value(3))
+                    datosCli.append(query.value(4))
+                    datosCli.append(query.value(5))
+                    datosCli.append(query.value(6))
+                    datosCli.append(query.value(7))
+        except Exception as error:
+            print('Error en buscar cliente (conexión) ', error)
+        return datosCli
+
