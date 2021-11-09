@@ -1,10 +1,12 @@
 # This is a sample Python script.
-import clients, sys, var, events, datetime
+import clients, sys, var, events, datetime, locale
 import conexion
 from prueba import *
 from windowaviso import *
 from windowcal import *
 from datetime import *
+locale.setlocale(locale.LC_ALL, 'es-ES')
+
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 class DialogCalendar(QtWidgets.QDialog):
@@ -49,6 +51,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnLimpiaCli.clicked.connect(clients.Clientes.limpiaFormCli)
         var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscaCli)
+        var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCli)
 
         '''
         Eventos de la barra de menús
@@ -69,6 +72,13 @@ class Main(QtWidgets.QMainWindow):
         #var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
         #clients.Clientes.cargaMun(self)
         #var.ui.cmbMun.activated[str].connect(clients.Clientes.selMun)
+
+        '''
+        Barra de estado
+        '''
+        var.ui.statusbar.addPermanentWidget(var.ui.lblFecha,1)
+        var.ui.lblFecha.setText(datetime.today().strftime('%H:%M - %A, %d de %B de %Y'))
+
 
         '''
         Eventos QTabWidget

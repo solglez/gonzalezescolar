@@ -244,6 +244,34 @@ class Clientes():
         except Exception as error:
             print('Error al dar de baja cliente ', error)
 
+    def modifCli(self):
+        try:
+            modcliente=[]
+            cliente=[var.ui.txtDNI, var.ui.txtAltaCli, var.ui.txtApel, var.ui.txtNome, var.ui.txtDir]
+            for i in cliente:
+                modcliente.append(i.text())
+            modcliente.append(var.ui.cmbProv.currentText())
+            modcliente.append(var.ui.cmbMun.currentText())
+            if var.ui.rbtFem.isChecked():
+                modcliente.append('Mujer')
+            elif var.ui.rbtHom.isChecked():
+                modcliente.append('Hombre')
+            pagos=[]
+            if var.ui.chkCargoCuenta.isChecked():
+                pagos.append('Cargo Cuenta')
+            if var.ui.chkTransfe.isChecked():
+                pagos.append('Transferencia')
+            if var.ui.chkTarjeta.isChecked():
+                pagos.append('Tarjeta')
+            if var.ui.chkEfectivo.isChecked():
+                pagos.append('Efectivo')
+            pagos = set(pagos)
+            modcliente.append(', '.join(pagos))
+            conexion.Conexion.modifCli(modcliente)
+            conexion.Conexion.cargaTabCli(self)
+        except Exception as error:
+            print('Error al modificar cliente ',error)
+
     def buscaCli(self):
         try:
             dni=var.ui.txtDNI.text()

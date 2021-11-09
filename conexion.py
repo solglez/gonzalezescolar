@@ -145,3 +145,42 @@ class Conexion():
             print('Error en buscar cliente (conexión) ', error)
         return datosCli
 
+    def modifCli(modCliente):
+        try:
+            query=QtSql.QSqlQuery()
+            query.prepare('UPDATE clientes SET alta=:alta, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, '
+                          'provincia=:provincia, municipio=:municipio, sexo=:sexo, pago=:pago WHERE dni=:dni')
+            query.bindValue(':dni', str(modCliente[0]))
+            query.bindValue(':apellidos', str(modCliente[2]))
+            query.bindValue(':alta', str(modCliente[1]))
+            query.bindValue(':nombre', str(modCliente[3]))
+            query.bindValue(':direccion', str(modCliente[4]))
+            query.bindValue(':provincia', str(modCliente[5]))
+            query.bindValue(':municipio', str(modCliente[6]))
+            query.bindValue(':sexo', str(modCliente[7]))
+            query.bindValue(':pago', str(modCliente[8]))
+            if query.exec_():
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                    msgBox.setText("Cliente modificado correctamente")
+                    msgBox.setWindowTitle("Operación completada")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje cliente modificado ', error)
+            else:
+                print(query.lastError().text())
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+                    msgBox.setText("No se pudo modificar el cliente")
+                    msgBox.setWindowTitle("ERROR")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje cliente no modificado ', error)
+
+        except Exception as error:
+            print('Error al modificar cliente (conexion) ',error)
+
