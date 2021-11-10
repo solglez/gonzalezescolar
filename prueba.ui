@@ -1546,6 +1546,7 @@
     <property name="title">
      <string>Archivo</string>
     </property>
+    <addaction name="action_Abrir"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
@@ -1572,6 +1573,11 @@
    </property>
    <property name="shortcut">
     <string>Alt+S</string>
+   </property>
+  </action>
+  <action name="action_Abrir">
+   <property name="text">
+    <string>Abrir</string>
    </property>
   </action>
  </widget>
