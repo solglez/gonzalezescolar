@@ -9,6 +9,7 @@ import var, conexion, clients
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import pyqtSlot
+from PyQt5 import QtPrintSupport
 import windowaviso
 from windowaviso import *
 from prueba import *
@@ -123,3 +124,11 @@ class Eventos():
 
         except Exception as error:
             print('Error al restaurar backup ',error)
+
+    def Imprimir(self):
+        try:
+            printDialog=QtPrintSupport.QPrintDialog()
+            if printDialog.exec():
+                printDialog.show()
+        except Exception as error:
+            print('Error en evento imprimir ',error)

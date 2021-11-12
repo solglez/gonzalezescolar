@@ -68,6 +68,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.action_Abrir.triggered.connect(events.Eventos.abrir)
         var.ui.actionCrear_Backup.triggered.connect(events.Eventos.crearBackup)
         var.ui.actionRestaurar_Backup.triggered.connect(events.Eventos.restaurarBackup)
+        var.ui.actionImprimir.triggered.connect(events.Eventos.Imprimir)
         '''
         Eventos de la caja de texto
         '''
@@ -90,7 +91,14 @@ class Main(QtWidgets.QMainWindow):
         var.ui.statusbar.addPermanentWidget(var.ui.lblFecha,1)
         var.ui.lblFecha.setText(datetime.today().strftime('%H:%M - %A, %d de %B de %Y'))
 
-
+        '''
+        Eventos menú herramientas
+        '''
+        var.ui.actionBarSalir.triggered.connect(events.Eventos.salir)
+        var.ui.actionabrirCarpeta.triggered.connect(events.Eventos.abrir)
+        var.ui.actionHacerBackup.triggered.connect(events.Eventos.crearBackup)
+        var.ui.actionRestaurarBackup.triggered.connect(events.Eventos.restaurarBackup)
+        var.ui.actionBarImpresora.triggered.connect(events.Eventos.Imprimir)
         '''
         Eventos QTabWidget
         '''
