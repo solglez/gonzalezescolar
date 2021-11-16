@@ -3,7 +3,7 @@ Fichero de eventos generales
 '''
 import os.path
 import shutil
-import zipfile
+import zipfile, xlrd, openpyxl
 
 import var, conexion, clients
 import sys
@@ -132,3 +132,33 @@ class Eventos():
                 printDialog.show()
         except Exception as error:
             print('Error en evento imprimir ',error)
+
+    def ImportarDatos(self):
+        try:
+            option = QtWidgets.QFileDialog.Options()
+            origen, filter = var.dlgabrir.getOpenFileName(None, 'Importar Datos', '', '*.xls;;ALL',
+                                                          options=option)
+            documento=xlrd.open_workbook(origen)
+            hoja=documento.sheet_by_index(0)
+            numRexistros=hoja.nrows
+            numColumns=hoja.ncols
+            print(numRexistros, numColumns)
+            for r in range(1,numRexistros):
+                cliente = []
+                for c in range(numColumns):
+                    # Se toma el cliente y su dni
+                    cliente.append(str(hoja.cell_value(r, c)))
+                    #print(hoja.cell_value(r, c))
+                conexion.Conexion.clienteExcel(cliente)
+                '''
+                if conexion.Conexion.comprobarExisteCli(cliente[0]):
+                    #conexion.Conexion.modifCli(cliente)
+                    print('Mod ', cliente)
+                else:
+                    #conexion.Conexion.altaCli(cliente)
+                    print('Add ' , cliente)
+                '''
+                #print(cliente)
+
+        except Exception as error:
+            print('Error en evento importar datos: ',error)

@@ -1548,6 +1548,9 @@
     </property>
     <addaction name="action_Abrir"/>
     <addaction name="separator"/>
+    <addaction name="actionImportar_Datos"/>
+    <addaction name="actionExportar_Datos"/>
+    <addaction name="separator"/>
     <addaction name="actionImprimir"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
@@ -1667,6 +1670,16 @@
   <action name="actionImprimir">
    <property name="text">
     <string>Imprimir</string>
+   </property>
+  </action>
+  <action name="actionImportar_Datos">
+   <property name="text">
+    <string>Importar Datos</string>
+   </property>
+  </action>
+  <action name="actionExportar_Datos">
+   <property name="text">
+    <string>Exportar Datos</string>
    </property>
   </action>
  </widget>

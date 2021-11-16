@@ -1,10 +1,14 @@
 from PyQt5 import QtSql, QtWidgets
 from PyQt5.QtWidgets import *
+import datetime
+import conexion
 import var
+
+
 class Conexion():
     def db_connect(filename):
         try:
-            db=QtSql.QSqlDatabase.addDatabase('QSQLITE')
+            db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
             db.setDatabaseName(filename)
             if not db.open():
                 QtWidgets.QMessageBox.critical(None, 'No se puede abrir la base de datos. \nHaz click para continuar.',
@@ -14,16 +18,19 @@ class Conexion():
                 print('Conexión establecida')
                 return True
         except Exception as error:
-            print('Problemas al establecer conexion con base de datos: ',error)
+            print('Problemas al establecer conexion con base de datos: ', error)
+
     '''
     Modulos gestión base de datos cliente
     '''
+
     def altaCli(newCli):
         try:
-            query=QtSql.QSqlQuery()
-            query.prepare('insert into clientes (dni, alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago)'
-                          'values (:dni, :alta, :apellidos, :nombre, :direccion, :provincia, :municipio, :sexo, :pago)')
-            query.bindValue(':dni',str(newCli[0]))
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'insert into clientes (dni, alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago)'
+                'values (:dni, :alta, :apellidos, :nombre, :direccion, :provincia, :municipio, :sexo, :pago)')
+            query.bindValue(':dni', str(newCli[0]))
             query.bindValue(':apellidos', str(newCli[2]))
             query.bindValue(':alta', str(newCli[1]))
             query.bindValue(':nombre', str(newCli[3]))
@@ -55,7 +62,7 @@ class Conexion():
                 except Exception as error:
                     print('Error en mensaje cliente guardado ', error)
         except Exception as error:
-            print('Error al guardar cliente: ',error)
+            print('Error al guardar cliente: ', error)
 
     def cargaTabCli(self):
         try:
@@ -77,20 +84,20 @@ class Conexion():
                     var.ui.tabClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(nombre))
                     var.ui.tabClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(alta))
                     var.ui.tabClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(pago))
-                    index+=1
+                    index += 1
         except Exception as error:
             print('Error al cargar tabla clientes ', error)
 
     def bajaCli(dni):
         try:
-            query=QtSql.QSqlQuery()
+            query = QtSql.QSqlQuery()
             query.prepare('DELETE FROM clientes WHERE dni =:dni')
             query.bindValue(':dni', str(dni))
             if query.exec_():
                 try:
                     msgBox = QMessageBox()
                     msgBox.setIcon(QtWidgets.QMessageBox.Information)
-                    texto=str('Cliente con dni '+str(dni)+' dado de baja.')
+                    texto = str('Cliente con dni ' + str(dni) + ' dado de baja.')
                     msgBox.setText(texto)
                     msgBox.setWindowTitle("Aviso")
                     msgBox.setStandardButtons(QMessageBox.Ok)
@@ -104,7 +111,8 @@ class Conexion():
         municipios = []
         try:
             query = QtSql.QSqlQuery()
-            query.prepare('SELECT municipio FROM municipios WHERE provincia_id = (SELECT id FROM provincias WHERE provincia =:prov)')
+            query.prepare(
+                'SELECT municipio FROM municipios WHERE provincia_id = (SELECT id FROM provincias WHERE provincia =:prov)')
             query.bindValue(':prov', str(prov))
             if query.exec_():
                 while query.next():
@@ -128,8 +136,9 @@ class Conexion():
     def selecCliente(dni):
         datosCli = []
         try:
-            query=QtSql.QSqlQuery()
-            query.prepare('SELECT alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago  FROM clientes WHERE dni =:dni')
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'SELECT alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago  FROM clientes WHERE dni =:dni')
             query.bindValue(':dni', str(dni))
             if query.exec_():
                 while query.next():
@@ -147,7 +156,7 @@ class Conexion():
 
     def modifCli(modCliente):
         try:
-            query=QtSql.QSqlQuery()
+            query = QtSql.QSqlQuery()
             query.prepare('UPDATE clientes SET alta=:alta, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, '
                           'provincia=:provincia, municipio=:municipio, sexo=:sexo, pago=:pago WHERE dni=:dni')
             query.bindValue(':dni', str(modCliente[0]))
@@ -182,5 +191,50 @@ class Conexion():
                     print('Error en mensaje cliente no modificado ', error)
 
         except Exception as error:
-            print('Error al modificar cliente (conexion) ',error)
+            print('Error al modificar cliente (conexion) ', error)
+
+    def comprobarExisteCli(dni):
+        respuesta=False
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'SELECT nombre  FROM clientes WHERE dni =:dni')
+            query.bindValue(':dni', str(dni))
+            if query.exec_():
+                while query.next():
+                    respuesta=True
+        except Exception as error:
+            print('Error en comprobar existe cliente ', error)
+        return respuesta
+
+    def clienteExcel(cliente):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'insert into clientes (dni, alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago)'
+                'values (:dni, :alta, :apellidos, :nombre, :direccion, :provincia, :municipio, :sexo, :pago)')
+            if conexion.Conexion.comprobarExisteCli(cliente[0]):
+                query.prepare(
+                    'UPDATE clientes SET alta=:alta, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, '
+                    'provincia=:provincia, municipio=:municipio, sexo=:sexo, pago=:pago WHERE dni=:dni')
+            query.bindValue(':dni', str(cliente[0]))
+            query.bindValue(':apellidos', str(cliente[1]))
+            data = ('{0}/{1}/{2}'.format(datetime.now().day, datetime.now().month, datetime.now().year))
+            query.bindValue(':alta', str(data))
+            query.bindValue(':nombre', str(cliente[2]))
+            query.bindValue(':direccion', str(cliente[3]))
+            query.bindValue(':provincia', str(cliente[4]))
+            query.bindValue(':municipio', str(''))
+            query.bindValue(':sexo', str(cliente[5]))
+            query.bindValue(':pago', str(''))
+            '''
+            if not conexion.Conexion.comprobarExisteCli(cliente[0]):
+                query.bindValue(':pago', str(''))
+                '''
+            if query.exec_():
+                while query.next():
+                    print('insertado')
+        except Exception as error:
+            print('Error en manejar cliente de excel ', error)
+
 
