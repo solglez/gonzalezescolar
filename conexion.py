@@ -1,6 +1,7 @@
 from PyQt5 import QtSql, QtWidgets
 from PyQt5.QtWidgets import *
-import datetime
+from datetime import *
+import xlwt
 import conexion
 import var
 
@@ -218,15 +219,17 @@ class Conexion():
                     'UPDATE clientes SET alta=:alta, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, '
                     'provincia=:provincia, municipio=:municipio, sexo=:sexo, pago=:pago WHERE dni=:dni')
             query.bindValue(':dni', str(cliente[0]))
-            query.bindValue(':apellidos', str(cliente[1]))
-            data = ('{0}/{1}/{2}'.format(datetime.now().day, datetime.now().month, datetime.now().year))
-            query.bindValue(':alta', str(data))
-            query.bindValue(':nombre', str(cliente[2]))
-            query.bindValue(':direccion', str(cliente[3]))
-            query.bindValue(':provincia', str(cliente[4]))
-            query.bindValue(':municipio', str(''))
-            query.bindValue(':sexo', str(cliente[5]))
-            query.bindValue(':pago', str(''))
+            query.bindValue(':apellidos', str(cliente[2]))
+            query.bindValue(':alta', str(cliente[1]))
+            if str(cliente[1]).__eq__(''):
+                data = (datetime.today().strftime('%d/%m/%Y'))
+                query.bindValue(':alta', str(data))
+            query.bindValue(':nombre', str(cliente[3]))
+            query.bindValue(':direccion', str(cliente[4]))
+            query.bindValue(':provincia', str(cliente[5]))
+            query.bindValue(':municipio', str(cliente[6]))
+            query.bindValue(':sexo', str(cliente[7]))
+            query.bindValue(':pago', str(cliente[8]))
             '''
             if not conexion.Conexion.comprobarExisteCli(cliente[0]):
                 query.bindValue(':pago', str(''))
@@ -237,4 +240,39 @@ class Conexion():
         except Exception as error:
             print('Error en manejar cliente de excel ', error)
 
+    def exportExcel(self):
+        procesado = False
+        try:
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y.%m.%d.%H.%M.%S')
+            var.copia = (str(fecha) + '_dataExport.xls')
+            option = QtWidgets.QFileDialog.Options()
+            directorio, filename = var.dlgabrir.getSaveFileName(None, 'Exportar datos', var.copia, '.xls',
+                                                                options=option)
+            wb = xlwt.Workbook()
+            sheet1 = wb.add_sheet('Hoja 1')
 
+            # Cabeceras
+            sheet1.write(0, 0, 'DNI')
+            sheet1.write(0, 1, 'ALTA')
+            sheet1.write(0, 2, 'APELIDOS')
+            sheet1.write(0, 3, 'NOME')
+            sheet1.write(0, 4, 'DIRECCION')
+            sheet1.write(0, 5, 'PROVINCIA')
+            sheet1.write(0, 6, 'MUNICIPIO')
+            sheet1.write(0, 7, 'SEXO')
+            sheet1.write(0, 8, 'PAGO')
+            f = 1
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT *  FROM clientes')
+            if query.exec_():
+                while query.next():
+                    for c in range(9):
+                        sheet1.write(f, c, query.value(c))
+                    f+=1
+            procesado=True
+            wb.save(directorio)
+
+        except Exception as error:
+            print('Error en conexion para exportar excel ',error)
+        return procesado

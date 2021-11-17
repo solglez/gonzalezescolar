@@ -142,23 +142,38 @@ class Eventos():
             hoja=documento.sheet_by_index(0)
             numRexistros=hoja.nrows
             numColumns=hoja.ncols
-            print(numRexistros, numColumns)
             for r in range(1,numRexistros):
                 cliente = []
                 for c in range(numColumns):
                     # Se toma el cliente y su dni
                     cliente.append(str(hoja.cell_value(r, c)))
-                    #print(hoja.cell_value(r, c))
                 conexion.Conexion.clienteExcel(cliente)
-                '''
-                if conexion.Conexion.comprobarExisteCli(cliente[0]):
-                    #conexion.Conexion.modifCli(cliente)
-                    print('Mod ', cliente)
-                else:
-                    #conexion.Conexion.altaCli(cliente)
-                    print('Add ' , cliente)
-                '''
-                #print(cliente)
-
+            conexion.Conexion.cargaTabCli(self)
         except Exception as error:
             print('Error en evento importar datos: ',error)
+
+    def ExportarDatos(self):
+        try:
+            procesado=conexion.Conexion.exportExcel(self)
+            if procesado:
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                    msgBox.setText("Datos exportados con éxito.")
+                    msgBox.setWindowTitle("Operación completada")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje generado exportar datos ', error)
+            else:
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                    msgBox.setText("No han podido exportarse los datos.")
+                    msgBox.setWindowTitle("Error export datos")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje generado backup ', error)
+        except Exception as error:
+            print('Error en evento exportar datos ',error)

@@ -70,6 +70,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionRestaurar_Backup.triggered.connect(events.Eventos.restaurarBackup)
         var.ui.actionImprimir.triggered.connect(events.Eventos.Imprimir)
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.ImportarDatos)
+        var.ui.actionExportar_Datos.triggered.connect(events.Eventos.ExportarDatos)
         '''
         Eventos de la caja de texto
         '''
