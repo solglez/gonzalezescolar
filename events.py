@@ -177,3 +177,19 @@ class Eventos():
                     print('Error en mensaje generado backup ', error)
         except Exception as error:
             print('Error en evento exportar datos ',error)
+
+    def labelEnvio(self):
+        try:
+            valor=var.ui.spinEnvio.value()
+            if(valor==0):
+                var.ui.lblEnvio.setText('Recogida Cliente')
+            elif valor==1:
+                var.ui.lblEnvio.setText('Envío Nacional Urgente')
+            elif valor==2:
+                var.ui.lblEnvio.setText('Envío Nacional Normal')
+            else:
+                var.ui.lblEnvio.setText('Envío Internacional')
+
+        except Exception as error:
+            print('Error en evento actualizar label envíos ', error)
+

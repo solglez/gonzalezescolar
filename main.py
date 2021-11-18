@@ -60,7 +60,12 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscaCli)
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCli)
-
+        '''
+        Eventos de spin
+        '''
+        var.ui.spinEnvio.valueChanged.connect(events.Eventos.labelEnvio)
+        var.ui.spinEnvio.setValue(0);
+        var.ui.spinEnvio.setRange(0, 3);
         '''
         Eventos de la barra de menús y de herramientas
         '''

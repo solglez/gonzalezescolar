@@ -146,6 +146,7 @@ class Clientes():
                     pagos.append('Efectivo')
                 pagos = set(pagos)
                 newCli.append(', '.join(pagos))
+                newCli.append(var.ui.spinEnvio.value())
                 '''
                 tabcli.append(', '.join(pagos))
                 row = 0
@@ -184,6 +185,7 @@ class Clientes():
             var.ui.lblValidoDNI.setStyleSheet('')
             var.ui.lblValidoDNI.setText('')
             var.ui.txtDNI.setStyleSheet('')
+            var.ui.spinEnvio.setValue(0)
         except Exception as error:
             print('Error en módulo limpiar formulario ',error)
 
@@ -216,7 +218,7 @@ class Clientes():
                 var.ui.chkCargoCuenta.setChecked(True)
             #Ahora los datos desde la base de datos:
             query = QtSql.QSqlQuery()
-            orden=('SELECT direccion, provincia, municipio, sexo FROM clientes WHERE dni="'+var.ui.txtDNI.text()+'"')
+            orden=('SELECT direccion, provincia, municipio, sexo, envio FROM clientes WHERE dni="'+var.ui.txtDNI.text()+'"')
             query.prepare(orden)
             if query.exec_():
                 while query.next():
@@ -231,6 +233,11 @@ class Clientes():
                     elif (query.value(3)=='Hombre'):
                         var.ui.rbtFem.setChecked(False)
                         var.ui.rbtHom.setChecked(True)
+                    try:
+                        var.ui.spinEnvio.setValue(query.value(4))
+                    except:
+                        var.ui.spinEnvio.setValue(0)
+
             #Para que aparezca el DNI como válido en caso de querer guardarse:
             clients.Clientes.validarDNI()
         except Exception as error:
@@ -267,6 +274,7 @@ class Clientes():
                 pagos.append('Efectivo')
             pagos = set(pagos)
             modcliente.append(', '.join(pagos))
+            modcliente.append(var.ui.spinEnvio.value())
             conexion.Conexion.modifCli(modcliente)
             conexion.Conexion.cargaTabCli(self)
         except Exception as error:

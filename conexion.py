@@ -29,8 +29,8 @@ class Conexion():
         try:
             query = QtSql.QSqlQuery()
             query.prepare(
-                'insert into clientes (dni, alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago)'
-                'values (:dni, :alta, :apellidos, :nombre, :direccion, :provincia, :municipio, :sexo, :pago)')
+                'insert into clientes (dni, alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago, envio)'
+                'values (:dni, :alta, :apellidos, :nombre, :direccion, :provincia, :municipio, :sexo, :pago, :envio)')
             query.bindValue(':dni', str(newCli[0]))
             query.bindValue(':apellidos', str(newCli[2]))
             query.bindValue(':alta', str(newCli[1]))
@@ -40,6 +40,7 @@ class Conexion():
             query.bindValue(':municipio', str(newCli[6]))
             query.bindValue(':sexo', str(newCli[7]))
             query.bindValue(':pago', str(newCli[8]))
+            query.bindValue(':envio', str(newCli[9]))
 
             if query.exec_():
                 try:
@@ -139,7 +140,7 @@ class Conexion():
         try:
             query = QtSql.QSqlQuery()
             query.prepare(
-                'SELECT alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago  FROM clientes WHERE dni =:dni')
+                'SELECT alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago, envio  FROM clientes WHERE dni =:dni')
             query.bindValue(':dni', str(dni))
             if query.exec_():
                 while query.next():
@@ -151,6 +152,7 @@ class Conexion():
                     datosCli.append(query.value(5))
                     datosCli.append(query.value(6))
                     datosCli.append(query.value(7))
+                    datosCli.append(query.value(8))
         except Exception as error:
             print('Error en buscar cliente (conexión) ', error)
         return datosCli
@@ -159,7 +161,7 @@ class Conexion():
         try:
             query = QtSql.QSqlQuery()
             query.prepare('UPDATE clientes SET alta=:alta, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, '
-                          'provincia=:provincia, municipio=:municipio, sexo=:sexo, pago=:pago WHERE dni=:dni')
+                          'provincia=:provincia, municipio=:municipio, sexo=:sexo, pago=:pago, envio=:envio WHERE dni=:dni')
             query.bindValue(':dni', str(modCliente[0]))
             query.bindValue(':apellidos', str(modCliente[2]))
             query.bindValue(':alta', str(modCliente[1]))
@@ -169,6 +171,7 @@ class Conexion():
             query.bindValue(':municipio', str(modCliente[6]))
             query.bindValue(':sexo', str(modCliente[7]))
             query.bindValue(':pago', str(modCliente[8]))
+            query.bindValue(':envio', str(modCliente[9]))
             if query.exec_():
                 try:
                     msgBox = QMessageBox()
@@ -212,12 +215,12 @@ class Conexion():
         try:
             query = QtSql.QSqlQuery()
             query.prepare(
-                'insert into clientes (dni, alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago)'
-                'values (:dni, :alta, :apellidos, :nombre, :direccion, :provincia, :municipio, :sexo, :pago)')
+                'insert into clientes (dni, alta, apellidos, nombre, direccion, provincia, municipio, sexo, pago, envio)'
+                'values (:dni, :alta, :apellidos, :nombre, :direccion, :provincia, :municipio, :sexo, :pago, :envio)')
             if conexion.Conexion.comprobarExisteCli(cliente[0]):
                 query.prepare(
                     'UPDATE clientes SET alta=:alta, apellidos=:apellidos, nombre=:nombre, direccion=:direccion, '
-                    'provincia=:provincia, municipio=:municipio, sexo=:sexo, pago=:pago WHERE dni=:dni')
+                    'provincia=:provincia, municipio=:municipio, sexo=:sexo, pago=:pago, envio=:envio WHERE dni=:dni')
             query.bindValue(':dni', str(cliente[0]))
             query.bindValue(':apellidos', str(cliente[2]))
             query.bindValue(':alta', str(cliente[1]))
@@ -230,10 +233,11 @@ class Conexion():
             query.bindValue(':municipio', str(cliente[6]))
             query.bindValue(':sexo', str(cliente[7]))
             query.bindValue(':pago', str(cliente[8]))
-            '''
-            if not conexion.Conexion.comprobarExisteCli(cliente[0]):
-                query.bindValue(':pago', str(''))
-                '''
+            if len(cliente)>9:
+                query.bindValue(':envio', str(cliente[9]))
+            else:
+                query.bindValue(':envio', str(0))
+
             if query.exec_():
                 while query.next():
                     print('insertado')
@@ -262,12 +266,13 @@ class Conexion():
             sheet1.write(0, 6, 'MUNICIPIO')
             sheet1.write(0, 7, 'SEXO')
             sheet1.write(0, 8, 'PAGO')
+            sheet1.write(0, 9, 'ENVIO')
             f = 1
             query = QtSql.QSqlQuery()
             query.prepare('SELECT *  FROM clientes')
             if query.exec_():
                 while query.next():
-                    for c in range(9):
+                    for c in range(10):
                         sheet1.write(f, c, query.value(c))
                     f+=1
             procesado=True
