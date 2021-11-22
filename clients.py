@@ -279,7 +279,7 @@ class Clientes():
             conexion.Conexion.cargaTabCli(self)
         except Exception as error:
             print('Error al modificar cliente ',error)
-
+    '''
     def buscaCli(self):
         try:
             dni=var.ui.txtDNI.text()
@@ -313,3 +313,4 @@ class Clientes():
             #Falta provincia y actualizar la tabla
         except Exception as error:
             print('Error al buscar cliente ', error)
+    '''

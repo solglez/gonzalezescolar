@@ -138,17 +138,28 @@ class Eventos():
             option = QtWidgets.QFileDialog.Options()
             origen, filter = var.dlgabrir.getOpenFileName(None, 'Importar Datos', '', '*.xls;;ALL',
                                                           options=option)
-            documento=xlrd.open_workbook(origen)
-            hoja=documento.sheet_by_index(0)
-            numRexistros=hoja.nrows
-            numColumns=hoja.ncols
-            for r in range(1,numRexistros):
-                cliente = []
-                for c in range(numColumns):
-                    # Se toma el cliente y su dni
-                    cliente.append(str(hoja.cell_value(r, c)))
-                conexion.Conexion.clienteExcel(cliente)
-            conexion.Conexion.cargaTabCli(self)
+            try:
+                msgBox = QMessageBox()
+                msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+                msgBox.setText("Seguro que quieres importar los datos?")
+                msgBox.setWindowTitle("Confirmación")
+                msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+                msgBox.setDefaultButton(QMessageBox.No)
+                res=msgBox.exec()
+                if (res==QMessageBox.Yes):
+                    documento = xlrd.open_workbook(origen)
+                    hoja = documento.sheet_by_index(0)
+                    numRexistros = hoja.nrows
+                    numColumns = hoja.ncols
+                    for r in range(1, numRexistros):
+                        cliente = []
+                        for c in range(numColumns):
+                            # Se toma el cliente y su dni
+                            cliente.append(str(hoja.cell_value(r, c)))
+                        conexion.Conexion.clienteExcel(cliente)
+                    conexion.Conexion.cargaTabCli(self)
+            except Exception as error:
+                print('Error evento importar datos: ', error)
         except Exception as error:
             print('Error en evento importar datos: ',error)
 

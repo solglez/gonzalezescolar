@@ -1453,24 +1453,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QPushButton" name="btnBuscarCli">
-       <property name="geometry">
-        <rect>
-         <x>724</x>
-         <y>240</y>
-         <width>141</width>
-         <height>29</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Buscar cliente</string>
-       </property>
-      </widget>
       <widget class="QWidget" name="horizontalLayoutWidget_9">
        <property name="geometry">
         <rect>
@@ -1755,11 +1737,11 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="rbtGroupSex"/>
   <buttongroup name="chkGroupPago">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="rbtGroupSex"/>
  </buttongroups>
 </ui>

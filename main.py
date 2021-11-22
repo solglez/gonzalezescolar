@@ -58,7 +58,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnGrabaCli.clicked.connect(clients.Clientes.guardaCli)
         var.ui.btnLimpiaCli.clicked.connect(clients.Clientes.limpiaFormCli)
         var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCli)
-        var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscaCli)
+        #var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscaCli)
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCli)
         '''
         Eventos de spin
