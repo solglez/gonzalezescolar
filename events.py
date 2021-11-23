@@ -3,7 +3,7 @@ Fichero de eventos generales
 '''
 import os.path
 import shutil
-import zipfile, xlrd, openpyxl
+import zipfile, xlrd
 
 import var, conexion, clients
 import sys
