@@ -43,6 +43,16 @@ class Eventos():
         except Exception as error:
             print('Error al dar formato a tabla clientes ',error)
 
+    def resizeTablaArt(self):
+        try:
+            header = var.ui.tabArticulos.horizontalHeader()
+            for i in range(2):
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
+                if i == 0 or i==2:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeToContents)
+        except Exception as error:
+            print('Error al dar formato a tabla articulos ',error)
+
     def errorDNI(self):
         try:
             msgBox = QMessageBox()

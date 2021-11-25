@@ -10,6 +10,7 @@ global dlgaviso
 global dlgcalendar
 global dlgabrir
 global copia
+global cv
 '''
 Otras variables
 '''

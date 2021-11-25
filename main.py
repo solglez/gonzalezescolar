@@ -1,4 +1,5 @@
 # This is a sample Python script.
+import articulos, informes
 import clients, sys, var, events, datetime, locale
 import conexion
 from prueba import *
@@ -60,6 +61,12 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCli)
         #var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscaCli)
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCli)
+        var.ui.btnGuardaArt.clicked.connect(articulos.Articulos.guardaArticulo)
+        var.ui.btnModifArt.clicked.connect(articulos.Articulos.modifArt)
+        var.ui.btnBorrarArt.clicked.connect(articulos.Articulos.bajaArt)
+        var.ui.btnBuscaArt.clicked.connect(articulos.Articulos.buscaArticulo)
+        var.ui.btnLimpiaArt.clicked.connect(articulos.Articulos.limpiaFormArt)
+
         '''
         Eventos de spin
         '''
@@ -76,6 +83,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionImprimir.triggered.connect(events.Eventos.Imprimir)
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.ImportarDatos)
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.ExportarDatos)
+        var.ui.actionListado_Clientes.triggered.connect(informes.Informes.listadoClientes)
         '''
         Eventos de la caja de texto
         '''
@@ -83,6 +91,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtNome.editingFinished.connect(clients.Clientes.formatoMayus)
         var.ui.txtApel.editingFinished.connect(clients.Clientes.formatoMayus)
         var.ui.txtDir.editingFinished.connect(clients.Clientes.formatoMayus)
+        var.ui.txtPrecioArticulo.editingFinished.connect(articulos.Articulos.formatoPrecio)
+        var.ui.txtNombreArticulo.editingFinished.connect(articulos.Articulos.formatoMayus)
 
         '''
         Eventos de comboBox
@@ -110,13 +120,17 @@ class Main(QtWidgets.QMainWindow):
         Eventos QTabWidget
         '''
         events.Eventos.resizeTablaCli(self)
+        events.Eventos.resizeTablaArt(self)
         var.ui.tabClientes.clicked.connect(clients.Clientes.cargaCli)
         var.ui.tabClientes.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.tabArticulos.clicked.connect(articulos.Articulos.cargaArt)
+        var.ui.tabArticulos.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         '''
         Base de datos
         '''
         conexion.Conexion.db_connect(var.filedb)
         conexion.Conexion.cargaTabCli(self)
+        conexion.Conexion.cargaTabArt(self)
         clients.Clientes.cargaProv(self)
 
 if __name__ == '__main__':

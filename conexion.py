@@ -281,3 +281,158 @@ class Conexion():
         except Exception as error:
             print('Error en conexion para exportar excel ',error)
         return procesado
+
+    def cargaTabArt(self):
+        try:
+            index = 0
+            var.ui.tabArticulos.setRowCount(index)
+            query = QtSql.QSqlQuery()
+            query.prepare('select codigo, nombre, precio from articulos order by codigo')
+            if query.exec_():
+                while query.next():
+                    codigo = query.value(0)
+                    nombre = query.value(1)
+                    precio = query.value(2)
+                    # Creamos la fila y cargamos datos
+                    var.ui.tabArticulos.setRowCount(index + 1)
+                    var.ui.tabArticulos.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                    var.ui.tabArticulos.setItem(index, 1, QtWidgets.QTableWidgetItem(nombre))
+                    var.ui.tabArticulos.setItem(index, 2, QtWidgets.QTableWidgetItem(precio))
+                    index += 1
+        except Exception as error:
+            print('Error al cargar tabla articulos ', error)
+
+    def modifArticulo(modArt):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('UPDATE articulos SET nombre=:nombre, precio=:precio WHERE codigo=:codigo')
+            query.bindValue(':codigo', str(modArt[0]))
+            query.bindValue(':nombre', str(modArt[1]))
+            query.bindValue(':precio', str(modArt[2]))
+            if query.exec_():
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                    msgBox.setText("Artículo modificado correctamente")
+                    msgBox.setWindowTitle("Operación completada")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje articulo modificado ', error)
+            else:
+                print(query.lastError().text())
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+                    msgBox.setText("No se pudo modificar el articulo")
+                    msgBox.setWindowTitle("ERROR")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje articulo no modificado ', error)
+
+        except Exception as error:
+            print('Error al modificar articulo (conexion) ', error)
+
+    def selecArticulo(codigo):
+        datosArt = []
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'SELECT nombre, precio  FROM articulos WHERE codigo =:codigo')
+            query.bindValue(':codigo', str(codigo))
+            if query.exec_():
+                while query.next():
+                    datosArt.append(query.value(0))
+                    datosArt.append(query.value(1))
+
+        except Exception as error:
+            print('Error en buscar articulo (conexión) ', error)
+        return datosArt
+
+    def bajaArt(codigo,nombre):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('DELETE FROM articulos WHERE codigo =:codigo')
+            query.bindValue(':codigo', str(codigo))
+            if query.exec_():
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                    texto = str('Artículo ' + str(nombre) + ' dado de baja.')
+                    msgBox.setText(texto)
+                    msgBox.setWindowTitle("Aviso")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje articulo eliminado ', error)
+        except Exception as error:
+            print('Error en baja articulo (conexión) ', error)
+
+    def altaArt(newArt):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'insert into articulos (nombre, precio) values (:nombre, :precio)')
+            query.bindValue(':nombre', str(newArt[0]))
+            query.bindValue(':precio', str(newArt[1]))
+
+            if query.exec_():
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                    msgBox.setText("Artículo guardado correctamente")
+                    msgBox.setWindowTitle("Operación completada")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje articulo guardado ', error)
+            else:
+                print(query.lastError().text())
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+                    msgBox.setText("No se pudo guardar el articulo")
+                    msgBox.setWindowTitle("ERROR")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje articulo guardado ', error)
+        except Exception as error:
+            print('Error al guardar articulo: ', error)
+
+    def buscaArt(nombre):
+        datosArt = []
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'SELECT codigo, precio  FROM articulos WHERE nombre =:nombre')
+            query.bindValue(':nombre', str(nombre))
+            if query.exec_():
+                while query.next():
+                    datosArt.append(query.value(0))
+                    datosArt.append(query.value(1))
+
+        except Exception as error:
+            print('Error en buscar articulo por nombre (conexión) ', error)
+        return datosArt
+
+    def cargaTabBuscaArt(codigo):
+        try:
+            index = 0
+            var.ui.tabArticulos.setRowCount(index)
+            query = QtSql.QSqlQuery()
+            query.prepare('select nombre, precio from articulos WHERE codigo =:codigo')
+            query.bindValue(':codigo', str(codigo))
+            if query.exec_():
+                while query.next():
+                    nombre = query.value(0)
+                    precio = query.value(1)
+                    # Creamos la fila y cargamos datos
+                    var.ui.tabArticulos.setRowCount(index + 1)
+                    var.ui.tabArticulos.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                    var.ui.tabArticulos.setItem(index, 1, QtWidgets.QTableWidgetItem(nombre))
+                    var.ui.tabArticulos.setItem(index, 2, QtWidgets.QTableWidgetItem(precio))
+                    index += 1
+        except Exception as error:
+            print('Error al cargar tabla articulos ', error)
