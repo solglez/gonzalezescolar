@@ -7,6 +7,8 @@ import conexion
 import events
 from prueba import *
 import var
+import locale
+locale.setlocale(locale.LC_ALL, 'es-ES')
 
 class Articulos():
     def guardaArticulo(self):
@@ -14,16 +16,18 @@ class Articulos():
             if (Articulos.validarPrecio(self)):
                 # Preparamos el registro
                 # Para la base de datos
-                newArt = [var.ui.txtNombreArticulo.text(), var.ui.txtPrecioArticulo.text()]
-                articulo = [var.ui.txtNombreArticulo, var.ui.txtPrecioArticulo]
+                artMoneda=locale.currency(float(var.ui.txtPrecioArticulo.text()))
+                artMoneda.replace(',','.')
+                newArt = [var.ui.txtNombreArticulo.text(), artMoneda]
+                #articulo = [var.ui.txtNombreArticulo.text(), var.ui.txtPrecioArticulo]
                 # Para representación en tableView
                 # tabcli= []
                 # client= [var.ui.txtDNI, var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]
 
                 # Código para cargar en tabla
 
-                for i in articulo:
-                    newArt.append(i.text())
+                #for i in articulo:
+                   # newArt.append(i.text())
 
                 # Codigo para grabar en base de datos
                 conexion.Conexion.altaArt(newArt)
@@ -58,6 +62,8 @@ class Articulos():
                 while query.next():
 
                     var.ui.txtNombreArticulo.setText(query.value(0))
+                    #sinMoneda=query.value(1)
+                    #sinmoneda=sinmoneda[1:(len(sinMoneda)-2)]
                     var.ui.txtPrecioArticulo.setText(query.value(1))
 
             # Para que aparezca el DNI como válido en caso de querer guardarse:
@@ -77,7 +83,9 @@ class Articulos():
     def modifArt(self):
         try:
             if(Articulos.validarPrecio(self)):
-                articulo = [var.ui.lblCodArt.text(), var.ui.txtNombreArticulo.text(), var.ui.txtPrecioArticulo.text()]
+                artMoneda = locale.currency(float(var.ui.txtPrecioArticulo.text()))
+                artMoneda.replace(',', '.')
+                articulo = [var.ui.lblCodArt.text(), var.ui.txtNombreArticulo.text(), artMoneda]
                 conexion.Conexion.modifArticulo(articulo)
                 conexion.Conexion.cargaTabArt(self)
         except Exception as error:
@@ -87,21 +95,15 @@ class Articulos():
         res=False
         try:
             precio = float(var.ui.txtPrecioArticulo.text())
-            truncado = (math.trunc(precio * 100) / 100)
+            #truncado = (math.trunc(precio * 100) / 100)
+            truncado=round(precio, 2)
             formatPrecio = str(truncado)
-            if math.trunc(precio * 100) < 100:
-                if math.trunc(precio * 100) < 10:
-                    formatPrecio += '0'
-                else:
-                    formatPrecio += '0'
-            if math.trunc(precio * 100) % 100 < 1:
-                if math.trunc(precio * 100) % 10 < 1:
-                    formatPrecio += '0'
-                else:
-                    formatPrecio += '0'
-
+            if formatPrecio[-2]=='.':
+                formatPrecio += '0'
             var.ui.txtPrecioArticulo.setText(formatPrecio)
             res=True
+
+
         except Exception as error:
             print('Error en validar precio articulo ',error)
             try:
@@ -118,19 +120,12 @@ class Articulos():
     def formatoPrecio():
         try:
             precio = float(var.ui.txtPrecioArticulo.text())
-            truncado = (math.trunc(precio * 100) / 100)
-            # print(precio)
-            formatPrecio=str(truncado)
-            if math.trunc(precio * 100) < 100:
-                if math.trunc(precio * 100) < 10:
-                    formatPrecio += '0'
-                else:
-                    formatPrecio += '0'
-            if math.trunc(precio * 100) % 100 < 1:
-                if math.trunc(precio * 100) % 10 < 1:
-                    formatPrecio += '0'
-                else:
-                    formatPrecio += '0'
+            # truncado = (math.trunc(precio * 100) / 100)
+            truncado = round(precio, 2)
+            formatPrecio = str(truncado)
+            if formatPrecio[-2]=='.':
+                formatPrecio += '0'
+            var.ui.txtPrecioArticulo.setText(formatPrecio)
             if (formatPrecio == str(precio)):
                 pass
             else:

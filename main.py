@@ -52,7 +52,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         Eventos de botón
         '''
-        var.ui.btnSalir.clicked.connect(events.Eventos.salir)
+        #var.ui.btnSalir.clicked.connect(events.Eventos.salir)
         #var.ui.rbtGroupSex.buttonClicked.connect(clients.Clientes.SelSexo)
         #var.ui.chkGroupPago.buttonClicked.connect(clients.Clientes.SelPago)
         var.ui.btnCalendar.clicked.connect(events.Eventos.abrirCal)

@@ -40,20 +40,25 @@
    <widget class="QLabel" name="lblClientes">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>0</y>
-      <width>151</width>
-      <height>41</height>
+      <x>350</x>
+      <y>10</y>
+      <width>211</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>15</pointsize>
-      <underline>true</underline>
+      <family>Source Serif Pro Semibold</family>
+      <pointsize>20</pointsize>
+      <weight>7</weight>
+      <italic>false</italic>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0.011, y1:1, x2:0.358, y2:0, stop:0 rgba(0, 170, 255, 255), stop:1 rgba(255, 255, 255, 255))</string>
+     <string notr="true">color: qlineargradient(spread:pad, x1:0.011, y1:1, x2:0.358, y2:0, stop:0 rgba(0, 170, 255, 255), stop:1 rgba(130, 58, 255, 255));
+font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
+</string>
     </property>
     <property name="text">
      <string>IMPORT EXPORT</string>
@@ -62,15 +67,15 @@
    <widget class="QTableWidget" name="tabClientes">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>50</x>
       <y>340</y>
-      <width>761</width>
+      <width>800</width>
       <height>231</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>761</width>
+      <width>800</width>
       <height>261</height>
      </size>
     </property>
@@ -119,7 +124,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -826,8 +831,8 @@
       <widget class="QWidget" name="horizontalLayoutWidget_8">
        <property name="geometry">
         <rect>
-         <x>300</x>
-         <y>240</y>
+         <x>280</x>
+         <y>230</y>
          <width>320</width>
          <height>31</height>
         </rect>
@@ -835,6 +840,12 @@
        <layout class="QHBoxLayout" name="horizontalLayout_8">
         <item>
          <widget class="QPushButton" name="btnGrabaCli">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>25</height>
+           </size>
+          </property>
           <property name="palette">
            <palette>
             <active>
@@ -1037,6 +1048,12 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnModifCli">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>25</height>
+           </size>
+          </property>
           <property name="palette">
            <palette>
             <active>
@@ -1239,6 +1256,12 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnBajaCli">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>25</height>
+           </size>
+          </property>
           <property name="palette">
            <palette>
             <active>
@@ -1436,18 +1459,6 @@
           </property>
           <property name="text">
            <string>Eliminar</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnSalir">
-          <property name="font">
-           <font>
-            <pointsize>13</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Salir</string>
           </property>
          </widget>
         </item>
@@ -1780,9 +1791,9 @@
      <widget class="QTableWidget" name="tabArticulos">
       <property name="geometry">
        <rect>
-        <x>65</x>
+        <x>45</x>
         <y>110</y>
-        <width>761</width>
+        <width>801</width>
         <height>161</height>
        </rect>
       </property>
