@@ -436,3 +436,53 @@ class Conexion():
                     index += 1
         except Exception as error:
             print('Error al cargar tabla articulos ', error)
+
+    '''
+    GESTIÓN DE FACTURAS
+    '''
+    def buscaCliFac(dni):
+        try:
+            cliente = []
+            try:
+                query = QtSql.QSqlQuery()
+                query.prepare('SELECT apellidos, nombre  FROM clientes WHERE dni =:dni')
+                query.bindValue(':dni', str(dni))
+                if query.exec_():
+                    while query.next():
+                        cliente.append(query.value(0))
+                        cliente.append(query.value(1))
+            except Exception as error:
+                print('Error en buscar articulo por nombre (conexión) ', error)
+            return cliente
+        except Exception as error:
+            print('Error en buscar cliente factura, conexión: ',error)
+
+    def altaFac(registro):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('INSERT INTO facturas (dni, fechafac) VALUES (:dni, :fecha) ')
+            query.bindValue(':dni', registro[0])
+            query.bindValue(':fecha', registro[1])
+            if query.exec_():
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                    msgBox.setText("Se ha guardado la factura")
+                    msgBox.setWindowTitle("Operación completada")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje factura guardada ', error)
+            else:
+                print(query.lastError().text())
+                try:
+                    msgBox = QMessageBox()
+                    msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+                    msgBox.setText("No se pudo guardar la factura")
+                    msgBox.setWindowTitle("ERROR")
+                    msgBox.setStandardButtons(QMessageBox.Ok)
+                    msgBox.exec()
+                except Exception as error:
+                    print('Error en mensaje factura guardada ', error)
+        except Exception as error:
+            print('Error en conexión alta factura ',error)

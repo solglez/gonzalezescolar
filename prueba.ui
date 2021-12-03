@@ -64,58 +64,20 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
      <string>IMPORT EXPORT</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tabClientes">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>340</y>
-      <width>800</width>
-      <height>231</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>800</width>
-      <height>261</height>
-     </size>
-    </property>
-    <property name="alternatingRowColors">
-     <bool>true</bool>
-    </property>
-    <column>
-     <property name="text">
-      <string>DNI</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Apellidos</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Nombre</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Fecha Alta</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Formas de Pago</string>
-     </property>
-    </column>
-   </widget>
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="tabPrograma">
     <property name="geometry">
      <rect>
       <x>5</x>
       <y>20</y>
       <width>891</width>
-      <height>311</height>
+      <height>561</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>891</width>
+      <height>0</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -124,7 +86,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
      </font>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -136,7 +98,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <x>0</x>
         <y>10</y>
         <width>881</width>
-        <height>271</height>
+        <height>261</height>
        </rect>
       </property>
       <property name="font">
@@ -1534,23 +1496,231 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
        </layout>
       </widget>
      </widget>
+     <widget class="QTableWidget" name="tabClientes">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>280</y>
+        <width>850</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>850</width>
+        <height>261</height>
+       </size>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <column>
+       <property name="text">
+        <string>DNI</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Apellidos</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nombre</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Fecha Alta</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Formas de Pago</string>
+       </property>
+      </column>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>Facturación</string>
      </attribute>
-     <widget class="QLabel" name="label">
+     <widget class="QFrame" name="frame">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>130</y>
-        <width>141</width>
-        <height>20</height>
+        <x>20</x>
+        <y>10</y>
+        <width>841</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Proximamente...</string>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QWidget" name="horizontalLayoutWidget_12">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>231</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>DNI:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="txtDniFac">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>19</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnBuscaCliFac">
+          <property name="minimumSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>img/lupa.png</normaloff>img/lupa.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_13">
+       <property name="geometry">
+        <rect>
+         <x>490</x>
+         <y>0</y>
+         <width>271</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>FECHA FACTURA:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="txtFechaFac">
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>19</height>
+           </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnFechaFac">
+          <property name="minimumSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>img/iconoCal1.png</normaloff>img/iconoCal1.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_14">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>421</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_14">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>CLIENTE:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="txtClienteFac">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>19</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="btnFacturar">
+       <property name="geometry">
+        <rect>
+         <x>490</x>
+         <y>40</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Facturar</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
@@ -1791,11 +1961,17 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
      <widget class="QTableWidget" name="tabArticulos">
       <property name="geometry">
        <rect>
-        <x>45</x>
+        <x>20</x>
         <y>110</y>
-        <width>801</width>
-        <height>161</height>
+        <width>841</width>
+        <height>401</height>
        </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>850</width>
+        <height>16777215</height>
+       </size>
       </property>
       <property name="font">
        <font>
@@ -2015,11 +2191,11 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="rbtGroupSex"/>
   <buttongroup name="chkGroupPago">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="rbtGroupSex"/>
  </buttongroups>
 </ui>

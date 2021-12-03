@@ -97,7 +97,10 @@ class Clientes():
         try:
             #qDate pondría por orden año, mes y día. Usamos format para variar el orden y darle formato.
             data=('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
-            var.ui.txtAltaCli.setText(str(data))
+            if var.ui.tabPrograma.currentIndex()==0:
+                var.ui.txtAltaCli.setText(str(data))
+            elif var.ui.tabPrograma.currentIndex()==1:
+                var.ui.txtFechaFac.setText(str(data))
             var.dlgcalendar.hide()
         except Exception as error:
             print('Error en módulo de cargar fecha ', error)

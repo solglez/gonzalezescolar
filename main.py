@@ -1,5 +1,5 @@
 # This is a sample Python script.
-import articulos, informes
+import articulos, informes, invoice
 import clients, sys, var, events, datetime, locale
 import conexion
 from prueba import *
@@ -66,6 +66,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBorrarArt.clicked.connect(articulos.Articulos.bajaArt)
         var.ui.btnBuscaArt.clicked.connect(articulos.Articulos.buscaArticulo)
         var.ui.btnLimpiaArt.clicked.connect(articulos.Articulos.limpiaFormArt)
+        var.ui.btnBuscaCliFac.clicked.connect(invoice.Facturas.buscaCli)
+        var.ui.btnFechaFac.clicked.connect(events.Eventos.abrirCal)
+        var.ui.btnFacturar.clicked.connect(invoice.Facturas.altaFac)
 
         '''
         Eventos de spin
