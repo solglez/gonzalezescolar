@@ -486,3 +486,39 @@ class Conexion():
                     print('Error en mensaje factura guardada ', error)
         except Exception as error:
             print('Error en conexión alta factura ',error)
+
+    def cargaTabFac(self):
+        try:
+            index = 0
+            var.ui.tabArticulos.setRowCount(index)
+            query = QtSql.QSqlQuery()
+            query.prepare('select codfac, fechafac from facturas order by fechafac DESC')
+            if query.exec_():
+                while query.next():
+                    codigo = query.value(0)
+                    fecha = query.value(1)
+                    # Creamos la fila y cargamos datos
+                    var.ui.tabFacturas.setRowCount(index + 1)
+                    var.ui.tabFacturas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                    var.ui.tabFacturas.setItem(index, 1, QtWidgets.QTableWidgetItem(fecha))
+                    index += 1
+        except Exception as error:
+            print('Error al cargar tabla facturas ', error)
+
+    def buscaDatosFac(codigo):
+        datosFac = []
+        try:
+            print(codigo)
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'SELECT dni FROM facturas WHERE codfac =:codigo')
+            query.bindValue(':codigo', str(codigo))
+            if query.exec_():
+                while query.next():
+                    datosFac.append(query.value(0))
+
+
+        except Exception as error:
+            print('Error en buscar datos factura (conexión) ', error)
+        return datosFac
+

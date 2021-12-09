@@ -5,6 +5,7 @@ from PyQt5 import QtSql
 import clients
 import conexion
 import events
+import invoice
 from prueba import *
 import var
 
@@ -243,6 +244,9 @@ class Clientes():
 
             #Para que aparezca el DNI como válido en caso de querer guardarse:
             clients.Clientes.validarDNI()
+            #Lo cargamos en la ventana de facturación
+            var.ui.txtDniFac.setText(var.ui.txtDNI.text())
+            invoice.Facturas.buscaCli(self)
         except Exception as error:
             print('Error en módulo cargar cliente ',error)
 

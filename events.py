@@ -53,6 +53,16 @@ class Eventos():
         except Exception as error:
             print('Error al dar formato a tabla articulos ',error)
 
+    def resizeTablaFac(self):
+        try:
+            header = var.ui.tabFacturas.horizontalHeader()
+            for i in range(1):
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
+                if i == 1:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeToContents)
+        except Exception as error:
+            print('Error al dar formato a tabla facturas ',error)
+
     def errorDNI(self):
         try:
             msgBox = QMessageBox()
