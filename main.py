@@ -70,6 +70,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnFechaFac.clicked.connect(events.Eventos.abrirCal)
         var.ui.btnFacturar.clicked.connect(invoice.Facturas.altaFac)
         var.ui.btnLimpiaFac.clicked.connect(invoice.Facturas.limpiaFormFac)
+        var.ui.btnPdfCli.clicked.connect(informes.Informes.listadoClientes)
 
         '''
         Eventos de spin

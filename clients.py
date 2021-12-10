@@ -25,6 +25,7 @@ class Clientes():
                 if dni[0] in dig_ext:
                     dni=dni.replace(dni[0],reemp_dig_ext[dni[0]])
                 if len(dni)==len([n for n in dni if n in numeros]) and tabla[int(dni)%23]==dig_control:
+                    var.ui.txtDNI.setStyleSheet('QLineEdit{background - color: rgb(255, 255, 255);}')
                     var.ui.lblValidoDNI.setStyleSheet('QLabel{color:green;}')
                     var.ui.lblValidoDNI.setText(' V')
                     var.ui.txtDNI.setStyleSheet('')
@@ -188,7 +189,7 @@ class Clientes():
             var.ui.cmbMun.setCurrentIndex(0)
             var.ui.lblValidoDNI.setStyleSheet('')
             var.ui.lblValidoDNI.setText('')
-            var.ui.txtDNI.setStyleSheet('')
+            var.ui.txtDNI.setStyleSheet('QLineEdit{background - color: rgb(255, 255, 255);}')
             var.ui.spinEnvio.setValue(0)
         except Exception as error:
             print('Error en módulo limpiar formulario ',error)
