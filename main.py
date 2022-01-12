@@ -71,6 +71,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnFacturar.clicked.connect(invoice.Facturas.altaFac)
         var.ui.btnLimpiaFac.clicked.connect(invoice.Facturas.limpiaFormFac)
         var.ui.btnPdfCli.clicked.connect(informes.Informes.listadoClientes)
+        var.ui.btnPdfArt.clicked.connect(informes.Informes.listadoProductos)
 
         '''
         Eventos de spin
@@ -132,13 +133,15 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tabArticulos.clicked.connect(articulos.Articulos.cargaArt)
         var.ui.tabArticulos.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tabFacturas.clicked.connect(invoice.Facturas.cargaFac)
+        var.ui.tabFacturas.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         '''
         Base de datos
         '''
         conexion.Conexion.db_connect(var.filedb)
         conexion.Conexion.cargaTabCli(self)
         conexion.Conexion.cargaTabArt(self)
-        conexion.Conexion.cargaTabFac(self)
+        conexion.Conexion.cargaTabFac()
+        conexion.Conexion.cargaTabArt(self)
         clients.Clientes.cargaProv(self)
 
 if __name__ == '__main__':

@@ -11,6 +11,8 @@ global dlgcalendar
 global dlgabrir
 global copia
 global cv
+global btnfacdel
+
 '''
 Otras variables
 '''

@@ -95,6 +95,76 @@ class Informes():
 
         except Exception as error:
             print('Error al listar clientes informe ',error)
+
+
+    def listadoProductos(self):
+        try:
+            # ------REVISAR ESTE CODIGO-------------
+            # Crea el lienzo
+            var.cv = canvas.Canvas('informes/listadoProductos.pdf')
+            Informes.cabecera(self)
+
+            var.cv.setFont('Helvetica-Bold', 9)
+            textotitulo = 'LISTADO PRODUCTOS'
+            var.cv.drawString(255, 690, textotitulo)
+            var.cv.line(40, 685, 530, 685)
+            items = ['Código', 'Nombre', 'Precio']
+            var.cv.drawString(65, 675, items[0])
+            var.cv.drawString(220, 675, items[1])
+            var.cv.drawString(400, 675, items[2])
+            var.cv.line(40, 670, 530, 670)
+            Informes.pie(textotitulo)
+            query = QtSql.QSqlQuery()
+            query.prepare(' select codigo, nombre, precio  from articulos order by  nombre')
+            var.cv.setFont('Helvetica', 8)
+            if query.exec_():
+                i = 50
+                j = 655
+                while query.next():
+                    if j <= 80:
+                        # Para saltar de página y colocar pie y cabecera en la nueva
+                        var.cv.drawString(460, 65, 'Página siguiente...')  # Ellos están poniendo esta línea más abajo
+                        var.cv.showPage()  # Avanza la página
+                        var.cv.setFont('Helvetica-Bold', 10)
+                        textotitulo =  'LISTADO PRODUCTOS'
+                        var.cv.drawString(255, 690, textotitulo)
+                        var.cv.line(40, 685, 530, 685)
+                        items = ['Código', 'Nombre', 'Precio']
+                        var.cv.drawString(65, 675, items[0])
+                        var.cv.drawString(220, 675, items[1])
+                        var.cv.drawString(400, 675, items[2])
+                        var.cv.line(40, 670, 530, 670)
+                        Informes.cabecera(self)
+                        Informes.pie(textotitulo)
+                        i = 50
+                        j = 655
+                    var.cv.drawString(i+25, j, str(query.value(0)))
+                    var.cv.drawString(i + 175, j, (str(query.value(1)) ))
+                    var.cv.drawString(i + 358, j, str(query.value(2)))
+                    #La siguiente linea pondría € tras el precio, pero ya lo hemos añadido a la bd
+                    #var.cv.drawString(i + 358, j, str(query.value(2)+" €"))
+                    j -= 20
+
+            # Propiedades del documento
+            var.cv.setFont('Helvetica', 8)
+            var.cv.setTitle('Listado Clientes')
+            var.cv.setAuthor('Departamento de administración')
+
+            # Guarda el lienzo
+            var.cv.save()
+            rootPath = '.\\Informes'
+            cont = 0
+
+            # Abrimos el archivo. Usa un for porque le quedó así de "veces anteriores"
+            # dice que luego puede ser útil
+            for file in os.listdir(rootPath):
+                if file.endswith('tos.pdf'):
+                    os.startfile('%s/%s' % (rootPath, file))
+
+        except Exception as error:
+            print('Error al listar clientes informe ', error)
+
+
     def cabecera(self):
         try:
             logo='.\\img\logo.png'

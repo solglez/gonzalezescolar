@@ -1,4 +1,4 @@
-from PyQt5 import QtSql, QtWidgets
+from PyQt5 import QtSql, QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import *
 from datetime import *
 import xlwt
@@ -487,7 +487,7 @@ class Conexion():
         except Exception as error:
             print('Error en conexión alta factura ',error)
 
-    def cargaTabFac(self):
+    def cargaTabFac():
         try:
             index = 0
             var.ui.tabArticulos.setRowCount(index)
@@ -497,10 +497,29 @@ class Conexion():
                 while query.next():
                     codigo = query.value(0)
                     fecha = query.value(1)
+
+                    var.btnfacdel = QtWidgets.QPushButton()
+                    var.btnfacdel.setFixedSize(24, 24)
+                    icopapelera = QtGui.QPixmap("img/papelera.png")
+                    var.btnfacdel.setIcon(QtGui.QIcon(icopapelera))
+
+
                     # Creamos la fila y cargamos datos
                     var.ui.tabFacturas.setRowCount(index + 1)
                     var.ui.tabFacturas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
                     var.ui.tabFacturas.setItem(index, 1, QtWidgets.QTableWidgetItem(fecha))
+
+
+                    cell_widget = QtWidgets.QWidget()
+                    lay_out = QtWidgets.QHBoxLayout(cell_widget)
+                    lay_out.setContentsMargins(0,0,0,0)
+                    lay_out.addWidget(var.btnfacdel)
+                    var.btnfacdel.clicked.connect(Conexion.bajaFac)
+                    lay_out.setAlignment(QtCore.Qt.AlignVCenter)
+                    var.ui.tabFacturas.setCellWidget(index, 2, cell_widget)
+                    var.ui.tabFacturas.item(index, 0).setTextAlignment(QtCore.Qt.AlignCenter)
+                    var.ui.tabFacturas.item(index, 1).setTextAlignment(QtCore.Qt.AlignCenter)
+
                     index += 1
         except Exception as error:
             print('Error al cargar tabla facturas ', error)
@@ -508,7 +527,6 @@ class Conexion():
     def buscaDatosFac(codigo):
         datosFac = []
         try:
-            print(codigo)
             query = QtSql.QSqlQuery()
             query.prepare(
                 'SELECT dni FROM facturas WHERE codfac =:codigo')
@@ -521,4 +539,25 @@ class Conexion():
         except Exception as error:
             print('Error en buscar datos factura (conexión) ', error)
         return datosFac
+
+    # --------- COMPROBAR ESTE CODIGO---
+    def bajaFac():
+
+        try:
+
+            numfac = var.ui.lblCodFac.text()
+            query = QtSql.QSqlQuery()
+            query.prepare('delete from facturas where codfac = :codfac')
+            query.bindValue(':codfac', int(numfac))
+            if query.exec_():
+                Conexion.cargaTabFac()
+                msgBox = QMessageBox()
+                msgBox.setIcon(QtWidgets.QMessageBox.Information)
+                msgBox.setText("La factura ha sido dada de baja")
+                msgBox.setWindowTitle("Aviso")
+                msgBox.setStandardButtons(QMessageBox.Ok)
+                msgBox.exec()
+
+        except Exception as error:
+          print('Error en dar baja factura', error)
 

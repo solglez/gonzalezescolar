@@ -26,7 +26,7 @@ class Facturas():
             registro.append(str(dni))
             registro.append(str(fechaFac))
             conexion.Conexion.altaFac(registro)
-            conexion.Conexion.cargaTabFac(self)
+            conexion.Conexion.cargaTabFac()
         except Exception as error:
             print('Error en módulo alta factura ',error)
 

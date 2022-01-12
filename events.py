@@ -58,7 +58,7 @@ class Eventos():
             header = var.ui.tabFacturas.horizontalHeader()
             for i in range(1):
                 header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
-                if i == 1:
+                if i == 1 or i==2:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeToContents)
         except Exception as error:
             print('Error al dar formato a tabla facturas ',error)
