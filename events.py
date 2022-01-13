@@ -56,12 +56,22 @@ class Eventos():
     def resizeTablaFac(self):
         try:
             header = var.ui.tabFacturas.horizontalHeader()
-            for i in range(1):
-                header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
-                if i == 1 or i==2:
-                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeToContents)
+            for i in range(2):
+                if i == 1:
+                    header.setSectionResizeMode(1, QtWidgets.QHeaderView.Stretch)
+                if i == 0 :
+                    header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
         except Exception as error:
             print('Error al dar formato a tabla facturas ',error)
+
+    def resizeTablaVen(self):
+        try:
+            header = var.ui.tabVentas.horizontalHeader()
+            for i in range(5):
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeToContents)
+
+        except Exception as error:
+            print('Error al dar formato a tabla clientes ',error)
 
     def errorDNI(self):
         try:

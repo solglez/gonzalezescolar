@@ -128,12 +128,16 @@ class Main(QtWidgets.QMainWindow):
         events.Eventos.resizeTablaCli(self)
         events.Eventos.resizeTablaArt(self)
         events.Eventos.resizeTablaFac(self)
+        events.Eventos.resizeTablaVen(self)
         var.ui.tabClientes.clicked.connect(clients.Clientes.cargaCli)
         var.ui.tabClientes.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tabArticulos.clicked.connect(articulos.Articulos.cargaArt)
         var.ui.tabArticulos.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tabFacturas.clicked.connect(invoice.Facturas.cargaFac)
         var.ui.tabFacturas.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.tabVentas.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        #invoice.Facturas.prepararTabFac(self)
+        invoice.Facturas.cargarLineaVenta(self)
         '''
         Base de datos
         '''

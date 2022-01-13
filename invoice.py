@@ -2,6 +2,8 @@
 GESTIÓN DE LA FACTURACIÓN
 '''
 from PyQt5 import QtSql
+from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 import conexion
 import invoice
@@ -42,6 +44,7 @@ class Facturas():
             datos=conexion.Conexion.buscaDatosFac(var.ui.lblCodFac.text())
             var.ui.txtDniFac.setText(datos[0])
             invoice.Facturas.buscaCli(self)
+            Facturas.cargarLineaVenta(self)
         except Exception as error:
             print('Error en módulo cargar factura (invoice) ',error)
 
@@ -52,4 +55,19 @@ class Facturas():
                 i.setText('')
         except Exception as error:
             print('Error en módulo limpiar formulario ',error)
+
+    def cargarLineaVenta(self):
+        try:
+            index=0
+            var.cmbProducto=QtWidgets.QComboBox()
+            var.cmbProducto.setFixedSize(150,25)
+            # Hay que cargar el combo
+            var.txtCantidad=QtWidgets.QLineEdit()
+            var.txtCantidad.setFixedSize(60,25)
+            var.txtCantidad.setAlignment(QtCore.Qt.AlignCenter)
+            var.ui.tabVentas.setRowCount(index+1)
+            var.ui.tabVentas.setCellWidget(index,1,var.cmbProducto)
+            var.ui.tabVentas.setCellWidget(index, 3, var.txtCantidad)
+        except Exception as error:
+            print('Error al cargar linea de venta ',error)
 
