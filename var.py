@@ -12,6 +12,9 @@ global dlgabrir
 global copia
 global cv
 global btnfacdel
+global cmbProducto
+global txtCantidad
+global precio
 
 '''
 Otras variables

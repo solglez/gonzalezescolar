@@ -100,6 +100,11 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtPrecioArticulo.editingFinished.connect(articulos.Articulos.formatoPrecio)
         var.ui.txtNombreArticulo.editingFinished.connect(articulos.Articulos.formatoMayus)
 
+        #Hay que instanciar var.txtCantidad porque se crea en tiempo de ejecución y no en QtDesigner
+        var.txtCantidad=QtWidgets.QLineEdit()
+        var.txtCantidad.editingFinished.connect(invoice.Facturas.totalLineaVenta)
+
+
         '''
         Eventos de comboBox
         '''
@@ -107,6 +112,12 @@ class Main(QtWidgets.QMainWindow):
         #var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
         #clients.Clientes.cargaMun(self)
         #var.ui.cmbMun.activated[str].connect(clients.Clientes.selMun)
+        # Hay que instanciar var.cmbProducto porque se crea en tiempo de ejecución y no en QtDesigner
+        var.cmbProducto = QtWidgets.QComboBox()
+        var.cmbProducto.currentIndexChanged.connect(invoice.Facturas.procesoVenta)
+
+
+
 
         '''
         Barra de estado
@@ -137,7 +148,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tabFacturas.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tabVentas.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         #invoice.Facturas.prepararTabFac(self)
-        invoice.Facturas.cargarLineaVenta(self)
+
+
         '''
         Base de datos
         '''
@@ -147,6 +159,13 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.cargaTabFac()
         conexion.Conexion.cargaTabArt(self)
         clients.Clientes.cargaProv(self)
+
+        invoice.Facturas.cargarLineaVenta(self)
+
+        #var.cmbProducto.currentIndexChanged.connect(invoice.Facturas.procesoVenta)
+        #var.txtCantidad.editingFinished.connect(invoice.Facturas.totalLineaVenta)
+        #var.txtCantidad.editingFinished.connect(invoice.Facturas.prueba)
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
