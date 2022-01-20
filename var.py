@@ -15,6 +15,7 @@ global btnfacdel
 global cmbProducto
 global txtCantidad
 global precio
+global codpro
 
 '''
 Otras variables

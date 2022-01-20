@@ -4,6 +4,8 @@ from datetime import *
 import xlwt
 import conexion
 import var
+import locale
+locale.setlocale(locale.LC_ALL,'es-ES')
 
 
 class Conexion():
@@ -489,6 +491,7 @@ class Conexion():
 
     def cargaTabFac():
         try:
+            var.ui.tabFacturas.clearContents()
             index = 0
             var.ui.tabArticulos.setRowCount(index)
             query = QtSql.QSqlQuery()
@@ -587,4 +590,33 @@ class Conexion():
             return dato
         except Exception as error:
             print('Fallo en obtenerCodPrecio en conexion', error)
+
+    def cargarVenta(venta):
+        try:
+            query=QtSql.QSqlQuery()
+            query.prepare('insert into ventas(codfacf, codprof, precio, cantidad) values (:codfac, :codpro, :precio, :cantidad)')
+            query.bindValue(':codfac', int(venta[0]))
+            query.bindValue(':codpro', int(venta[1]))
+            query.bindValue(':precio', float(venta[2]))
+            query.bindValue(':cantidad', float(venta[3]))
+            if query.exec_():
+                var.ui.lblCodFac_4.setText('Venta Realizada')
+                var.ui.lblCodFac_4.setStyleSheet('QLabel{color:black;}')
+            else:
+                var.ui.lblCodFac_4.setText('Error en Venta')
+                var.ui.lblCodFac_4.setStyleSheet('QLabel{color:red;}')
+
+        except Exception as error:
+            print("Erroe en cargar venta conex ",error)
+
+    def buscaCodFac(self):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('select codfac from facturas order by codfac desc limit 1')
+            if query.exec_():
+                while query.next():
+                    dato=query.value(0)
+            return dato
+        except Exception as error:
+            print('Error en buscaCodFac en conexión ',error)
 

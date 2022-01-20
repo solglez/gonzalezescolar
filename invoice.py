@@ -4,6 +4,8 @@ GESTIÓN DE LA FACTURACIÓN
 from PyQt5 import QtSql
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui, QtWidgets
+import locale
+locale.setlocale(locale.LC_ALL,'es-ES')
 
 import conexion
 import invoice
@@ -29,6 +31,8 @@ class Facturas():
             registro.append(str(fechaFac))
             conexion.Conexion.altaFac(registro)
             conexion.Conexion.cargaTabFac()
+            codFac=conexion.Conexion.buscaCodFac(self)
+            var.ui.lblCodFac.setText(str(codFac))
         except Exception as error:
             print('Error en módulo alta factura ',error)
 
@@ -50,6 +54,8 @@ class Facturas():
 
     def limpiaFormFac(self):
         try:
+            #var.ui.tabVentas.clearContents()
+            #Facturas.cargarLineaVenta(self)
             cajas = [var.ui.txtDniFac, var.ui.lblNomFac, var.ui.lblCodFac, var.ui.txtFechaFac]
             for i in cajas:
                 i.setText('')
@@ -78,8 +84,8 @@ class Facturas():
             row = var.ui.tabVentas.currentRow()
             articulo = var.cmbProducto.currentText()
             dato = conexion.Conexion.obtenerCodPrecio(articulo)
-
-            print(dato)
+            var.codpro=dato[0]
+            #print(dato)
             var.ui.tabVentas.setItem(row, 2, QtWidgets.QTableWidgetItem(str(dato[1])))
             var.ui.tabVentas.item(row, 2).setTextAlignment(QtCore.Qt.AlignCenter)
             #Adecuamos el campo de precio para pasarlo a float y operar con el
@@ -102,6 +108,14 @@ class Facturas():
             total_linea = round(float(var.precio)*float(cantidad),2)
             var.ui.tabVentas.setItem(row, 4, QtWidgets.QTableWidgetItem(str(total_linea)+'€'))
             var.ui.tabVentas.item(row, 4).setTextAlignment(QtCore.Qt.AlignRight)
+            venta=[]
+            codfac=var.ui.lblCodFac.text()
+            venta.append(int(codfac))
+            venta.append(int(var.codpro))
+            venta.append(float(var.precio))
+            venta.append(float(cantidad))
+            print(venta)
+            conexion.Conexion.cargarVenta(venta)
 
         except Exception as error:
             print('Error en total linea venta de invoice: ',error)
