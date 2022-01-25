@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from datetime import *
 import xlwt
 import conexion
+import invoice
 import var
 import locale
 locale.setlocale(locale.LC_ALL,'es-ES')
@@ -620,3 +621,43 @@ class Conexion():
         except Exception as error:
             print('Error en buscaCodFac en conexión ',error)
 
+    def nombreDeArticulo(codpro):
+        try:
+            nombre=''
+            query = QtSql.QSqlQuery()
+            query.prepare('select nombre from articulos where codigo = :codpro')
+            query.bindValue(':codpro', int(codpro))
+            if query.exec_():
+                while query.next():
+                    nombre=query.value(0)
+            return nombre
+        except Exception as error:
+            print('Error al obtener nombre de articulo en conexión: ',error)
+
+    def cargarLineasVenta(codfac):
+        try:
+            #var.ui.tabVentas.clearContents()
+            index=1
+            query=QtSql.QSqlQuery()
+            query.prepare('select codven, codprof, cantidad, precio from ventas where codfacf = :codfac')
+            query.bindValue(':codfac', int(codfac))
+            if query.exec_():
+                while query.next():
+                    codventa = query.value(0)
+                    producto= conexion.Conexion.nombreDeArticulo(query.value(1))
+                    cantidad=query.value(2)
+                    precio=query.value(3)
+                    total_linea = round(float(precio) * float(cantidad), 2)
+                    var.ui.tabVentas.setRowCount(index + 1)
+                    var.ui.tabVentas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codventa)))
+                    var.ui.tabVentas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(producto)))
+                    var.ui.tabVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
+                    var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(cantidad)))
+                    var.ui.tabVentas.setItem(index, 4, QtWidgets.QTableWidgetItem(str(total_linea)+'€'))
+                    var.ui.tabVentas.item(index, 0).setTextAlignment(QtCore.Qt.AlignCenter)
+                    var.ui.tabVentas.item(index, 2).setTextAlignment(QtCore.Qt.AlignRight)
+                    var.ui.tabVentas.item(index, 3).setTextAlignment(QtCore.Qt.AlignRight)
+                    var.ui.tabVentas.item(index, 4).setTextAlignment(QtCore.Qt.AlignRight)
+                    index = index + 1
+        except Exception as error:
+            print('Error en cargar lineas de venta conexión: ',error)

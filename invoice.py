@@ -49,8 +49,10 @@ class Facturas():
             var.ui.txtDniFac.setText(datos[0])
             invoice.Facturas.buscaCli(self)
             Facturas.cargarLineaVenta(self)
+            conexion.Conexion.cargarLineasVenta(str(var.ui.lblCodFac.text()))
         except Exception as error:
             print('Error en módulo cargar factura (invoice) ',error)
+
 
     def limpiaFormFac(self):
         try:
@@ -77,6 +79,24 @@ class Facturas():
             var.ui.tabVentas.setCellWidget(index, 3, var.txtCantidad)
         except Exception as error:
             print('Error al cargar linea de venta ',error)
+
+    #Esto es una prueba, pero hay problemas con el self
+    def cargarLineaVentaEnIndex(index):
+        try:
+            index=int(index)
+            #var.cmbProducto=QtWidgets.QComboBox()
+            var.cmbProducto.setFixedSize(150,25)
+            # Hay que cargar el combo
+            conexion.Conexion.cargarCmbProducto
+            #var.txtCantidad=QtWidgets.QLineEdit()
+            var.txtCantidad.setFixedSize(60,25)
+            var.txtCantidad.setAlignment(QtCore.Qt.AlignCenter)
+            var.ui.tabVentas.setRowCount(index+1)
+            var.ui.tabVentas.setCellWidget(index,1,var.cmbProducto)
+            var.ui.tabVentas.setCellWidget(index, 3, var.txtCantidad)
+        except Exception as error:
+            print('Error al cargar linea de venta ',error)
+
 
     #Comprobar codigo:
     def procesoVenta(self):
@@ -116,6 +136,15 @@ class Facturas():
             venta.append(float(cantidad))
             print(venta)
             conexion.Conexion.cargarVenta(venta)
+
+            if var.ui.lblCodFac_4.text() == 'Venta Realizada':
+                var.ui.tabVentas.clearContents()
+                var.cmbProducto = QtWidgets.QComboBox()
+                var.txtCantidad = QtWidgets.QLineEdit()
+                var.txtCantidad.editingFinished.connect(invoice.Facturas.totalLineaVenta)
+                var.cmbProducto.currentIndexChanged.connect(invoice.Facturas.procesoVenta)
+                invoice.Facturas.cargarLineaVenta(self)
+                conexion.Conexion.cargarLineasVenta(str(var.ui.lblCodFac.text()))
 
         except Exception as error:
             print('Error en total linea venta de invoice: ',error)
