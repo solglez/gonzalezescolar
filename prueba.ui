@@ -1892,14 +1892,14 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
        <rect>
         <x>200</x>
         <y>370</y>
-        <width>660</width>
-        <height>19</height>
+        <width>571</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="maximumSize">
        <size>
         <width>660</width>
-        <height>19</height>
+        <height>21</height>
        </size>
       </property>
       <property name="font">
@@ -1920,6 +1920,29 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnEliminarVenta">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>370</y>
+        <width>81</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>21</height>
+       </size>
+      </property>
+      <property name="text">
+       <string> Venta</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>img/papelera.png</normaloff>img/papelera.png</iconset>
       </property>
      </widget>
     </widget>
@@ -2361,6 +2384,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
      <string>Informes</string>
     </property>
     <addaction name="actionListado_Clientes"/>
+    <addaction name="actionFacturas"/>
    </widget>
    <widget class="QMenu" name="menuAcerca_de">
     <property name="title">
@@ -2492,6 +2516,11 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
   <action name="actionListado_Clientes">
    <property name="text">
     <string>Listado Clientes</string>
+   </property>
+  </action>
+  <action name="actionFacturas">
+   <property name="text">
+    <string>Facturas</string>
    </property>
   </action>
  </widget>

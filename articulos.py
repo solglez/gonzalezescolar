@@ -47,11 +47,18 @@ class Articulos():
 
         try:
             fila = var.ui.tabArticulos.selectedItems()
+            print('Metodo')
             datos = [var.ui.lblCodArt, var.ui.txtNombreArticulo, var.ui.txtPrecioArticulo]
             if fila:
                 row = [dato.text() for dato in fila]
             for i, dato in enumerate(datos):
-                dato.setText(row[i])
+                if i==2:
+                    precio = row[i]
+                    precio= precio.replace(',', '.')
+                    precio = precio[:(len(precio) - 2)]
+                    dato.setText(precio)
+                else:
+                    dato.setText(row[i])
 
             # Ahora los datos desde la base de datos:
             query = QtSql.QSqlQuery()
@@ -60,7 +67,7 @@ class Articulos():
             query.prepare(orden)
             if query.exec_():
                 while query.next():
-
+                    print('Query')
                     var.ui.txtNombreArticulo.setText(query.value(0))
                     #sinMoneda=query.value(1)
                     #sinmoneda=sinmoneda[1:(len(sinMoneda)-2)]
@@ -122,14 +129,15 @@ class Articulos():
             precio = float(var.ui.txtPrecioArticulo.text())
             # truncado = (math.trunc(precio * 100) / 100)
             truncado = round(precio, 2)
-            formatPrecio = str(truncado)
-            if formatPrecio[-2]=='.':
-                formatPrecio += '0'
-            var.ui.txtPrecioArticulo.setText(formatPrecio)
-            if (formatPrecio == str(precio)):
-                pass
-            else:
-                var.ui.txtPrecioArticulo.setText(formatPrecio)
+            truncado= str('{:.2f}'.format(round(precio,2)))
+            # formatPrecio = str(truncado)
+            # if formatPrecio[-2]=='.':
+            #     formatPrecio += '0'
+            # var.ui.txtPrecioArticulo.setText(formatPrecio)
+            # if (formatPrecio == str(precio)):
+            #     pass
+            # else:
+            var.ui.txtPrecioArticulo.setText(truncado)
 
             #res = True
         except Exception as error:

@@ -548,9 +548,14 @@ class Conexion():
     def bajaFac():
 
         try:
-
             numfac = var.ui.lblCodFac.text()
             query = QtSql.QSqlQuery()
+            #Borramos primero las ventas que pueda tener asociadas la factura:
+            query.prepare('delete from ventas where codfacf = :codfac')
+            query.bindValue(':codfac', int(numfac))
+            if query.exec_():
+                pass
+            #Eliminamos ahora la factura:
             query.prepare('delete from facturas where codfac = :codfac')
             query.bindValue(':codfac', int(numfac))
             if query.exec_():
@@ -561,6 +566,7 @@ class Conexion():
                 msgBox.setWindowTitle("Aviso")
                 msgBox.setStandardButtons(QMessageBox.Ok)
                 msgBox.exec()
+                invoice.Facturas.vaciarTabVentas()
 
         except Exception as error:
           print('Error en dar baja factura', error)
@@ -659,5 +665,32 @@ class Conexion():
                     var.ui.tabVentas.item(index, 3).setTextAlignment(QtCore.Qt.AlignRight)
                     var.ui.tabVentas.item(index, 4).setTextAlignment(QtCore.Qt.AlignRight)
                     index = index + 1
+
+            ''' LINEAS QUE FALTAN POR SUBTOTAL, IVA Y TOTAL!
+            iva = suma * 0.21
+            total = suma + iva
+            var.ui.lblSubTotal.setText(str(round(suma,2)) + '€')
+            var.ui.lblIva.setText(str(round(iva, 2)) + '€')
+            var.ui.lblTotal.setText(str(round(total, 2)) + '€')
+            '''
         except Exception as error:
             print('Error en cargar lineas de venta conexión: ',error)
+
+    def eliminarLineaVenta(codigo):
+
+        try:
+            numfac = var.ui.lblCodFac.text()
+            query = QtSql.QSqlQuery()
+            query.prepare('delete from ventas where codven = :codigo')
+            query.bindValue(':codigo', int(codigo))
+            if query.exec_():
+                Conexion.cargarLineasVenta(numfac)
+                var.ui.lblCodFac_4.setText('Venta Eliminada')
+                var.ui.lblCodFac_4.setStyleSheet('QLabel{color:blue;}')
+            else:
+                var.ui.lblCodFac_4.setText('Error al eliminar venta')
+                var.ui.lblCodFac_4.setStyleSheet('QLabel{color:red;}')
+
+
+        except Exception as error:
+          print('Error en eliminar venta conexion', error)

@@ -4,6 +4,10 @@ from PyQt5 import QtSql
 from reportlab.lib.colors import yellow, red, black,white, beige,blue,brown
 from reportlab.pdfgen import canvas
 from datetime import datetime
+
+import conexion
+
+
 class Informes():
     def listadoClientes(self):
         try:
@@ -164,6 +168,58 @@ class Informes():
         except Exception as error:
             print('Error al listar clientes informe ', error)
 
+    #---------REVISAR ESTE MÉTODO---------------- (funciona bien)
+    def factura(self):
+        try:
+            var.cv = canvas.Canvas('informes/factura.pdf')
+            var.cv.setTitle('Factura')
+            var.cv.setAuthor('Departamento de Administración')
+            rootPath = '.\\informes'
+            var.cv.setFont('Helvetica-Bold', size=12)
+            textotitulo = 'FACTURA'
+            Informes.cabecera(self)
+            Informes.pie(textotitulo)
+            codfac = var.ui.lblCodFac.text()
+            var.cv.drawString(255, 690, textotitulo + ': ' + str(codfac))
+            var.cv.line(40, 685, 530, 685)
+            items = ['Venta', 'Artículo', 'Precio', 'Cantidad', 'Total']
+            var.cv.drawString(60, 675, items[0])
+            var.cv.drawString(150, 675, items[1])
+            var.cv.drawString(290, 675, items[2])
+            var.cv.drawString(390, 675, items[3])
+            var.cv.drawString(490, 675, items[4])
+            var.cv.line(40, 670, 530, 670)
+            suma = 0.0
+            query = QtSql.QSqlQuery()
+            query.prepare('select codven,precio,cantidad, codprof from ventas where codfacf = :codfac')
+            query.bindValue(':codfac', int(codfac))
+            if query.exec_():
+                i = 50
+                j = 655
+                while query.next():
+                    codventa = query.value(0)
+                    precio = str('{:.2f}'.format(round(query.value(1), 2)))
+                    cantidad = str('{:.2f}'.format(round(query.value(2), 2)))
+                    articulo = conexion.Conexion.nombreDeArticulo(str(query.value(3)))
+                    suma = suma + (round(query.value(1), 2) * round(query.value(2), 2))
+                    total = str('{:.2f}'.format(round(query.value(1) * query.value(2), 2))).replace(',', '.') + ' €'
+
+                    var.cv.setFont('Helvetica', size=8)
+                    var.cv.drawCentredString(i + 20, j, str(codventa))
+                    var.cv.drawString(i + 100, j, str(articulo))
+                    var.cv.drawString(i + 230, j, str(precio) + '€')
+                    var.cv.drawString(i + 350, j, str(cantidad))
+                    var.cv.drawString(i + 440, j, str(total))
+                    j = j - 20
+
+            var.cv.save()
+            cont = 0
+            for file in os.listdir(rootPath):
+                if file.endswith('factura.pdf'):
+                    os.startfile('%s/%s' % (rootPath, file))
+                cont = cont + 1
+        except Exception as error:
+            print('Error en informes facturas, ', error)
 
     def cabecera(self):
         try:

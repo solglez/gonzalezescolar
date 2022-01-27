@@ -72,6 +72,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnLimpiaFac.clicked.connect(invoice.Facturas.limpiaFormFac)
         var.ui.btnPdfCli.clicked.connect(informes.Informes.listadoClientes)
         var.ui.btnPdfArt.clicked.connect(informes.Informes.listadoProductos)
+        var.ui.btnEliminarVenta.clicked.connect(invoice.Facturas.eliminarVenta)
 
         '''
         Eventos de spin
@@ -90,6 +91,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.ImportarDatos)
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.ExportarDatos)
         var.ui.actionListado_Clientes.triggered.connect(informes.Informes.listadoClientes)
+        var.ui.actionFacturas.triggered.connect(informes.Informes.factura)
         '''
         Eventos de la caja de texto
         '''

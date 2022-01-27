@@ -61,6 +61,9 @@ class Facturas():
             cajas = [var.ui.txtDniFac, var.ui.lblNomFac, var.ui.lblCodFac, var.ui.txtFechaFac]
             for i in cajas:
                 i.setText('')
+            Facturas.vaciarTabVentas()
+            var.ui.lblCodFac_4.setText('')
+            var.ui.lblCodFac_4.setStyleSheet('QLabel{color:black;}')
         except Exception as error:
             print('Error en módulo limpiar formulario ',error)
 
@@ -134,19 +137,31 @@ class Facturas():
             venta.append(int(var.codpro))
             venta.append(float(var.precio))
             venta.append(float(cantidad))
-            print(venta)
+            #print(venta)
             conexion.Conexion.cargarVenta(venta)
 
             if var.ui.lblCodFac_4.text() == 'Venta Realizada':
-                var.ui.tabVentas.clearContents()
-                var.cmbProducto = QtWidgets.QComboBox()
-                var.txtCantidad = QtWidgets.QLineEdit()
-                var.txtCantidad.editingFinished.connect(invoice.Facturas.totalLineaVenta)
-                var.cmbProducto.currentIndexChanged.connect(invoice.Facturas.procesoVenta)
-                invoice.Facturas.cargarLineaVenta(self)
+                Facturas.vaciarTabVentas()
                 conexion.Conexion.cargarLineasVenta(str(var.ui.lblCodFac.text()))
 
         except Exception as error:
             print('Error en total linea venta de invoice: ',error)
 
+    def eliminarVenta(self):
+        try:
+            row = var.ui.tabVentas.selectedItems()
+            codVenta=row[0].text()
+            conexion.Conexion.eliminarLineaVenta(codVenta)
+        except Exception as error:
+            print('Error al eliminar venta: ',error)
 
+    def vaciarTabVentas(self=None):
+        try:
+            var.ui.tabVentas.clearContents()
+            var.cmbProducto = QtWidgets.QComboBox()
+            var.txtCantidad = QtWidgets.QLineEdit()
+            var.txtCantidad.editingFinished.connect(invoice.Facturas.totalLineaVenta)
+            var.cmbProducto.currentIndexChanged.connect(invoice.Facturas.procesoVenta)
+            invoice.Facturas.cargarLineaVenta(self)
+        except Exception as error:
+            print('Error en vaciarTabVentas: ',error)
