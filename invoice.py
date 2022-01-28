@@ -129,7 +129,7 @@ class Facturas():
             row = var.ui.tabVentas.currentRow()
             cantidad=round(float(var.txtCantidad.text().replace(',', '.')), 2)
             total_linea = round(float(var.precio)*float(cantidad),2)
-            var.ui.tabVentas.setItem(row, 4, QtWidgets.QTableWidgetItem(str(total_linea)+'€'))
+            var.ui.tabVentas.setItem(row, 4, QtWidgets.QTableWidgetItem(str('{:.2f}'.format(total_linea))+'€'))
             var.ui.tabVentas.item(row, 4).setTextAlignment(QtCore.Qt.AlignRight)
             venta=[]
             codfac=var.ui.lblCodFac.text()
@@ -163,5 +163,8 @@ class Facturas():
             var.txtCantidad.editingFinished.connect(invoice.Facturas.totalLineaVenta)
             var.cmbProducto.currentIndexChanged.connect(invoice.Facturas.procesoVenta)
             invoice.Facturas.cargarLineaVenta(self)
+            var.ui.lblSubtotal.setText('')
+            var.ui.lblIva.setText('')
+            var.ui.lblTotal.setText('')
         except Exception as error:
             print('Error en vaciarTabVentas: ',error)

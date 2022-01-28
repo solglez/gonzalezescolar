@@ -73,6 +73,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnPdfCli.clicked.connect(informes.Informes.listadoClientes)
         var.ui.btnPdfArt.clicked.connect(informes.Informes.listadoProductos)
         var.ui.btnEliminarVenta.clicked.connect(invoice.Facturas.eliminarVenta)
+        var.ui.btnReportFac.clicked.connect(informes.Informes.factura)
 
         '''
         Eventos de spin

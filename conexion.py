@@ -644,6 +644,7 @@ class Conexion():
         try:
             #var.ui.tabVentas.clearContents()
             index=1
+            suma=0
             query=QtSql.QSqlQuery()
             query.prepare('select codven, codprof, cantidad, precio from ventas where codfacf = :codfac')
             query.bindValue(':codfac', int(codfac))
@@ -654,25 +655,27 @@ class Conexion():
                     cantidad=query.value(2)
                     precio=query.value(3)
                     total_linea = round(float(precio) * float(cantidad), 2)
+                    suma=suma+total_linea
                     var.ui.tabVentas.setRowCount(index + 1)
                     var.ui.tabVentas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codventa)))
                     var.ui.tabVentas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(producto)))
-                    var.ui.tabVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
+                    var.ui.tabVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str('{:.2f}'.format(precio))))
                     var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(cantidad)))
-                    var.ui.tabVentas.setItem(index, 4, QtWidgets.QTableWidgetItem(str(total_linea)+'€'))
+                    var.ui.tabVentas.setItem(index, 4, QtWidgets.QTableWidgetItem(str('{:.2f}'.format(total_linea))+'€'))
                     var.ui.tabVentas.item(index, 0).setTextAlignment(QtCore.Qt.AlignCenter)
                     var.ui.tabVentas.item(index, 2).setTextAlignment(QtCore.Qt.AlignRight)
                     var.ui.tabVentas.item(index, 3).setTextAlignment(QtCore.Qt.AlignRight)
                     var.ui.tabVentas.item(index, 4).setTextAlignment(QtCore.Qt.AlignRight)
                     index = index + 1
 
-            ''' LINEAS QUE FALTAN POR SUBTOTAL, IVA Y TOTAL!
+
             iva = suma * 0.21
             total = suma + iva
-            var.ui.lblSubTotal.setText(str(round(suma,2)) + '€')
-            var.ui.lblIva.setText(str(round(iva, 2)) + '€')
-            var.ui.lblTotal.setText(str(round(total, 2)) + '€')
-            '''
+            #Damos formato a los totales
+            var.ui.lblSubtotal.setText(str('{:.2f}'.format(round(suma,2))) + '€')
+            var.ui.lblIva.setText(str('{:.2f}'.format(round(iva, 2))) + '€')
+            var.ui.lblTotal.setText(str('{:.2f}'.format(round(total, 2))) + '€')
+
         except Exception as error:
             print('Error en cargar lineas de venta conexión: ',error)
 
