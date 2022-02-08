@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import var
 
 class Ui_windowaviso(object):
     def setupUi(self, windowaviso):
@@ -52,4 +52,3 @@ class Ui_windowaviso(object):
         _translate = QtCore.QCoreApplication.translate
         windowaviso.setWindowTitle(_translate("windowaviso", "Aviso"))
         self.lblAviso.setText(_translate("windowaviso", "Desea salir?"))
-import warning_rc

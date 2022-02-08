@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import var
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -179,7 +179,7 @@ class Ui_MainWindow(object):
         self.btnCalendar.setMaximumSize(QtCore.QSize(20, 19))
         self.btnCalendar.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("img/iconoCal1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/iconoCal1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnCalendar.setIcon(icon)
         self.btnCalendar.setIconSize(QtCore.QSize(16, 16))
         self.btnCalendar.setObjectName("btnCalendar")
@@ -373,7 +373,7 @@ class Ui_MainWindow(object):
         self.btnLimpiaCli.setGeometry(QtCore.QRect(820, 180, 31, 31))
         self.btnLimpiaCli.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("img/reloadBtn.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/reloadBtn.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnLimpiaCli.setIcon(icon1)
         self.btnLimpiaCli.setObjectName("btnLimpiaCli")
         self.horizontalLayoutWidget_8 = QtWidgets.QWidget(self.groupBox)
@@ -531,7 +531,7 @@ class Ui_MainWindow(object):
         self.btnReportCli.setFont(font)
         self.btnReportCli.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("img/impresora.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/impresora.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btnReportCli.setIcon(icon2)
         self.btnReportCli.setIconSize(QtCore.QSize(25, 25))
         self.btnReportCli.setObjectName("btnReportCli")
@@ -630,9 +630,7 @@ class Ui_MainWindow(object):
         self.btnFechaFac.setMinimumSize(QtCore.QSize(25, 25))
         self.btnFechaFac.setMaximumSize(QtCore.QSize(25, 25))
         self.btnFechaFac.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/newPrefix/iconoCal1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnFechaFac.setIcon(icon5)
+        self.btnFechaFac.setIcon(icon)
         self.btnFechaFac.setIconSize(QtCore.QSize(20, 20))
         self.btnFechaFac.setObjectName("btnFechaFac")
         self.horizontalLayout_13.addWidget(self.btnFechaFac)
@@ -664,9 +662,9 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.btnFacturar.setFont(font)
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/newPrefix/factura.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnFacturar.setIcon(icon6)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/newPrefix/factura.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btnFacturar.setIcon(icon5)
         self.btnFacturar.setIconSize(QtCore.QSize(25, 25))
         self.btnFacturar.setObjectName("btnFacturar")
         self.horizontalLayoutWidget_15 = QtWidgets.QWidget(self.frame)
@@ -690,9 +688,7 @@ class Ui_MainWindow(object):
         self.btnLimpiaFac = QtWidgets.QPushButton(self.frame)
         self.btnLimpiaFac.setGeometry(QtCore.QRect(800, 10, 31, 31))
         self.btnLimpiaFac.setText("")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/newPrefix/reloadBtn.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnLimpiaFac.setIcon(icon7)
+        self.btnLimpiaFac.setIcon(icon1)
         self.btnLimpiaFac.setObjectName("btnLimpiaFac")
         self.btnReportFac = QtWidgets.QPushButton(self.frame)
         self.btnReportFac.setGeometry(QtCore.QRect(740, 10, 41, 28))
@@ -792,9 +788,9 @@ class Ui_MainWindow(object):
         self.btnEliminarVenta = QtWidgets.QPushButton(self.tab_2)
         self.btnEliminarVenta.setGeometry(QtCore.QRect(780, 370, 81, 21))
         self.btnEliminarVenta.setMaximumSize(QtCore.QSize(16777215, 21))
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/newPrefix/papelera.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnEliminarVenta.setIcon(icon8)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/newPrefix/papelera.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btnEliminarVenta.setIcon(icon6)
         self.btnEliminarVenta.setObjectName("btnEliminarVenta")
         self.lblSubtotal = QtWidgets.QLabel(self.tab_2)
         self.lblSubtotal.setGeometry(QtCore.QRect(680, 400, 181, 21))
@@ -886,9 +882,7 @@ class Ui_MainWindow(object):
         self.btnBuscaArt.setMinimumSize(QtCore.QSize(25, 25))
         self.btnBuscaArt.setMaximumSize(QtCore.QSize(25, 25))
         self.btnBuscaArt.setText("")
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap("img/lupa.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnBuscaArt.setIcon(icon9)
+        self.btnBuscaArt.setIcon(icon4)
         self.btnBuscaArt.setIconSize(QtCore.QSize(20, 20))
         self.btnBuscaArt.setObjectName("btnBuscaArt")
         self.horizontalLayout_10.addWidget(self.btnBuscaArt)
@@ -959,9 +953,7 @@ class Ui_MainWindow(object):
         font.setPointSize(7)
         self.btnPdfArt.setFont(font)
         self.btnPdfArt.setText("")
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap("img/ojo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btnPdfArt.setIcon(icon10)
+        self.btnPdfArt.setIcon(icon3)
         self.btnPdfArt.setIconSize(QtCore.QSize(25, 25))
         self.btnPdfArt.setObjectName("btnPdfArt")
         self.tabArticulos = QtWidgets.QTableWidget(self.tab_3)
@@ -1024,29 +1016,27 @@ class Ui_MainWindow(object):
         self.actionRestaurar_Backup = QtWidgets.QAction(MainWindow)
         self.actionRestaurar_Backup.setObjectName("actionRestaurar_Backup")
         self.actionBarSalir = QtWidgets.QAction(MainWindow)
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(":/newPrefix/sair.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionBarSalir.setIcon(icon11)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/newPrefix/sair.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionBarSalir.setIcon(icon7)
         self.actionBarSalir.setObjectName("actionBarSalir")
         self.actionabrirCarpeta = QtWidgets.QAction(MainWindow)
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap(":/newPrefix/abrirArchivo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionabrirCarpeta.setIcon(icon12)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/newPrefix/abrirArchivo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionabrirCarpeta.setIcon(icon8)
         self.actionabrirCarpeta.setObjectName("actionabrirCarpeta")
         self.actionHacerBackup = QtWidgets.QAction(MainWindow)
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap(":/newPrefix/subirNube.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionHacerBackup.setIcon(icon13)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/newPrefix/subirNube.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionHacerBackup.setIcon(icon9)
         self.actionHacerBackup.setObjectName("actionHacerBackup")
         self.actionRestaurarBackup = QtWidgets.QAction(MainWindow)
-        icon14 = QtGui.QIcon()
-        icon14.addPixmap(QtGui.QPixmap(":/newPrefix/bajarNube.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionRestaurarBackup.setIcon(icon14)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(":/newPrefix/bajarNube.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionRestaurarBackup.setIcon(icon10)
         self.actionRestaurarBackup.setObjectName("actionRestaurarBackup")
         self.actionBarImpresora = QtWidgets.QAction(MainWindow)
-        icon15 = QtGui.QIcon()
-        icon15.addPixmap(QtGui.QPixmap(":/newPrefix/impresora.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionBarImpresora.setIcon(icon15)
+        self.actionBarImpresora.setIcon(icon2)
         self.actionBarImpresora.setObjectName("actionBarImpresora")
         self.actionImprimir = QtWidgets.QAction(MainWindow)
         self.actionImprimir.setObjectName("actionImprimir")
@@ -1084,7 +1074,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionBarImpresora)
 
         self.retranslateUi(MainWindow)
-        self.tabPrograma.setCurrentIndex(1)
+        self.tabPrograma.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1192,16 +1182,3 @@ class Ui_MainWindow(object):
         self.actionListado_Clientes.setText(_translate("MainWindow", "Listado Clientes"))
         self.actionFacturas.setText(_translate("MainWindow", "Facturas"))
         self.actionInformacion.setText(_translate("MainWindow", "Información del Proyecto"))
-import abrirArchivo_rc
-import bajarNube_rc
-import factura_rc
-import iconoCal1_rc
-import impresora_rc
-import logo_rc
-import lupa_rc
-import ojo_rc
-import papelera_rc
-import reloadBtn_rc
-import sair_rc
-import subirNube_rc
-import warning_rc
