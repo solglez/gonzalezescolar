@@ -47,7 +47,6 @@ class Articulos():
 
         try:
             fila = var.ui.tabArticulos.selectedItems()
-            print('Metodo')
             datos = [var.ui.lblCodArt, var.ui.txtNombreArticulo, var.ui.txtPrecioArticulo]
             if fila:
                 row = [dato.text() for dato in fila]

@@ -1317,8 +1317,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/ojo.png</normaloff>img/ojo.png</iconset>
+        <iconset resource="img/ojo.qrc">
+         <normaloff>:/newPrefix/ojo.png</normaloff>:/newPrefix/ojo.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -1460,8 +1460,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
            <string/>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>img/lupa.png</normaloff>img/lupa.png</iconset>
+           <iconset resource="img/lupa.qrc">
+            <normaloff>:/newPrefix/lupa.png</normaloff>:/newPrefix/lupa.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1538,8 +1538,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
            <string/>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>img/iconoCal1.png</normaloff>img/iconoCal1.png</iconset>
+           <iconset resource="img/iconoCal1.qrc">
+            <normaloff>:/newPrefix/iconoCal1.png</normaloff>:/newPrefix/iconoCal1.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1623,8 +1623,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string>Facturar</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/factura.png</normaloff>img/factura.png</iconset>
+        <iconset resource="img/factura.qrc">
+         <normaloff>:/newPrefix/factura.png</normaloff>:/newPrefix/factura.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -1696,8 +1696,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/reloadBtn.png</normaloff>img/reloadBtn.png</iconset>
+        <iconset resource="img/reloadBtn.qrc">
+         <normaloff>:/newPrefix/reloadBtn.png</normaloff>:/newPrefix/reloadBtn.png</iconset>
        </property>
       </widget>
       <widget class="QPushButton" name="btnReportFac">
@@ -1987,8 +1987,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
        <string> Venta</string>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>img/papelera.png</normaloff>img/papelera.png</iconset>
+       <iconset resource="img/papelera.qrc">
+        <normaloff>:/newPrefix/papelera.png</normaloff>:/newPrefix/papelera.png</iconset>
       </property>
      </widget>
      <widget class="QLabel" name="lblSubtotal">
@@ -2660,8 +2660,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
   </action>
   <action name="actionBarSalir">
    <property name="icon">
-    <iconset>
-     <normaloff>img/sair.png</normaloff>img/sair.png</iconset>
+    <iconset resource="img/sair.qrc">
+     <normaloff>:/newPrefix/sair.png</normaloff>:/newPrefix/sair.png</iconset>
    </property>
    <property name="text">
     <string>BarSalir</string>
@@ -2669,8 +2669,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
   </action>
   <action name="actionabrirCarpeta">
    <property name="icon">
-    <iconset>
-     <normaloff>img/abrirArchivo.png</normaloff>img/abrirArchivo.png</iconset>
+    <iconset resource="img/abrirArchivo.qrc">
+     <normaloff>:/newPrefix/abrirArchivo.png</normaloff>:/newPrefix/abrirArchivo.png</iconset>
    </property>
    <property name="text">
     <string>abrirCarpeta</string>
@@ -2678,8 +2678,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
   </action>
   <action name="actionHacerBackup">
    <property name="icon">
-    <iconset>
-     <normaloff>img/subirNube.png</normaloff>img/subirNube.png</iconset>
+    <iconset resource="img/subirNube.qrc">
+     <normaloff>:/newPrefix/subirNube.png</normaloff>:/newPrefix/subirNube.png</iconset>
    </property>
    <property name="text">
     <string>HacerBackup</string>
@@ -2687,8 +2687,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
   </action>
   <action name="actionRestaurarBackup">
    <property name="icon">
-    <iconset>
-     <normaloff>img/bajarNube.png</normaloff>img/bajarNube.png</iconset>
+    <iconset resource="img/bajarNube.qrc">
+     <normaloff>:/newPrefix/bajarNube.png</normaloff>:/newPrefix/bajarNube.png</iconset>
    </property>
    <property name="text">
     <string>RestaurarBackup</string>
@@ -2696,8 +2696,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
   </action>
   <action name="actionBarImpresora">
    <property name="icon">
-    <iconset>
-     <normaloff>img/impresora.png</normaloff>img/impresora.png</iconset>
+    <iconset resource="img/impresora.qrc">
+     <normaloff>:/newPrefix/impresora.png</normaloff>:/newPrefix/impresora.png</iconset>
    </property>
    <property name="text">
     <string>BarImpresora</string>
@@ -2737,14 +2737,28 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="img/sair.qrc"/>
+  <include location="img/lupa.qrc"/>
+  <include location="img/logo.qrc"/>
+  <include location="img/warning.qrc"/>
+  <include location="img/ojo.qrc"/>
+  <include location="img/papelera.qrc"/>
+  <include location="img/reloadBtn.qrc"/>
+  <include location="img/factura.qrc"/>
+  <include location="img/impresora.qrc"/>
+  <include location="img/iconoCal1.qrc"/>
+  <include location="img/bajarNube.qrc"/>
+  <include location="img/subirNube.qrc"/>
+  <include location="img/abrirArchivo.qrc"/>
+ </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="rbtGroupSex"/>
   <buttongroup name="chkGroupPago">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="rbtGroupSex"/>
  </buttongroups>
 </ui>
