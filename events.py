@@ -236,3 +236,15 @@ class Eventos():
         except Exception as error:
             print('Error en evento actualizar label envíos ', error)
 
+    def acercaDe(self):
+        try:
+            msgBox = QMessageBox()
+            msgBox.setIcon(QtWidgets.QMessageBox.Information)
+            msgBox.setText("Este es un proyecto de Diseño de Interfaces. "
+                           "\nHa sido realizado por Sol González.")
+            msgBox.setWindowTitle("Aviso")
+            msgBox.setStandardButtons(QMessageBox.Ok)
+            msgBox.exec()
+        except Exception as error:
+            print('Error al mostrar acerca de ',error)
+

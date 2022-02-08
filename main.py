@@ -93,6 +93,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.ExportarDatos)
         var.ui.actionListado_Clientes.triggered.connect(informes.Informes.listadoClientes)
         var.ui.actionFacturas.triggered.connect(informes.Informes.factura)
+        var.ui.actionInformacion.triggered.connect(events.Eventos.acercaDe)
         '''
         Eventos de la caja de texto
         '''

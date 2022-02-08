@@ -1476,7 +1476,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
       <widget class="QWidget" name="horizontalLayoutWidget_13">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>320</x>
          <y>10</y>
          <width>251</width>
          <height>27</height>
@@ -1606,25 +1606,37 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
       <widget class="QPushButton" name="btnFacturar">
        <property name="geometry">
         <rect>
-         <x>520</x>
-         <y>50</y>
-         <width>75</width>
-         <height>23</height>
+         <x>740</x>
+         <y>40</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
         <string>Facturar</string>
        </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>img/factura.png</normaloff>img/factura.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
       </widget>
       <widget class="QWidget" name="horizontalLayoutWidget_15">
        <property name="geometry">
         <rect>
-         <x>550</x>
+         <x>620</x>
          <y>10</y>
          <width>81</width>
          <height>27</height>
@@ -1675,7 +1687,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
        <property name="geometry">
         <rect>
          <x>800</x>
-         <y>40</y>
+         <y>10</y>
          <width>31</width>
          <height>31</height>
         </rect>
@@ -1692,7 +1704,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
        <property name="geometry">
         <rect>
          <x>740</x>
-         <y>40</y>
+         <y>10</y>
          <width>41</width>
          <height>28</height>
         </rect>
@@ -2585,6 +2597,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
     <property name="title">
      <string>Acerca de</string>
     </property>
+    <addaction name="actionInformacion"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuHerramientas"/>
@@ -2718,15 +2731,20 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
     <string>Facturas</string>
    </property>
   </action>
+  <action name="actionInformacion">
+   <property name="text">
+    <string>Información del Proyecto</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="rbtGroupSex"/>
   <buttongroup name="chkGroupPago">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="rbtGroupSex"/>
  </buttongroups>
 </ui>
