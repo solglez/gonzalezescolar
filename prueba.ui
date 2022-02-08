@@ -87,7 +87,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
      </font>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -392,8 +392,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
            <string/>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>img/iconoCal1.png</normaloff>img/iconoCal1.png</iconset>
+           <iconset resource="img/iconoCal1.qrc">
+            <normaloff>:/newPrefix/iconoCal1.png</normaloff>:/newPrefix/iconoCal1.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -822,8 +822,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/reloadBtn.png</normaloff>img/reloadBtn.png</iconset>
+        <iconset resource="img/reloadBtn.qrc">
+         <normaloff>:/newPrefix/reloadBtn.png</normaloff>:/newPrefix/reloadBtn.png</iconset>
        </property>
       </widget>
       <widget class="QWidget" name="horizontalLayoutWidget_8">
@@ -1283,8 +1283,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/impresora.png</normaloff>img/impresora.png</iconset>
+        <iconset resource="img/impresora.qrc">
+         <normaloff>:/newPrefix/impresora.png</normaloff>:/newPrefix/impresora.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -1724,8 +1724,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/impresora.png</normaloff>img/impresora.png</iconset>
+        <iconset resource="img/impresora.qrc">
+         <normaloff>:/newPrefix/impresora.png</normaloff>:/newPrefix/impresora.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -2233,8 +2233,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
            <string/>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>img/lupa.png</normaloff>img/lupa.png</iconset>
+           <iconset resource="img/lupa.qrc">
+            <normaloff>:/newPrefix/lupa.png</normaloff>:/newPrefix/lupa.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -2418,8 +2418,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/reloadBtn.png</normaloff>img/reloadBtn.png</iconset>
+        <iconset resource="img/reloadBtn.qrc">
+         <normaloff>:/newPrefix/reloadBtn.png</normaloff>:/newPrefix/reloadBtn.png</iconset>
        </property>
       </widget>
       <widget class="QPushButton" name="btnReportArt">
@@ -2446,8 +2446,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/impresora.png</normaloff>img/impresora.png</iconset>
+        <iconset resource="img/impresora.qrc">
+         <normaloff>:/newPrefix/impresora.png</normaloff>:/newPrefix/impresora.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -2480,8 +2480,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>img/ojo.png</normaloff>img/ojo.png</iconset>
+        <iconset resource="img/ojo.qrc">
+         <normaloff>:/newPrefix/ojo.png</normaloff>:/newPrefix/ojo.png</iconset>
        </property>
        <property name="iconSize">
         <size>
