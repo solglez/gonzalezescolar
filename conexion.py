@@ -4,12 +4,71 @@ from datetime import *
 import xlwt
 import conexion
 import invoice
-import var
+import var, os, shutil
 import locale
+import sqlite3
 locale.setlocale(locale.LC_ALL,'es-ES')
 
 
 class Conexion():
+    def create_db(filename):
+        try:
+            con=sqlite3.connect(database=filename)
+            cur=con.cursor()
+            cur.execute('CREATE TABLE IF NOT EXISTS clientes ( dni	TEXT NOT NULL, alta	TEXT, apellidos	TEXT NOT NULL, nombre	TEXT, direccion	TEXT, provincia	TEXT, municipio	TEXT, sexo	TEXT, pago	TEXT, envio	INTEGER, PRIMARY KEY("dni"))')
+            cur.execute('CREATE TABLE IF NOT EXISTS articulos ('
+                ' codigo	INTEGER,'
+                ' nombre	TEXT,'
+                ' precio	TEXT,'
+                ' PRIMARY KEY(codigo AUTOINCREMENT)'
+            ')')
+            cur.execute('CREATE TABLE IF NOT EXISTS facturas ('
+                ' dni	TEXT NOT NULL,'
+                ' codfac	INTEGER NOT NULL,'
+                ' fechafac	TEXT NOT NULL,'
+                ' PRIMARY KEY(codfac AUTOINCREMENT),'
+                ' FOREIGN KEY(dni) REFERENCES clientes(dni)'
+            ')')
+            cur.execute('CREATE TABLE IF NOT EXISTS ventas ('
+                ' codven	INTEGER NOT NULL,'
+                ' codprof	INTEGER NOT NULL,'
+                ' codfacf	INTEGER NOT NULL,'
+                ' cantidad	REAL NOT NULL,'
+                ' precio	REAL NOT NULL,'
+                ' PRIMARY KEY(codven AUTOINCREMENT),'
+                ' FOREIGN KEY(codprof) REFERENCES articulos(codigo),'
+                ' FOREIGN KEY(codfacf) REFERENCES facturas(codfac) ON DELETE CASCADE'
+            ')')
+            cur.execute('CREATE TABLE IF NOT EXISTS municipios ('
+                ' provincia_id	INTEGER NOT NULL,'
+                ' municipio	TEXT NOT NULL,'
+                ' id	INTEGER NOT NULL,'
+                ' PRIMARY KEY(id AUTOINCREMENT)'
+            ')')
+            cur.execute('CREATE TABLE provincias ('
+                ' id	INTEGER NOT NULL,'
+                ' provincia	TEXT NOT NULL,'
+                ' PRIMARY KEY(id AUTOINCREMENT)'
+            ')')
+            con.commit()
+            con.close()
+            '''Creación de directorios'''
+            if not os.path.exists('.\\informes'):
+                os.mkdir('.\\informes')
+            if not os.path.exists('.\\img'):
+                os.mkdir('.\\img')
+                #shutil.move('./img/logo.png',)
+            if not os.path.exists('C:\\copias'):
+                os.mkdir('C:\\copias')
+
+        except Exception as error:
+            msgBox = QMessageBox()
+            msgBox.setIcon(QtWidgets.QMessageBox.Information)
+            msgBox.setText("Error al crear la db desde conexión: ",error)
+            msgBox.setWindowTitle("ERROR")
+            msgBox.setStandardButtons(QMessageBox.Ok)
+            msgBox.exec()
+
     def db_connect(filename):
         try:
             db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
