@@ -1,3 +1,5 @@
+import csv
+
 from PyQt5 import QtSql, QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import *
 from datetime import *
@@ -43,14 +45,23 @@ class Conexion():
                 ' provincia_id	INTEGER NOT NULL,'
                 ' municipio	TEXT NOT NULL,'
                 ' id	INTEGER NOT NULL,'
-                ' PRIMARY KEY(id AUTOINCREMENT)'
+                ' PRIMARY KEY(id)'
             ')')
-            cur.execute('CREATE TABLE provincias ('
+            cur.execute('CREATE TABLE IF NOT EXISTS provincias ('
                 ' id	INTEGER NOT NULL,'
                 ' provincia	TEXT NOT NULL,'
-                ' PRIMARY KEY(id AUTOINCREMENT)'
+                ' PRIMARY KEY(id)'
             ')')
             con.commit()
+            cur.execute('select count() from provincias')
+            numero=cur.fetchone()
+            con.commit()
+            if int(numero[0])==0:
+                with open('provincias.csv','r',encoding="utf-8")as fin:
+                    dr=csv.DictReader(fin)
+                    to_db=[(i['id'],i['provincia'])for i in dr]
+                cur.executemany('insert into provincias (id, provincia) VALUES (?,?);',to_db)
+                con.commit()
             con.close()
             '''Creación de directorios'''
             if not os.path.exists('.\\informes'):
@@ -64,7 +75,8 @@ class Conexion():
         except Exception as error:
             msgBox = QMessageBox()
             msgBox.setIcon(QtWidgets.QMessageBox.Information)
-            msgBox.setText("Error al crear la db desde conexión: ",error)
+            msgBox.setText("Error al crear la db desde conexión")
+            print(error)
             msgBox.setWindowTitle("ERROR")
             msgBox.setStandardButtons(QMessageBox.Ok)
             msgBox.exec()
