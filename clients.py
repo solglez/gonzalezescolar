@@ -1,6 +1,3 @@
-'''
-Funciones gestión clientes
-'''
 from PyQt5 import QtSql
 import clients
 import conexion
@@ -8,7 +5,9 @@ import events
 import invoice
 from prueba import *
 import var
-
+'''
+Funciones gestión clientes
+'''
 class Clientes():
     def validarDNI():
         try:
@@ -63,6 +62,10 @@ class Clientes():
             print('Error en módulo seleccionar forma de pago: ',error)
     '''
     def cargaProv(self):
+        """
+
+        :rtype: object
+        """
         try:
             var.ui.cmbProv.clear()
             prov=conexion.Conexion.listaProvincias(self)
