@@ -1,17 +1,20 @@
 '''
 GESTIÓN DE LA FACTURACIÓN
 '''
-from PyQt5 import QtSql
-from PyQt5.QtWidgets import *
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 import locale
 locale.setlocale(locale.LC_ALL,'es-ES')
-
 import conexion
 import invoice
 import var
 class Facturas():
     def buscaCli(self):
+        """
+
+        Método que carga los datos de cliente en la interfaz de facturación tomando su dni desde la información de
+        la factura y consultando Conexion.buscaCliFac.
+
+        """
         try:
             dni=var.ui.txtDniFac.text().upper()
             var.ui.txtDniFac.setText(dni)
@@ -22,6 +25,12 @@ class Facturas():
             print('Error en buscar cliente de facturas ',error)
 
     def altaFac(self):
+        """
+
+        Método que lanza el proceso de guardar una nueva factura y actualiza la interfaz.
+        Llama a Conexion.altaFac, cargaTabFac y buscaCodFac.
+
+        """
         try:
             registro=[]
             dni = var.ui.txtDniFac.text().upper()
@@ -37,6 +46,13 @@ class Facturas():
             print('Error en módulo alta factura ',error)
 
     def cargaFac(self):
+        """
+
+        Método que consulta los datos de una factura seleccionada en tabla con Conexion.buscaDatosFac
+        y rellena sus respectivos campos en la interfaz.
+        Tambien carga sus lineas de venta con Conexion.cargarLineasVenta.
+
+        """
         try:
             fila = var.ui.tabFacturas.selectedItems()
             datos = [var.ui.lblCodFac, var.ui.txtFechaFac]
@@ -55,9 +71,12 @@ class Facturas():
 
 
     def limpiaFormFac(self):
+        """
+
+        Método que vacía el formulario de la interfaz de facturación para poder realizar otros procesos.
+
+        """
         try:
-            #var.ui.tabVentas.clearContents()
-            #Facturas.cargarLineaVenta(self)
             cajas = [var.ui.txtDniFac, var.ui.lblNomFac, var.ui.lblCodFac, var.ui.txtFechaFac]
             for i in cajas:
                 i.setText('')
@@ -68,13 +87,17 @@ class Facturas():
             print('Error en módulo limpiar formulario ',error)
 
     def cargarLineaVenta(self):
+        """
+
+        Método que genera una nueva linea de venta vacía en la primera linea de la tabla de ventas.
+        Carga en el combobox todos los productos con Conexion.cargarCmbProducto.
+
+        """
         try:
             index=0
-            #var.cmbProducto=QtWidgets.QComboBox()
             var.cmbProducto.setFixedSize(150,25)
             # Hay que cargar el combo
             conexion.Conexion.cargarCmbProducto(self)
-            #var.txtCantidad=QtWidgets.QLineEdit()
             var.txtCantidad.setFixedSize(60,25)
             var.txtCantidad.setAlignment(QtCore.Qt.AlignCenter)
             var.ui.tabVentas.setRowCount(index+1)
@@ -84,6 +107,7 @@ class Facturas():
             print('Error al cargar linea de venta ',error)
 
     #Esto es una prueba, pero hay problemas con el self
+    '''
     def cargarLineaVentaEnIndex(index):
         try:
             index=int(index)
@@ -99,32 +123,36 @@ class Facturas():
             var.ui.tabVentas.setCellWidget(index, 3, var.txtCantidad)
         except Exception as error:
             print('Error al cargar linea de venta ',error)
-
-
+            
+    '''
     #Comprobar codigo:
     def procesoVenta(self):
+        """
+
+        Método que guarda todos los datos de la linea de venta al procesarla.
+
+        """
         try:
             row = var.ui.tabVentas.currentRow()
             articulo = var.cmbProducto.currentText()
             dato = conexion.Conexion.obtenerCodPrecio(articulo)
             var.codpro=dato[0]
-            #print(dato)
             var.ui.tabVentas.setItem(row, 2, QtWidgets.QTableWidgetItem(str(dato[1])))
             var.ui.tabVentas.item(row, 2).setTextAlignment(QtCore.Qt.AlignCenter)
             #Adecuamos el campo de precio para pasarlo a float y operar con el
             var.precio = dato[1].replace('€','')
             var.precio=var.precio.replace(',','.')
             var.precio = var.precio.replace(' ', '')
-
-            # cantidad=round(float(var.txtCantidad.text().replace(',', '.')), 2)
-            # print('cantidad')
-            # total_venta = float(precio) * float(cantidad)
-            # total_venta = round(total_venta, 2)
-            #total_linea=Facturas.totalLineaVenta(precio)
         except Exception as error:
             print('error en procesoVenta en invoice', error)
 
     def totalLineaVenta(self=None):
+        """
+
+        Método que calcula el total de una linea de venta y llama a Conexion.cargarVenta para guardarla en la base de
+        datos. También actualiza la interfaz en consecuencia.
+
+        """
         try:
             row = var.ui.tabVentas.currentRow()
             cantidad=round(float(var.txtCantidad.text().replace(',', '.')), 2)
@@ -137,7 +165,6 @@ class Facturas():
             venta.append(int(var.codpro))
             venta.append(float(var.precio))
             venta.append(float(cantidad))
-            #print(venta)
             conexion.Conexion.cargarVenta(venta)
 
             if var.ui.lblCodFac_4.text() == 'Venta Realizada':
@@ -148,6 +175,11 @@ class Facturas():
             print('Error en total linea venta de invoice: ',error)
 
     def eliminarVenta(self):
+        """
+
+        Método que elimina una linea de venta de la bbdd apoyándose en Conexion.eliminarLineaVenta.
+
+        """
         try:
             row = var.ui.tabVentas.selectedItems()
             codVenta=row[0].text()
@@ -156,6 +188,11 @@ class Facturas():
             print('Error al eliminar venta: ',error)
 
     def vaciarTabVentas(self=None):
+        """
+
+        Método que vacía la tabla y los campos referentes a las lineas de venta en la interfaz para futuras operaciones.
+
+        """
         try:
             var.ui.tabVentas.clearContents()
             var.cmbProducto = QtWidgets.QComboBox()

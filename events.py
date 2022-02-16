@@ -18,6 +18,11 @@ from zipfile import *
 
 class Eventos():
     def salir(self):
+        """
+
+        Método que finaliza la ejecución del programa.
+
+        """
         try:
             var.dlgaviso.show()
             if var.dlgaviso.exec():
@@ -28,12 +33,22 @@ class Eventos():
             print('Error en módulo salir ', error)
 
     def abrirCal(self):
+        """
+
+        Método que muestra la ventana de calendario.
+
+        """
         try:
             var.dlgcalendar.show()
         except Exception as error:
             print('Error en módulo abrir calendario ',error)
 
     def resizeTablaCli(self):
+        """
+
+        Método que redimensiona la tabla de clientes al lanzarse la interfaz.
+
+        """
         try:
             header = var.ui.tabClientes.horizontalHeader()
             for i in range(5):
@@ -44,6 +59,11 @@ class Eventos():
             print('Error al dar formato a tabla clientes ',error)
 
     def resizeTablaArt(self):
+        """
+
+        Método que redimensiona la tabla de artículos al lanzarse la interfaz.
+
+        """
         try:
             header = var.ui.tabArticulos.horizontalHeader()
             for i in range(2):
@@ -54,6 +74,11 @@ class Eventos():
             print('Error al dar formato a tabla articulos ',error)
 
     def resizeTablaFac(self):
+        """
+
+        Método que redimensiona la tabla de facturas al lanzarse la interfaz.
+
+        """
         try:
             header = var.ui.tabFacturas.horizontalHeader()
             for i in range(2):
@@ -65,6 +90,11 @@ class Eventos():
             print('Error al dar formato a tabla facturas ',error)
 
     def resizeTablaVen(self):
+        """
+
+        Método que redimensiona la tabla de ventas al lanzarse la interfaz.
+
+        """
         try:
             header = var.ui.tabVentas.horizontalHeader()
             for i in range(5):
@@ -76,6 +106,11 @@ class Eventos():
             print('Error al dar formato a tabla clientes ',error)
 
     def errorDNI(self):
+        """
+
+        Método que lanza una ventana de error al introducirse un DNI no válido.
+
+        """
         try:
             msgBox = QMessageBox()
             msgBox.setIcon(QtWidgets.QMessageBox.Warning)
@@ -87,12 +122,22 @@ class Eventos():
             print('Error en mensaje error DNI ', error)
 
     def abrir(self):
+        """
+
+        Método que abre la ventana del explorador de archivos de windows para seleccionar un archivo.
+
+        """
         try:
             var.dlgabrir.show()
         except Exception as error:
             print('Error en evento abrir ', error)
 
     def crearBackup(self):
+        """
+
+        Método que genera una copia de seguridad de la base de datos y la exporta a un .zip.
+
+        """
         try:
             fecha=datetime.today()
             fecha=fecha.strftime('%Y.%m.%d.%H.%M.%S')
@@ -118,6 +163,11 @@ class Eventos():
             print('Error en evento crear backup ',error)
 
     def restaurarBackup(self):
+        """
+
+        Método que restaura la información de la base de datos desde un archivo .zip.
+
+        """
         try:
             restaurado=False
             option = QtWidgets.QFileDialog.Options()
@@ -158,6 +208,11 @@ class Eventos():
             print('Error al restaurar backup ',error)
 
     def Imprimir(self):
+        """
+
+        Método que abre la ventana de imprimir de windows.
+
+        """
         try:
             printDialog=QtPrintSupport.QPrintDialog()
             if printDialog.exec():
@@ -166,6 +221,11 @@ class Eventos():
             print('Error en evento imprimir ',error)
 
     def ImportarDatos(self):
+        """
+
+        Método que importa datos (clientes) a la base de datos desde una hoja excel.
+
+        """
         try:
             option = QtWidgets.QFileDialog.Options()
             origen, filter = var.dlgabrir.getOpenFileName(None, 'Importar Datos', '', '*.xls;;ALL',
@@ -196,6 +256,12 @@ class Eventos():
             print('Error en evento importar datos: ',error)
 
     def ExportarDatos(self):
+        """
+
+        Método que exporta los datos de los clientes almacenados en la bbdd a una hoja de excel.
+        Llama a Conexion.exportExcel.
+
+        """
         try:
             procesado=conexion.Conexion.exportExcel(self)
             if procesado:
@@ -222,6 +288,11 @@ class Eventos():
             print('Error en evento exportar datos ',error)
 
     def labelEnvio(self):
+        """
+
+        Método que concuerta el label de envío con su valor representativo en el spinner de la interfaz.
+
+        """
         try:
             valor=var.ui.spinEnvio.value()
             if(valor==0):
@@ -237,6 +308,11 @@ class Eventos():
             print('Error en evento actualizar label envíos ', error)
 
     def acercaDe(self):
+        """
+
+        Método que muestra un cartel de información sobre el proyecto al pulsar Acerca de.
+
+        """
         try:
             msgBox = QMessageBox()
             msgBox.setIcon(QtWidgets.QMessageBox.Information)

@@ -10,6 +10,11 @@ Funciones gestión clientes
 '''
 class Clientes():
     def validarDNI():
+        """
+
+        Método que comprueba si el dni introducido es válido y señala el resultado en la interfaz gráfica.
+
+        """
         try:
             var.ui.txtDNI.setText(var.ui.txtDNI.text().upper()) #asegurar letra en mayúsculas
             dni = var.ui.txtDNI.text()
@@ -64,7 +69,9 @@ class Clientes():
     def cargaProv(self):
         """
 
-        :rtype: object
+        Método que carga las provincias en el combo box.
+        Llama a Conexion.listaProvincias para obtnerlas de la bbdd.
+
         """
         try:
             var.ui.cmbProv.clear()
@@ -82,6 +89,12 @@ class Clientes():
             print('Error en módulos de seleccionar provincia, ',error)
     '''
     def cargaMun(self):
+        """
+
+        Método que carga los municipios de la provincia seleccionada en el combo box.
+        Usa Conexion.listaMunicipios para tomarlos de la bbdd.
+
+        """
         try:
             var.ui.cmbMun.clear()
             prov=var.ui.cmbProv.currentText()
@@ -90,15 +103,22 @@ class Clientes():
                 var.ui.cmbMun.addItem(i)
         except Exception as error:
             print('Error en módulo de cargar municipio, ',error)
-
+    '''
     def selMun(mun):
         try:
             print('Has seleccionado el municipio de ',mun)
             return mun
         except Exception as error:
             print('Error en módulo de seleccionar municipio, ',error)
+    '''
 
     def cargarFecha(qDate):
+        """
+
+        Método que carga la fecha seleccionada en el calendario en el txt de la interfaz.
+        Es formateada para ello.
+
+        """
         try:
             #qDate pondría por orden año, mes y día. Usamos format para variar el orden y darle formato.
             data=('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
@@ -111,6 +131,12 @@ class Clientes():
             print('Error en módulo de cargar fecha ', error)
 
     def formatoMayus():
+        """
+
+        Método que formatea los campos de nombre, apellidos y dirección del cliente para que cada palabra inicie en
+        mayúsculas.
+
+        """
         try:
             if len(var.ui.txtNome.text())>0:
                 var.ui.txtNome.setText(var.ui.txtNome.text().title())
@@ -122,6 +148,13 @@ class Clientes():
             print('Error al aplicar formato de texto ',error)
 
     def guardaCli(self):
+        """
+
+        Método que gestiona el proceso de guardado de un nuevo cliente en la bbdd y actualiza la interfaz
+        en consecuencia.
+        Llama a Conexion.altaCli y cargaTabCli.
+
+        """
         try:
             if(var.ui.lblValidoDNI.text()==' V'):
                 #Preparamos el registro
@@ -176,6 +209,11 @@ class Clientes():
             print('Error en módulo guardar cliente ', error)
 
     def limpiaFormCli(self):
+        """
+
+        Método que vacía los distintos campos de la interfaz de clientes para futuras operaciones.
+
+        """
         try:
             cajas = [var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli, var.ui.txtDNI, var.ui.txtDir]
             for i in cajas:
@@ -199,7 +237,7 @@ class Clientes():
 
     def cargaCli(self):
         '''
-        Carga los datos del cliente al seleccionar en tabla
+        Carga los datos del cliente al seleccionar en tabla. También pasa sus datos a la pestaña de facturación.
         :return:
         '''
         try:
@@ -255,6 +293,12 @@ class Clientes():
             print('Error en módulo cargar cliente ',error)
 
     def bajaCli(self):
+        """
+
+        Método que gestiona el borrado de un cliente de la bbdd y actualiza la interfaz en consecuencia.
+        Llama a Conexion.bajaCli y cargaTabCli.
+
+        """
         try:
             dni=var.ui.txtDNI.text()
             conexion.Conexion.bajaCli(dni)
@@ -263,6 +307,12 @@ class Clientes():
             print('Error al dar de baja cliente ', error)
 
     def modifCli(self):
+        """
+
+        Método que guarda las modificaciones realizadas sobre el cliente que se encuentra volcado en la interfaz.
+        Usa Conexion.modifCli y cargaTabCli.
+
+        """
         try:
             modcliente=[]
             cliente=[var.ui.txtDNI, var.ui.txtAltaCli, var.ui.txtApel, var.ui.txtNome, var.ui.txtDir]

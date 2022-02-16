@@ -10,6 +10,12 @@ import conexion
 
 class Informes():
     def listadoClientes(self):
+        """
+
+        Método que dibuja el el informe de listado de clientes y lo guarda en formato pdf.
+        Usa los métodos cabecera y pie para dibujar dichas partes.
+
+        """
         try:
 
             #Crea el lienzo
@@ -102,6 +108,12 @@ class Informes():
 
 
     def listadoProductos(self):
+        """
+
+        Método que dibuja el el informe de listado de productos y lo guarda en formato pdf.
+        Usa los métodos cabecera y pie para dibujar dichas partes.
+
+        """
         try:
             # ------REVISAR ESTE CODIGO-------------
             # Crea el lienzo
@@ -168,8 +180,13 @@ class Informes():
         except Exception as error:
             print('Error al listar clientes informe ', error)
 
-    #---------REVISAR ESTE MÉTODO---------------- (funciona bien)
     def factura(self):
+        """
+
+        Método que dibuja la factura seleccionada y la guarda en formato pdf.
+        Usa los métodos cabecera y pie para dibujar dichas partes.
+
+        """
         try:
             var.cv = canvas.Canvas('informes/factura.pdf')
             var.cv.setTitle('Factura')
@@ -240,6 +257,11 @@ class Informes():
             print('Error en informes facturas, ', error)
 
     def cabecera(self):
+        """
+
+        Método que dibuja la cabecera común a todos los informes con los datos de la empresa.
+
+        """
         try:
             logo='.\\img\logo.png'
             var.cv.drawImage(logo, 425, 722)
@@ -256,6 +278,11 @@ class Informes():
             print('Error en cabecera informe ',error)
 
     def cabeceraFactura(self=None):
+        """
+
+        Método que dibuja la cabecera con los datos del cliente de específicos que se añaden en el caso de una factura.
+
+        """
         try:
             logo='.\\img\logo.png'
             var.cv.drawImage(logo, 425, 722)
@@ -306,6 +333,12 @@ class Informes():
             print('Error en cabecera informe ',error)
 
     def pie(texto):
+        """
+
+        Método que dibuja el pie del informe con un formato común.
+        Recibe el título del informe para printarlo.
+
+        """
         try:
             var.cv.line(50,50,530,50)
             fecha=datetime.today()
@@ -318,6 +351,12 @@ class Informes():
             print('Error al crear pie de informe clientes ',error)
 
     def totalFactura(altura):
+        """
+
+        Método que añade a la factura el cálculo del subtotal, iva y total tras haber añadido las lineas de venta.
+        Recibe la altura a la que debe printarse para decidir si debe cambiar de página.
+
+        """
         try:
             if altura <= 120:
                 # Para saltar de página y colocar pie y cabecera en la nueva
