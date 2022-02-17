@@ -160,7 +160,6 @@ class Informes():
                     #La siguiente linea pondría € tras el precio, pero ya lo hemos añadido a la bd
                     #var.cv.drawString(i + 358, j, str(query.value(2)+" €"))
                     j -= 20
-
             # Propiedades del documento
             var.cv.setFont('Helvetica', 8)
             var.cv.setTitle('Listado Clientes')
@@ -192,7 +191,7 @@ class Informes():
             var.cv.setTitle('Factura')
             var.cv.setAuthor('Departamento de Administración')
             rootPath = '.\\informes'
-            var.cv.setFont('Helvetica-Bold', size=12)
+            var.cv.setFont('Helvetica-Bold', 10)
             textotitulo = 'FACTURA'
             Informes.cabeceraFactura()
             Informes.pie(textotitulo)
@@ -200,6 +199,7 @@ class Informes():
             #var.cv.drawString(255, 690, textotitulo + ': ' + str(codfac))
             var.cv.line(40, 685, 530, 685)
             items = ['Venta', 'Artículo', 'Precio', 'Cantidad', 'Total']
+            var.cv.setFont('Helvetica-Bold', 10)
             var.cv.drawString(60, 675, items[0])
             var.cv.drawString(150, 675, items[1])
             var.cv.drawString(290, 675, items[2])
@@ -220,6 +220,7 @@ class Informes():
                                           'Página siguiente...')  # Ellos están poniendo esta línea más abajo
                         var.cv.showPage()  # Avanza la página
                         var.cv.setFont('Helvetica',6)
+                        var.cv.setFont('Helvetica-Bold', 9)
                         var.cv.line(40, 685, 530, 685)
                         items = ['Venta', 'Artículo', 'Precio', 'Cantidad', 'Total']
                         var.cv.drawString(60, 675, items[0])
@@ -232,6 +233,7 @@ class Informes():
                         Informes.pie(textotitulo)
                         i = 50
                         j = 655
+                        var.cv.setFont('Helvetica', 6)
                     codventa = query.value(0)
                     precio = str('{:.2f}'.format(round(query.value(1), 2)))
                     cantidad = str('{:.2f}'.format(round(query.value(2), 2)))
@@ -289,7 +291,9 @@ class Informes():
             var.cv.line(40,800,530,800)
             var.cv.setFont('Helvetica-Bold',14)
             var.cv.drawString(50,785,'Import-Export Vigo')
-            var.cv.setFont('Helvetica',10)
+            var.cv.setFont('Helvetica-Bold',10)
+            var.cv.drawString(220, 785, 'DATOS CLIENTE:')
+            var.cv.setFont('Helvetica', 10)
             var.cv.drawString(50,770,'CIF: A0000000H')
             var.cv.drawString(50, 755, 'Dirección: Av. Galicia, 101')
             var.cv.drawString(50, 740, 'Vigo - 36216 - Spain')
@@ -319,16 +323,19 @@ class Informes():
             formaEnvio=str('Forma de envío: '+formaEnvio)
             fecha=str('Factura emitida a fecha: '+fecha)
             dni=str('DNI: '+dni)
+            direccion=str('Dirección: '+direccion)
+            cliente=str('Cliente: '+cliente)
             codfac = var.ui.lblCodFac.text()
-            var.cv.drawString(220,770,cliente)
-            var.cv.drawString(220, 755, dni)
+            var.cv.drawString(220,770,dni)
+            var.cv.drawString(220, 755, cliente)
             var.cv.drawString(220, 740, direccion)
             var.cv.drawString(220, 725, formaEnvio)
             var.cv.line(40, 718, 530, 718)
 
             var.cv.setFont('Helvetica', 8)
+            var.cv.setFont('Helvetica-Bold', 10)
             var.cv.drawString(40, 690, 'Código de Factura: ' + str(codfac))
-            var.cv.drawString(130, 690, fecha)
+            var.cv.drawString(170, 690, fecha)
         except Exception as error:
             print('Error en cabecera informe ',error)
 

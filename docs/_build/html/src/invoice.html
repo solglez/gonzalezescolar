@@ -41,52 +41,62 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.altaFac">
 <span class="sig-name descname"><span class="pre">altaFac</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.altaFac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.altaFac" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que lanza el proceso de guardar una nueva factura y actualiza la interfaz.
+Llama a Conexion.altaFac, cargaTabFac y buscaCodFac.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.buscaCli">
 <span class="sig-name descname"><span class="pre">buscaCli</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.buscaCli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.buscaCli" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que carga los datos de cliente en la interfaz de facturación tomando su dni desde la información de
+la factura y consultando Conexion.buscaCliFac.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.cargaFac">
 <span class="sig-name descname"><span class="pre">cargaFac</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.cargaFac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.cargaFac" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que consulta los datos de una factura seleccionada en tabla con Conexion.buscaDatosFac
+y rellena sus respectivos campos en la interfaz.
+Tambien carga sus lineas de venta con Conexion.cargarLineasVenta.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.cargarLineaVenta">
 <span class="sig-name descname"><span class="pre">cargarLineaVenta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.cargarLineaVenta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.cargarLineaVenta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="invoice.Facturas.cargarLineaVentaEnIndex">
-<span class="sig-name descname"><span class="pre">cargarLineaVentaEnIndex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.cargarLineaVentaEnIndex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.cargarLineaVentaEnIndex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que genera una nueva linea de venta vacía en la primera linea de la tabla de ventas.
+Carga en el combobox todos los productos con Conexion.cargarCmbProducto.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.eliminarVenta">
 <span class="sig-name descname"><span class="pre">eliminarVenta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.eliminarVenta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.eliminarVenta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que elimina una linea de venta de la bbdd apoyándose en Conexion.eliminarLineaVenta.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.limpiaFormFac">
 <span class="sig-name descname"><span class="pre">limpiaFormFac</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.limpiaFormFac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.limpiaFormFac" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que vacía el formulario de la interfaz de facturación para poder realizar otros procesos.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.procesoVenta">
 <span class="sig-name descname"><span class="pre">procesoVenta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.procesoVenta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.procesoVenta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que guarda todos los datos de la linea de venta al procesarla.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.totalLineaVenta">
 <span class="sig-name descname"><span class="pre">totalLineaVenta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.totalLineaVenta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.totalLineaVenta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que calcula el total de una linea de venta y llama a Conexion.cargarVenta para guardarla en la base de
+datos. También actualiza la interfaz en consecuencia.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="invoice.Facturas.vaciarTabVentas">
 <span class="sig-name descname"><span class="pre">vaciarTabVentas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/invoice.html#Facturas.vaciarTabVentas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#invoice.Facturas.vaciarTabVentas" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que vacía la tabla y los campos referentes a las lineas de venta en la interfaz para futuras operaciones.</p>
+</dd></dl>
 
 </dd></dl>
 

@@ -40,47 +40,66 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.bajaArt">
 <span class="sig-name descname"><span class="pre">bajaArt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.bajaArt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.bajaArt" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que gestiona el proceso de dar de baja un artículo de la bbdd y actualiza la interfaz.
+Hace uso de Conexion.bajaArt y cargaTabArt.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.buscaArticulo">
 <span class="sig-name descname"><span class="pre">buscaArticulo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.buscaArticulo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.buscaArticulo" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que busca en la bbdd el artículo cuyo nombre se ha especificado y carga sus datos en los distintos campos
+de la interfaz gráfica.
+Hace uso de Conexion.buscaArt y cargaTabBuscaArt</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.cargaArt">
 <span class="sig-name descname"><span class="pre">cargaArt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.cargaArt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.cargaArt" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que carga en la interfaz de artículos los datos de un artículo concreto seleccionado en tabla.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.formatoMayus">
 <span class="sig-name descname"><span class="pre">formatoMayus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.formatoMayus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.formatoMayus" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que formatea el nombre del artículo para que empiece por mayúscula.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.formatoPrecio">
 <span class="sig-name descname"><span class="pre">formatoPrecio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.formatoPrecio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.formatoPrecio" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que da formato al precio del artículo nada mas terminar de insertarse para que esté listo para futuras
+operaciones. También muestra un mensaje de error si el valor introducido no es válido.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.guardaArticulo">
 <span class="sig-name descname"><span class="pre">guardaArticulo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.guardaArticulo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.guardaArticulo" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que gestiona el proceso de guardado en la bbdd de un nuevo artículo y actualiza la interfaz de artículos
+en consecuencia.
+Llama a Conexion.altaArt y cargarTabArt.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.limpiaFormArt">
 <span class="sig-name descname"><span class="pre">limpiaFormArt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.limpiaFormArt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.limpiaFormArt" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que vacía la interfaz de la pestaña de artículos para futuras operaciones.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.modifArt">
 <span class="sig-name descname"><span class="pre">modifArt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.modifArt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.modifArt" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que guarda los cambios realizados sobre el artículo que se encuentra volcado en la interfaz gráfica.
+Usa Conexion.modifArticulo y cargaTabArt.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="articulos.Articulos.validarPrecio">
 <span class="sig-name descname"><span class="pre">validarPrecio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.validarPrecio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articulos.Articulos.validarPrecio" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Método que comprueba si el valor de introducido para el precio de un artículo es válido antes de operar con el
+para evitar errores.
+:return: True si el formato del precio es válido, False si no lo es.
+:rtype: boolean</p>
+</dd></dl>
 
 </dd></dl>
 

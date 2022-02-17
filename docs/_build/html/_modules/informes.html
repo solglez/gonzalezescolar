@@ -43,6 +43,12 @@
 
 <div class="viewcode-block" id="Informes"><a class="viewcode-back" href="../src/informes.html#informes.Informes">[docs]</a><span class="k">class</span> <span class="nc">Informes</span><span class="p">():</span>
 <div class="viewcode-block" id="Informes.listadoClientes"><a class="viewcode-back" href="../src/informes.html#informes.Informes.listadoClientes">[docs]</a>    <span class="k">def</span> <span class="nf">listadoClientes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que dibuja el el informe de listado de clientes y lo guarda en formato pdf.</span>
+<span class="sd">        Usa los métodos cabecera y pie para dibujar dichas partes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
 
             <span class="c1">#Crea el lienzo</span>
@@ -135,6 +141,12 @@
 
 
 <div class="viewcode-block" id="Informes.listadoProductos"><a class="viewcode-back" href="../src/informes.html#informes.Informes.listadoProductos">[docs]</a>    <span class="k">def</span> <span class="nf">listadoProductos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que dibuja el el informe de listado de productos y lo guarda en formato pdf.</span>
+<span class="sd">        Usa los métodos cabecera y pie para dibujar dichas partes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># ------REVISAR ESTE CODIGO-------------</span>
             <span class="c1"># Crea el lienzo</span>
@@ -201,8 +213,13 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al listar clientes informe &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
-    <span class="c1">#---------REVISAR ESTE MÉTODO---------------- (funciona bien)</span>
 <div class="viewcode-block" id="Informes.factura"><a class="viewcode-back" href="../src/informes.html#informes.Informes.factura">[docs]</a>    <span class="k">def</span> <span class="nf">factura</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que dibuja la factura seleccionada y la guarda en formato pdf.</span>
+<span class="sd">        Usa los métodos cabecera y pie para dibujar dichas partes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">cv</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="s1">&#39;informes/factura.pdf&#39;</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">cv</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s1">&#39;Factura&#39;</span><span class="p">)</span>
@@ -273,6 +290,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en informes facturas, &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Informes.cabecera"><a class="viewcode-back" href="../src/informes.html#informes.Informes.cabecera">[docs]</a>    <span class="k">def</span> <span class="nf">cabecera</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que dibuja la cabecera común a todos los informes con los datos de la empresa.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">logo</span><span class="o">=</span><span class="s1">&#39;.</span><span class="se">\\</span><span class="s1">img\logo.png&#39;</span>
             <span class="n">var</span><span class="o">.</span><span class="n">cv</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">logo</span><span class="p">,</span> <span class="mi">425</span><span class="p">,</span> <span class="mi">722</span><span class="p">)</span>
@@ -289,6 +311,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en cabecera informe &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Informes.cabeceraFactura"><a class="viewcode-back" href="../src/informes.html#informes.Informes.cabeceraFactura">[docs]</a>    <span class="k">def</span> <span class="nf">cabeceraFactura</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que dibuja la cabecera con los datos del cliente de específicos que se añaden en el caso de una factura.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">logo</span><span class="o">=</span><span class="s1">&#39;.</span><span class="se">\\</span><span class="s1">img\logo.png&#39;</span>
             <span class="n">var</span><span class="o">.</span><span class="n">cv</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">logo</span><span class="p">,</span> <span class="mi">425</span><span class="p">,</span> <span class="mi">722</span><span class="p">)</span>
@@ -339,6 +366,12 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en cabecera informe &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Informes.pie"><a class="viewcode-back" href="../src/informes.html#informes.Informes.pie">[docs]</a>    <span class="k">def</span> <span class="nf">pie</span><span class="p">(</span><span class="n">texto</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que dibuja el pie del informe con un formato común.</span>
+<span class="sd">        Recibe el título del informe para printarlo.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">cv</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">530</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
             <span class="n">fecha</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
@@ -351,6 +384,12 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al crear pie de informe clientes &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Informes.totalFactura"><a class="viewcode-back" href="../src/informes.html#informes.Informes.totalFactura">[docs]</a>    <span class="k">def</span> <span class="nf">totalFactura</span><span class="p">(</span><span class="n">altura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que añade a la factura el cálculo del subtotal, iva y total tras haber añadido las lineas de venta.</span>
+<span class="sd">        Recibe la altura a la que debe printarse para decidir si debe cambiar de página.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">altura</span> <span class="o">&lt;=</span> <span class="mi">120</span><span class="p">:</span>
                 <span class="c1"># Para saltar de página y colocar pie y cabecera en la nueva</span>

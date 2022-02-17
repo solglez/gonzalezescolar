@@ -34,17 +34,20 @@
 <span></span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">GESTIÓN DE LA FACTURACIÓN</span>
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtSql</span>
-<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtWidgets</span>
 <span class="kn">import</span> <span class="nn">locale</span>
 <span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span><span class="s1">&#39;es-ES&#39;</span><span class="p">)</span>
-
 <span class="kn">import</span> <span class="nn">conexion</span>
 <span class="kn">import</span> <span class="nn">invoice</span>
 <span class="kn">import</span> <span class="nn">var</span>
 <div class="viewcode-block" id="Facturas"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas">[docs]</a><span class="k">class</span> <span class="nc">Facturas</span><span class="p">():</span>
 <div class="viewcode-block" id="Facturas.buscaCli"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.buscaCli">[docs]</a>    <span class="k">def</span> <span class="nf">buscaCli</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que carga los datos de cliente en la interfaz de facturación tomando su dni desde la información de</span>
+<span class="sd">        la factura y consultando Conexion.buscaCliFac.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">dni</span><span class="o">=</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniFac</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniFac</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
@@ -55,6 +58,12 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en buscar cliente de facturas &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Facturas.altaFac"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.altaFac">[docs]</a>    <span class="k">def</span> <span class="nf">altaFac</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que lanza el proceso de guardar una nueva factura y actualiza la interfaz.</span>
+<span class="sd">        Llama a Conexion.altaFac, cargaTabFac y buscaCodFac.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">registro</span><span class="o">=</span><span class="p">[]</span>
             <span class="n">dni</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniFac</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
@@ -70,6 +79,13 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en módulo alta factura &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Facturas.cargaFac"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.cargaFac">[docs]</a>    <span class="k">def</span> <span class="nf">cargaFac</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que consulta los datos de una factura seleccionada en tabla con Conexion.buscaDatosFac</span>
+<span class="sd">        y rellena sus respectivos campos en la interfaz.</span>
+<span class="sd">        Tambien carga sus lineas de venta con Conexion.cargarLineasVenta.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fila</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabFacturas</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
             <span class="n">datos</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblCodFac</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtFechaFac</span><span class="p">]</span>
@@ -88,9 +104,12 @@
 
 
 <div class="viewcode-block" id="Facturas.limpiaFormFac"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.limpiaFormFac">[docs]</a>    <span class="k">def</span> <span class="nf">limpiaFormFac</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que vacía el formulario de la interfaz de facturación para poder realizar otros procesos.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="c1">#var.ui.tabVentas.clearContents()</span>
-            <span class="c1">#Facturas.cargarLineaVenta(self)</span>
             <span class="n">cajas</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniFac</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblNomFac</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblCodFac</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtFechaFac</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cajas</span><span class="p">:</span>
                 <span class="n">i</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -101,13 +120,17 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en módulo limpiar formulario &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Facturas.cargarLineaVenta"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.cargarLineaVenta">[docs]</a>    <span class="k">def</span> <span class="nf">cargarLineaVenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que genera una nueva linea de venta vacía en la primera linea de la tabla de ventas.</span>
+<span class="sd">        Carga en el combobox todos los productos con Conexion.cargarCmbProducto.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">index</span><span class="o">=</span><span class="mi">0</span>
-            <span class="c1">#var.cmbProducto=QtWidgets.QComboBox()</span>
             <span class="n">var</span><span class="o">.</span><span class="n">cmbProducto</span><span class="o">.</span><span class="n">setFixedSize</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
             <span class="c1"># Hay que cargar el combo</span>
             <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">cargarCmbProducto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="c1">#var.txtCantidad=QtWidgets.QLineEdit()</span>
             <span class="n">var</span><span class="o">.</span><span class="n">txtCantidad</span><span class="o">.</span><span class="n">setFixedSize</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">txtCantidad</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignCenter</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">setRowCount</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -117,47 +140,52 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al cargar linea de venta &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
     <span class="c1">#Esto es una prueba, pero hay problemas con el self</span>
-<div class="viewcode-block" id="Facturas.cargarLineaVentaEnIndex"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.cargarLineaVentaEnIndex">[docs]</a>    <span class="k">def</span> <span class="nf">cargarLineaVentaEnIndex</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">index</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-            <span class="c1">#var.cmbProducto=QtWidgets.QComboBox()</span>
-            <span class="n">var</span><span class="o">.</span><span class="n">cmbProducto</span><span class="o">.</span><span class="n">setFixedSize</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
-            <span class="c1"># Hay que cargar el combo</span>
-            <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">cargarCmbProducto</span>
-            <span class="c1">#var.txtCantidad=QtWidgets.QLineEdit()</span>
-            <span class="n">var</span><span class="o">.</span><span class="n">txtCantidad</span><span class="o">.</span><span class="n">setFixedSize</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
-            <span class="n">var</span><span class="o">.</span><span class="n">txtCantidad</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignCenter</span><span class="p">)</span>
-            <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">setRowCount</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">setCellWidget</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">var</span><span class="o">.</span><span class="n">cmbProducto</span><span class="p">)</span>
-            <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">setCellWidget</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">txtCantidad</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al cargar linea de venta &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
-
-
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    def cargarLineaVentaEnIndex(index):</span>
+<span class="sd">        try:</span>
+<span class="sd">            index=int(index)</span>
+<span class="sd">            #var.cmbProducto=QtWidgets.QComboBox()</span>
+<span class="sd">            var.cmbProducto.setFixedSize(150,25)</span>
+<span class="sd">            # Hay que cargar el combo</span>
+<span class="sd">            conexion.Conexion.cargarCmbProducto</span>
+<span class="sd">            #var.txtCantidad=QtWidgets.QLineEdit()</span>
+<span class="sd">            var.txtCantidad.setFixedSize(60,25)</span>
+<span class="sd">            var.txtCantidad.setAlignment(QtCore.Qt.AlignCenter)</span>
+<span class="sd">            var.ui.tabVentas.setRowCount(index+1)</span>
+<span class="sd">            var.ui.tabVentas.setCellWidget(index,1,var.cmbProducto)</span>
+<span class="sd">            var.ui.tabVentas.setCellWidget(index, 3, var.txtCantidad)</span>
+<span class="sd">        except Exception as error:</span>
+<span class="sd">            print(&#39;Error al cargar linea de venta &#39;,error)</span>
+<span class="sd">            </span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1">#Comprobar codigo:</span>
 <div class="viewcode-block" id="Facturas.procesoVenta"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.procesoVenta">[docs]</a>    <span class="k">def</span> <span class="nf">procesoVenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que guarda todos los datos de la linea de venta al procesarla.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">row</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">currentRow</span><span class="p">()</span>
             <span class="n">articulo</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">cmbProducto</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
             <span class="n">dato</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">obtenerCodPrecio</span><span class="p">(</span><span class="n">articulo</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">codpro</span><span class="o">=</span><span class="n">dato</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="c1">#print(dato)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dato</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignCenter</span><span class="p">)</span>
             <span class="c1">#Adecuamos el campo de precio para pasarlo a float y operar con el</span>
             <span class="n">var</span><span class="o">.</span><span class="n">precio</span> <span class="o">=</span> <span class="n">dato</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;€&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">precio</span><span class="o">=</span><span class="n">var</span><span class="o">.</span><span class="n">precio</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">precio</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">precio</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-            <span class="c1"># cantidad=round(float(var.txtCantidad.text().replace(&#39;,&#39;, &#39;.&#39;)), 2)</span>
-            <span class="c1"># print(&#39;cantidad&#39;)</span>
-            <span class="c1"># total_venta = float(precio) * float(cantidad)</span>
-            <span class="c1"># total_venta = round(total_venta, 2)</span>
-            <span class="c1">#total_linea=Facturas.totalLineaVenta(precio)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error en procesoVenta en invoice&#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Facturas.totalLineaVenta"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.totalLineaVenta">[docs]</a>    <span class="k">def</span> <span class="nf">totalLineaVenta</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que calcula el total de una linea de venta y llama a Conexion.cargarVenta para guardarla en la base de</span>
+<span class="sd">        datos. También actualiza la interfaz en consecuencia.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">row</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">currentRow</span><span class="p">()</span>
             <span class="n">cantidad</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">txtCantidad</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span>
@@ -170,7 +198,6 @@
             <span class="n">venta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">codpro</span><span class="p">))</span>
             <span class="n">venta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">precio</span><span class="p">))</span>
             <span class="n">venta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">cantidad</span><span class="p">))</span>
-            <span class="c1">#print(venta)</span>
             <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">cargarVenta</span><span class="p">(</span><span class="n">venta</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblCodFac_4</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Venta Realizada&#39;</span><span class="p">:</span>
@@ -181,6 +208,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en total linea venta de invoice: &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Facturas.eliminarVenta"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.eliminarVenta">[docs]</a>    <span class="k">def</span> <span class="nf">eliminarVenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que elimina una linea de venta de la bbdd apoyándose en Conexion.eliminarLineaVenta.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">row</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
             <span class="n">codVenta</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
@@ -189,6 +221,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al eliminar venta: &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Facturas.vaciarTabVentas"><a class="viewcode-back" href="../src/invoice.html#invoice.Facturas.vaciarTabVentas">[docs]</a>    <span class="k">def</span> <span class="nf">vaciarTabVentas</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que vacía la tabla y los campos referentes a las lineas de venta en la interfaz para futuras operaciones.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">clearContents</span><span class="p">()</span>
             <span class="n">var</span><span class="o">.</span><span class="n">cmbProducto</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QComboBox</span><span class="p">()</span>

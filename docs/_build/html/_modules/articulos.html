@@ -45,30 +45,30 @@
 
 <div class="viewcode-block" id="Articulos"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos">[docs]</a><span class="k">class</span> <span class="nc">Articulos</span><span class="p">():</span>
 <div class="viewcode-block" id="Articulos.guardaArticulo"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.guardaArticulo">[docs]</a>    <span class="k">def</span> <span class="nf">guardaArticulo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que gestiona el proceso de guardado en la bbdd de un nuevo artículo y actualiza la interfaz de artículos</span>
+<span class="sd">        en consecuencia.</span>
+<span class="sd">        Llama a Conexion.altaArt y cargarTabArt.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">Articulos</span><span class="o">.</span><span class="n">validarPrecio</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
-                <span class="c1"># Preparamos el registro</span>
-                <span class="c1"># Para la base de datos</span>
+                <span class="c1"># Preparamos el registro para la base de datos</span>
                 <span class="n">artMoneda</span><span class="o">=</span><span class="n">locale</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">()))</span>
                 <span class="n">artMoneda</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
                 <span class="n">newArt</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">artMoneda</span><span class="p">]</span>
-                <span class="c1">#articulo = [var.ui.txtNombreArticulo.text(), var.ui.txtPrecioArticulo]</span>
-                <span class="c1"># Para representación en tableView</span>
-                <span class="c1"># tabcli= []</span>
-                <span class="c1"># client= [var.ui.txtDNI, var.ui.txtApel, var.ui.txtNome, var.ui.txtAltaCli]</span>
-
-                <span class="c1"># Código para cargar en tabla</span>
-
-                <span class="c1">#for i in articulo:</span>
-                   <span class="c1"># newArt.append(i.text())</span>
-
-                <span class="c1"># Codigo para grabar en base de datos</span>
                 <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">altaArt</span><span class="p">(</span><span class="n">newArt</span><span class="p">)</span>
                 <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">cargaTabArt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en módulo guardar articulo &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">limpiaFormArt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que vacía la interfaz de la pestaña de artículos para futuras operaciones.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblCodArt</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Auto&#39;</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -77,7 +77,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en módulo limpiar formulario articulos &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Articulos.cargaArt"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.cargaArt">[docs]</a>    <span class="k">def</span> <span class="nf">cargaArt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="sd">        Método que carga en la interfaz de artículos los datos de un artículo concreto seleccionado en tabla.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fila</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabArticulos</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
             <span class="n">datos</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblCodArt</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="p">]</span>
@@ -99,18 +103,19 @@
             <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">orden</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
                 <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Query&#39;</span><span class="p">)</span>
                     <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-                    <span class="c1">#sinMoneda=query.value(1)</span>
-                    <span class="c1">#sinmoneda=sinmoneda[1:(len(sinMoneda)-2)]</span>
                     <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 
-            <span class="c1"># Para que aparezca el DNI como válido en caso de querer guardarse:</span>
-            <span class="c1">#clients.Clientes.validarDNI()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en módulo cargar articulo &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Articulos.bajaArt"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.bajaArt">[docs]</a>    <span class="k">def</span> <span class="nf">bajaArt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que gestiona el proceso de dar de baja un artículo de la bbdd y actualiza la interfaz.</span>
+<span class="sd">        Hace uso de Conexion.bajaArt y cargaTabArt.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">codigo</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblCodArt</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
             <span class="n">nombre</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
@@ -120,6 +125,12 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al dar de baja articulo &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Articulos.modifArt"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.modifArt">[docs]</a>    <span class="k">def</span> <span class="nf">modifArt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que guarda los cambios realizados sobre el artículo que se encuentra volcado en la interfaz gráfica.</span>
+<span class="sd">        Usa Conexion.modifArticulo y cargaTabArt.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span><span class="p">(</span><span class="n">Articulos</span><span class="o">.</span><span class="n">validarPrecio</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
                 <span class="n">artMoneda</span> <span class="o">=</span> <span class="n">locale</span><span class="o">.</span><span class="n">currency</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">()))</span>
@@ -131,6 +142,14 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al modificar articulo &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Articulos.validarPrecio"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.validarPrecio">[docs]</a>    <span class="k">def</span> <span class="nf">validarPrecio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que comprueba si el valor de introducido para el precio de un artículo es válido antes de operar con el</span>
+<span class="sd">        para evitar errores.</span>
+<span class="sd">        :return: True si el formato del precio es válido, False si no lo es.</span>
+<span class="sd">        :rtype: boolean</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">res</span><span class="o">=</span><span class="kc">False</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">precio</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
@@ -141,8 +160,6 @@
                 <span class="n">formatPrecio</span> <span class="o">+=</span> <span class="s1">&#39;0&#39;</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">formatPrecio</span><span class="p">)</span>
             <span class="n">res</span><span class="o">=</span><span class="kc">True</span>
-
-
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en validar precio articulo &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
@@ -157,21 +174,17 @@
         <span class="k">return</span> <span class="n">res</span></div>
 
 <div class="viewcode-block" id="Articulos.formatoPrecio"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.formatoPrecio">[docs]</a>    <span class="k">def</span> <span class="nf">formatoPrecio</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que da formato al precio del artículo nada mas terminar de insertarse para que esté listo para futuras</span>
+<span class="sd">        operaciones. También muestra un mensaje de error si el valor introducido no es válido.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">precio</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
-            <span class="c1"># truncado = (math.trunc(precio * 100) / 100)</span>
             <span class="n">truncado</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">precio</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
             <span class="n">truncado</span><span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">precio</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
-            <span class="c1"># formatPrecio = str(truncado)</span>
-            <span class="c1"># if formatPrecio[-2]==&#39;.&#39;:</span>
-            <span class="c1">#     formatPrecio += &#39;0&#39;</span>
-            <span class="c1"># var.ui.txtPrecioArticulo.setText(formatPrecio)</span>
-            <span class="c1"># if (formatPrecio == str(precio)):</span>
-            <span class="c1">#     pass</span>
-            <span class="c1"># else:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioArticulo</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">truncado</span><span class="p">)</span>
-
-            <span class="c1">#res = True</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en validar precio articulo &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
@@ -185,6 +198,13 @@
                 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en mensaje articulo no modificado &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Articulos.buscaArticulo"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.buscaArticulo">[docs]</a>    <span class="k">def</span> <span class="nf">buscaArticulo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que busca en la bbdd el artículo cuyo nombre se ha especificado y carga sus datos en los distintos campos</span>
+<span class="sd">        de la interfaz gráfica.</span>
+<span class="sd">        Hace uso de Conexion.buscaArt y cargaTabBuscaArt</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">busqueda</span><span class="o">=</span><span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">buscaArt</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
             <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">busqueda</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
@@ -206,6 +226,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al buscar artículo (articulos) &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Articulos.formatoMayus"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.formatoMayus">[docs]</a>    <span class="k">def</span> <span class="nf">formatoMayus</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que formatea el nombre del artículo para que empiece por mayúscula.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">())</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
                 <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
@@ -214,6 +239,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al aplicar formato de texto en articulo &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Articulos.limpiaFormArt"><a class="viewcode-back" href="../src/articulos.html#articulos.Articulos.limpiaFormArt">[docs]</a>    <span class="k">def</span> <span class="nf">limpiaFormArt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que vacía la interfaz de la pestaña de artículos para futuras operaciones.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblCodArt</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Auto&#39;</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreArticulo</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>

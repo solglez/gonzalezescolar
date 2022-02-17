@@ -135,14 +135,18 @@ class Facturas():
         try:
             row = var.ui.tabVentas.currentRow()
             articulo = var.cmbProducto.currentText()
-            dato = conexion.Conexion.obtenerCodPrecio(articulo)
-            var.codpro=dato[0]
-            var.ui.tabVentas.setItem(row, 2, QtWidgets.QTableWidgetItem(str(dato[1])))
-            var.ui.tabVentas.item(row, 2).setTextAlignment(QtCore.Qt.AlignCenter)
-            #Adecuamos el campo de precio para pasarlo a float y operar con el
-            var.precio = dato[1].replace('€','')
-            var.precio=var.precio.replace(',','.')
-            var.precio = var.precio.replace(' ', '')
+            if (articulo!=''):
+                dato = conexion.Conexion.obtenerCodPrecio(articulo)
+                var.codpro=dato[0]
+                var.ui.tabVentas.setItem(row, 2, QtWidgets.QTableWidgetItem(str(dato[1])))
+                var.ui.tabVentas.item(row, 2).setTextAlignment(QtCore.Qt.AlignCenter)
+                #Adecuamos el campo de precio para pasarlo a float y operar con el
+                var.precio = dato[1].replace('€','')
+                var.precio=var.precio.replace(',','.')
+                var.precio = var.precio.replace(' ', '')
+            else:
+                var.ui.tabVentas.setItem(row, 2, QtWidgets.QTableWidgetItem(''))
+
         except Exception as error:
             print('error en procesoVenta en invoice', error)
 

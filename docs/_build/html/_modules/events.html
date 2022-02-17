@@ -51,6 +51,11 @@
 
 <div class="viewcode-block" id="Eventos"><a class="viewcode-back" href="../src/events.html#events.Eventos">[docs]</a><span class="k">class</span> <span class="nc">Eventos</span><span class="p">():</span>
 <div class="viewcode-block" id="Eventos.salir"><a class="viewcode-back" href="../src/events.html#events.Eventos.salir">[docs]</a>    <span class="k">def</span> <span class="nf">salir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que finaliza la ejecución del programa.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">dlgaviso</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">dlgaviso</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
@@ -61,12 +66,22 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en módulo salir &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.abrirCal"><a class="viewcode-back" href="../src/events.html#events.Eventos.abrirCal">[docs]</a>    <span class="k">def</span> <span class="nf">abrirCal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que muestra la ventana de calendario.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">dlgcalendar</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en módulo abrir calendario &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.resizeTablaCli"><a class="viewcode-back" href="../src/events.html#events.Eventos.resizeTablaCli">[docs]</a>    <span class="k">def</span> <span class="nf">resizeTablaCli</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que redimensiona la tabla de clientes al lanzarse la interfaz.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabClientes</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -77,6 +92,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al dar formato a tabla clientes &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.resizeTablaArt"><a class="viewcode-back" href="../src/events.html#events.Eventos.resizeTablaArt">[docs]</a>    <span class="k">def</span> <span class="nf">resizeTablaArt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que redimensiona la tabla de artículos al lanzarse la interfaz.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabArticulos</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
@@ -87,6 +107,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al dar formato a tabla articulos &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.resizeTablaFac"><a class="viewcode-back" href="../src/events.html#events.Eventos.resizeTablaFac">[docs]</a>    <span class="k">def</span> <span class="nf">resizeTablaFac</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que redimensiona la tabla de facturas al lanzarse la interfaz.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabFacturas</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
@@ -98,6 +123,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al dar formato a tabla facturas &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.resizeTablaVen"><a class="viewcode-back" href="../src/events.html#events.Eventos.resizeTablaVen">[docs]</a>    <span class="k">def</span> <span class="nf">resizeTablaVen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que redimensiona la tabla de ventas al lanzarse la interfaz.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tabVentas</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -109,6 +139,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al dar formato a tabla clientes &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.errorDNI"><a class="viewcode-back" href="../src/events.html#events.Eventos.errorDNI">[docs]</a>    <span class="k">def</span> <span class="nf">errorDNI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que lanza una ventana de error al introducirse un DNI no válido.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">msgBox</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="p">()</span>
             <span class="n">msgBox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>
@@ -120,12 +155,22 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en mensaje error DNI &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.abrir"><a class="viewcode-back" href="../src/events.html#events.Eventos.abrir">[docs]</a>    <span class="k">def</span> <span class="nf">abrir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que abre la ventana del explorador de archivos de windows para seleccionar un archivo.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">dlgabrir</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en evento abrir &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.crearBackup"><a class="viewcode-back" href="../src/events.html#events.Eventos.crearBackup">[docs]</a>    <span class="k">def</span> <span class="nf">crearBackup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que genera una copia de seguridad de la base de datos y la exporta a un .zip.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fecha</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
             <span class="n">fecha</span><span class="o">=</span><span class="n">fecha</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y.%m.</span><span class="si">%d</span><span class="s1">.%H.%M.%S&#39;</span><span class="p">)</span>
@@ -151,6 +196,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en evento crear backup &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.restaurarBackup"><a class="viewcode-back" href="../src/events.html#events.Eventos.restaurarBackup">[docs]</a>    <span class="k">def</span> <span class="nf">restaurarBackup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que restaura la información de la base de datos desde un archivo .zip.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">restaurado</span><span class="o">=</span><span class="kc">False</span>
             <span class="n">option</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QFileDialog</span><span class="o">.</span><span class="n">Options</span><span class="p">()</span>
@@ -191,6 +241,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al restaurar backup &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.Imprimir"><a class="viewcode-back" href="../src/events.html#events.Eventos.Imprimir">[docs]</a>    <span class="k">def</span> <span class="nf">Imprimir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que abre la ventana de imprimir de windows.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">printDialog</span><span class="o">=</span><span class="n">QtPrintSupport</span><span class="o">.</span><span class="n">QPrintDialog</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">printDialog</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
@@ -199,6 +254,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en evento imprimir &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.ImportarDatos"><a class="viewcode-back" href="../src/events.html#events.Eventos.ImportarDatos">[docs]</a>    <span class="k">def</span> <span class="nf">ImportarDatos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que importa datos (clientes) a la base de datos desde una hoja excel.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">option</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QFileDialog</span><span class="o">.</span><span class="n">Options</span><span class="p">()</span>
             <span class="n">origen</span><span class="p">,</span> <span class="nb">filter</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">dlgabrir</span><span class="o">.</span><span class="n">getOpenFileName</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Importar Datos&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;*.xls;;ALL&#39;</span><span class="p">,</span>
@@ -229,6 +289,12 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en evento importar datos: &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.ExportarDatos"><a class="viewcode-back" href="../src/events.html#events.Eventos.ExportarDatos">[docs]</a>    <span class="k">def</span> <span class="nf">ExportarDatos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que exporta los datos de los clientes almacenados en la bbdd a una hoja de excel.</span>
+<span class="sd">        Llama a Conexion.exportExcel.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">procesado</span><span class="o">=</span><span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">exportExcel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">procesado</span><span class="p">:</span>
@@ -255,6 +321,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en evento exportar datos &#39;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.labelEnvio"><a class="viewcode-back" href="../src/events.html#events.Eventos.labelEnvio">[docs]</a>    <span class="k">def</span> <span class="nf">labelEnvio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que concuerta el label de envío con su valor representativo en el spinner de la interfaz.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">valor</span><span class="o">=</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">spinEnvio</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
             <span class="k">if</span><span class="p">(</span><span class="n">valor</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
@@ -270,6 +341,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error en evento actualizar label envíos &#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Eventos.acercaDe"><a class="viewcode-back" href="../src/events.html#events.Eventos.acercaDe">[docs]</a>    <span class="k">def</span> <span class="nf">acercaDe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que muestra un cartel de información sobre el proyecto al pulsar Acerca de.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">msgBox</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="p">()</span>
             <span class="n">msgBox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
