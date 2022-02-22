@@ -918,6 +918,8 @@ class Conexion():
 
             iva = suma * 0.21
             total = suma + iva
+            #Para el test:
+            #return total
             #Damos formato a los totales
             var.ui.lblSubtotal.setText(str('{:.2f}'.format(round(suma,2))) + '€')
             var.ui.lblIva.setText(str('{:.2f}'.format(round(iva, 2))) + '€')
