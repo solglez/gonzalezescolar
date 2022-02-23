@@ -39,5 +39,12 @@ class MyTestCase(unittest.TestCase):
             print('Error test de factura ',error)
         self.assertEqual(round(float(valor),2), round(float(total),2),msg)
 
+    def test_cargaMunicipios(self):
+        prov='Pontevedra'
+        msg = 'Carga de municipios erronea'
+        conexion.Conexion.db_connect(var.filedb)
+        municipiosCargados=conexion.Conexion.listaMunicipios(prov)
+        self.assertEqual(len(municipiosCargados),62,msg)
+
 if __name__ == '__main__':
     unittest.main()

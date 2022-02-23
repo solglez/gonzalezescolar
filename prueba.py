@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import var
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -914,20 +914,27 @@ class Ui_MainWindow(object):
         self.lblCodArt.setObjectName("lblCodArt")
         self.horizontalLayout_10.addWidget(self.lblCodArt)
         self.horizontalLayoutWidget_11 = QtWidgets.QWidget(self.groupBox_2)
-        self.horizontalLayoutWidget_11.setGeometry(QtCore.QRect(20, 60, 621, 31))
+        self.horizontalLayoutWidget_11.setGeometry(QtCore.QRect(20, 60, 471, 31))
         self.horizontalLayoutWidget_11.setObjectName("horizontalLayoutWidget_11")
         self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_11)
         self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_11.setObjectName("horizontalLayout_11")
         self.btnGuardaArt = QtWidgets.QPushButton(self.horizontalLayoutWidget_11)
+        self.btnGuardaArt.setMinimumSize(QtCore.QSize(120, 0))
         self.btnGuardaArt.setMaximumSize(QtCore.QSize(16777215, 22))
         self.btnGuardaArt.setObjectName("btnGuardaArt")
         self.horizontalLayout_11.addWidget(self.btnGuardaArt)
+        spacerItem3 = QtWidgets.QSpacerItem(30, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem3)
         self.btnModifArt = QtWidgets.QPushButton(self.horizontalLayoutWidget_11)
-        self.btnModifArt.setMaximumSize(QtCore.QSize(16777215, 22))
+        self.btnModifArt.setMinimumSize(QtCore.QSize(120, 0))
+        self.btnModifArt.setMaximumSize(QtCore.QSize(120, 22))
         self.btnModifArt.setObjectName("btnModifArt")
         self.horizontalLayout_11.addWidget(self.btnModifArt)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem4)
         self.btnBorrarArt = QtWidgets.QPushButton(self.horizontalLayoutWidget_11)
+        self.btnBorrarArt.setMinimumSize(QtCore.QSize(120, 0))
         self.btnBorrarArt.setMaximumSize(QtCore.QSize(16777215, 22))
         self.btnBorrarArt.setObjectName("btnBorrarArt")
         self.horizontalLayout_11.addWidget(self.btnBorrarArt)
@@ -1182,3 +1189,4 @@ class Ui_MainWindow(object):
         self.actionListado_Clientes.setText(_translate("MainWindow", "Listado Clientes"))
         self.actionFacturas.setText(_translate("MainWindow", "Facturas"))
         self.actionInformacion.setText(_translate("MainWindow", "Información del Proyecto"))
+import var
