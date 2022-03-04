@@ -100,7 +100,7 @@ class Informes():
             #Abrimos el archivo. Usa un for porque le quedó así de "veces anteriores"
             #dice que luego puede ser útil
             for file in os.listdir(rootPath):
-                if file.endswith('.pdf'):
+                if file.endswith('tes.pdf'):
                     os.startfile('%s/%s' % (rootPath, file))
 
         except Exception as error:
