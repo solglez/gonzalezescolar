@@ -32,6 +32,14 @@ class Eventos():
         except Exception as error:
             print('Error en módulo salir ', error)
 
+    def ventanaAcercaDe(self):
+        try:
+            var.dlginfo.show()
+            if var.dlginfo.exec():
+                var.dlginfo.hide()
+        except Exception as error:
+            print('Error al mostrar acerca de ',error)
+
     def abrirCal(self):
         """
 

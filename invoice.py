@@ -21,6 +21,18 @@ class Facturas():
             registro=conexion.Conexion.buscaCliFac(dni)
             nombre=registro[0]+', '+registro[1]
             var.ui.lblNomFac.setText(nombre)
+            #conexion.Conexion.cargarFacturasCli(dni)
+        except Exception as error:
+            print('Error en buscar cliente de facturas ',error)
+
+    def cargaCliFacs(self):
+        try:
+            dni=var.ui.txtDniFac.text().upper()
+            var.ui.txtDniFac.setText(dni)
+            registro=conexion.Conexion.buscaCliFac(dni)
+            nombre=registro[0]+', '+registro[1]
+            var.ui.lblNomFac.setText(nombre)
+            conexion.Conexion.cargarFacturasCli(dni)
         except Exception as error:
             print('Error en buscar cliente de facturas ',error)
 
@@ -66,6 +78,9 @@ class Facturas():
             invoice.Facturas.buscaCli(self)
             Facturas.cargarLineaVenta(self)
             conexion.Conexion.cargarLineasVenta(str(var.ui.lblCodFac.text()))
+
+            var.ui.lblDescuento.setText('0')
+            var.ui.txtDescuento.setText('0')
         except Exception as error:
             print('Error en módulo cargar factura (invoice) ',error)
 
@@ -83,6 +98,7 @@ class Facturas():
             Facturas.vaciarTabVentas()
             var.ui.lblCodFac_4.setText('')
             var.ui.lblCodFac_4.setStyleSheet('QLabel{color:black;}')
+            conexion.Conexion.cargaTabFac()
         except Exception as error:
             print('Error en módulo limpiar formulario ',error)
 
@@ -170,6 +186,7 @@ class Facturas():
             venta.append(float(var.precio))
             venta.append(float(cantidad))
             conexion.Conexion.cargarVenta(venta)
+            conexion.Conexion.cargaTabArtSinSelf()
 
             if var.ui.lblCodFac_4.text() == 'Venta Realizada':
                 Facturas.vaciarTabVentas()
@@ -207,5 +224,34 @@ class Facturas():
             var.ui.lblSubtotal.setText('')
             var.ui.lblIva.setText('')
             var.ui.lblTotal.setText('')
+            var.ui.lblDescuento.setText('0')
+            var.ui.txtDescuento.setText('0')
         except Exception as error:
             print('Error en vaciarTabVentas: ',error)
+
+    def aplicarDescuento(self):
+        try:
+            descuento=var.ui.txtDescuento.text()
+            if(descuento==''):
+                descuento=0
+                var.ui.txtDescuento.setText('0')
+            else:
+                try:
+                    descuento = float(var.ui.txtDescuento.text())
+                except Exception as error2:
+                    var.ui.txtDescuento.setText('0')
+                    print('Descuento incorrecto')
+            subtotal=var.ui.lblSubtotal.text()
+            subtotal=subtotal.replace(',', '.')
+            subtotal = subtotal[:(len(subtotal) - 2)]
+            subtotal=float(subtotal)
+            totalDescuento=subtotal*(descuento/100)
+            iva=(subtotal-totalDescuento)*0.21
+            total=subtotal-totalDescuento+iva
+
+            var.ui.lblDescuento.setText(str('{:.2f}'.format(round(totalDescuento, 2))) + '€')
+            var.ui.lblIva.setText(str('{:.2f}'.format(round(iva, 2))) + '€')
+            var.ui.lblTotal.setText(str('{:.2f}'.format(round(total, 2))) + '€')
+
+        except Exception as error:
+            print('Error al aplicar descuento ', error)

@@ -215,6 +215,8 @@ class Articulos():
             var.ui.lblCodArt.setText('Auto')
             var.ui.txtNombreArticulo.setText('')
             var.ui.txtPrecioArticulo.setText('')
+            var.ui.txtStock.setText('')
             conexion.Conexion.cargaTabArt(self)
         except Exception as error:
             print('Error en módulo limpiar formulario ',error)
+

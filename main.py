@@ -5,6 +5,7 @@ import conexion
 from prueba import *
 from windowaviso import *
 from windowcal import *
+from windowinformacion import *
 from datetime import *
 locale.setlocale(locale.LC_ALL, 'es-ES')
 
@@ -44,6 +45,14 @@ class DialogAviso(QtWidgets.QDialog):
         var.dlgaviso.btnBoxAviso.accepted.connect(self.accept)
         var.dlgaviso.btnBoxAviso.rejected.connect(self.reject)
 
+class DialogInfo(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogInfo, self).__init__()
+        var.dlginfo = Ui_windowinformacion()
+        var.dlginfo.setupUi(self)
+        var.dlginfo.btnBoxAviso.accepted.connect(self.accept)
+
+
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -67,7 +76,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBorrarArt.clicked.connect(articulos.Articulos.bajaArt)
         var.ui.btnBuscaArt.clicked.connect(articulos.Articulos.buscaArticulo)
         var.ui.btnLimpiaArt.clicked.connect(articulos.Articulos.limpiaFormArt)
-        var.ui.btnBuscaCliFac.clicked.connect(invoice.Facturas.buscaCli)
+        var.ui.btnBuscaCliFac.clicked.connect(invoice.Facturas.cargaCliFacs)
         var.ui.btnFechaFac.clicked.connect(events.Eventos.abrirCal)
         var.ui.btnFacturar.clicked.connect(invoice.Facturas.altaFac)
         var.ui.btnLimpiaFac.clicked.connect(invoice.Facturas.limpiaFormFac)
@@ -75,6 +84,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnPdfArt.clicked.connect(informes.Informes.listadoProductos)
         var.ui.btnEliminarVenta.clicked.connect(invoice.Facturas.eliminarVenta)
         var.ui.btnReportFac.clicked.connect(informes.Informes.factura)
+        var.ui.btnDescuento.clicked.connect(invoice.Facturas.aplicarDescuento)
 
         '''
         Eventos de spin
@@ -94,7 +104,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.ExportarDatos)
         var.ui.actionListado_Clientes.triggered.connect(informes.Informes.listadoClientes)
         var.ui.actionFacturas.triggered.connect(informes.Informes.factura)
-        var.ui.actionInformacion.triggered.connect(events.Eventos.acercaDe)
+        var.ui.actionInformacion.triggered.connect(events.Eventos.ventanaAcercaDe)
         '''
         Eventos de la caja de texto
         '''
@@ -182,5 +192,6 @@ if __name__ == '__main__':
     var.dlgaviso = DialogAviso()
     var.dlgcalendar=DialogCalendar()
     var.dlgabrir=FileDialogAbrir()
+    var.dlginfo=DialogInfo()
     window.show()
     sys.exit(app.exec())

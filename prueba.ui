@@ -1734,6 +1734,68 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         </size>
        </property>
       </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_16">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>40</y>
+         <width>191</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_17">
+        <item>
+         <widget class="QLineEdit" name="txtDescuento">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>19</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>%</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnDescuento">
+          <property name="text">
+           <string>Descuento</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
      <widget class="QTableWidget" name="tabFacturas">
       <property name="enabled">
@@ -2030,7 +2092,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
       <property name="geometry">
        <rect>
         <x>680</x>
-        <y>430</y>
+        <y>460</y>
         <width>181</width>
         <height>21</height>
        </rect>
@@ -2065,7 +2127,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
       <property name="geometry">
        <rect>
         <x>680</x>
-        <y>460</y>
+        <y>490</y>
         <width>181</width>
         <height>21</height>
        </rect>
@@ -2099,7 +2161,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>620</x>
+        <x>610</x>
         <y>400</y>
         <width>51</width>
         <height>21</height>
@@ -2117,8 +2179,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>430</y>
+        <x>610</x>
+        <y>460</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -2135,8 +2197,8 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>460</y>
+        <x>610</x>
+        <y>490</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -2150,6 +2212,59 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
       </property>
       <property name="text">
        <string>Total:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblDescuento">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>430</y>
+        <width>181</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>660</width>
+        <height>21</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>430</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Descuento:</string>
       </property>
      </widget>
     </widget>
@@ -2357,9 +2472,9 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
       <widget class="QWidget" name="horizontalLayoutWidget_11">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>180</x>
          <y>60</y>
-         <width>471</width>
+         <width>461</width>
          <height>31</height>
         </rect>
        </property>
@@ -2390,7 +2505,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>30</width>
+            <width>15</width>
             <height>20</height>
            </size>
           </property>
@@ -2422,7 +2537,7 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>40</width>
+            <width>15</width>
             <height>20</height>
            </size>
           </property>
@@ -2534,6 +2649,50 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
         </size>
        </property>
       </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_17">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>121</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_18">
+        <item>
+         <widget class="QLabel" name="label_13">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>19</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Stock:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="txtStock">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>19</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
      <widget class="QTableWidget" name="tabArticulos">
       <property name="geometry">
@@ -2573,6 +2732,11 @@ font: 63 20pt &quot;Source Serif Pro Semibold&quot;;
       <column>
        <property name="text">
         <string>Precio-Unidad</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Stock</string>
        </property>
       </column>
      </widget>

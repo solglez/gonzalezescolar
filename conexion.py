@@ -478,20 +478,30 @@ class Conexion():
             index = 0
             var.ui.tabArticulos.setRowCount(index)
             query = QtSql.QSqlQuery()
-            query.prepare('select codigo, nombre, precio from articulos order by codigo')
+            query.prepare('select codigo, nombre, precio, stock from articulos order by codigo')
             if query.exec_():
                 while query.next():
                     codigo = query.value(0)
                     nombre = query.value(1)
                     precio = query.value(2)
+                    stock=query.value(3)
+                    try:
+                        stock=float(stock)
+                    except Exception as error:
+                        stock='0'
+
                     # Creamos la fila y cargamos datos
                     var.ui.tabArticulos.setRowCount(index + 1)
                     var.ui.tabArticulos.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
                     var.ui.tabArticulos.setItem(index, 1, QtWidgets.QTableWidgetItem(nombre))
                     var.ui.tabArticulos.setItem(index, 2, QtWidgets.QTableWidgetItem(precio))
+                    var.ui.tabArticulos.setItem(index, 3, QtWidgets.QTableWidgetItem(str(stock)))
+                    var.ui.tabArticulos.item(index, 2).setTextAlignment(QtCore.Qt.AlignRight)
+                    var.ui.tabArticulos.item(index, 3).setTextAlignment(QtCore.Qt.AlignRight)
                     index += 1
         except Exception as error:
             print('Error al cargar tabla articulos ', error)
+
 
     def modifArticulo(modArt):
         """
@@ -500,6 +510,9 @@ class Conexion():
 
         """
         try:
+            masStock=var.ui.txtStock.text()
+            Conexion.sumarStockArticulo(modArt[0], masStock)
+
             query = QtSql.QSqlQuery()
             query.prepare('UPDATE articulos SET nombre=:nombre, precio=:precio WHERE codigo=:codigo')
             query.bindValue(':codigo', str(modArt[0]))
@@ -651,20 +664,59 @@ class Conexion():
             index = 0
             var.ui.tabArticulos.setRowCount(index)
             query = QtSql.QSqlQuery()
-            query.prepare('select nombre, precio from articulos WHERE codigo =:codigo')
+            query.prepare('select nombre, precio, stock from articulos WHERE codigo =:codigo')
             query.bindValue(':codigo', str(codigo))
             if query.exec_():
                 while query.next():
                     nombre = query.value(0)
                     precio = query.value(1)
+                    stock = query.value(2)
+                    try:
+                        stock=float(stock)
+                    except Exception as error:
+                        stock='0'
                     # Creamos la fila y cargamos datos
                     var.ui.tabArticulos.setRowCount(index + 1)
                     var.ui.tabArticulos.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
                     var.ui.tabArticulos.setItem(index, 1, QtWidgets.QTableWidgetItem(nombre))
                     var.ui.tabArticulos.setItem(index, 2, QtWidgets.QTableWidgetItem(precio))
+                    var.ui.tabArticulos.setItem(index, 3, QtWidgets.QTableWidgetItem(str(stock)))
+                    var.ui.tabArticulos.item(index, 2).setTextAlignment(QtCore.Qt.AlignRight)
+                    var.ui.tabArticulos.item(index, 3).setTextAlignment(QtCore.Qt.AlignRight)
                     index += 1
         except Exception as error:
             print('Error al cargar tabla articulos ', error)
+
+    def sumarStockArticulo(codArt, stock):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('select stock from articulos WHERE codigo =:codigo')
+            query.bindValue(':codigo', str(codArt))
+            if query.exec_():
+                while query.next():
+                    stockActual=query.value(0)
+            try:
+                stockActual = float(stockActual)
+            except Exception as error:
+                stockActual = 0
+
+            try:
+                stock = float(stock)
+            except Exception as error:
+                stock = 0
+
+            stockActualizado=stockActual+stock
+
+            query.prepare('UPDATE articulos SET stock=:stock WHERE codigo=:codigo')
+            query.bindValue(':codigo', str(codArt))
+            query.bindValue(':stock', str(stockActualizado))
+            if query.exec_():
+                print('Stock actualizado')
+            var.ui.txtStock.setText('')
+
+
+        except Exception as error:
+            print('Error al actualizar stock ', error)
 
 
     def buscaCliFac(dni):
@@ -878,6 +930,8 @@ class Conexion():
             if query.exec_():
                 var.ui.lblCodFac_4.setText('Venta Realizada')
                 var.ui.lblCodFac_4.setStyleSheet('QLabel{color:black;}')
+                stockARestar=float(venta[3])*-1
+                Conexion.sumarStockArticulo(venta[1], stockARestar)
             else:
                 var.ui.lblCodFac_4.setText('Error en Venta')
                 var.ui.lblCodFac_4.setStyleSheet('QLabel{color:red;}')
@@ -993,3 +1047,75 @@ class Conexion():
 
         except Exception as error:
           print('Error en eliminar venta conexion', error)
+
+    def cargarFacturasCli(dni):
+        try:
+            index = 0
+            var.ui.tabFacturas.setRowCount(index)
+            query = QtSql.QSqlQuery()
+            query.prepare('select codfac, fechafac from facturas WHERE dni=:dni')
+            query.bindValue(':dni', str(dni))
+            if query.exec_():
+                while query.next():
+
+                    codigo = query.value(0)
+                    fecha = query.value(1)
+
+                    var.btnfacdel = QtWidgets.QPushButton()
+                    var.btnfacdel.setFixedSize(24, 24)
+                    icopapelera = QtGui.QPixmap("img/papelera.png")
+                    var.btnfacdel.setIcon(QtGui.QIcon(icopapelera))
+
+                    # Creamos la fila y cargamos datos
+                    var.ui.tabFacturas.setRowCount(index + 1)
+                    var.ui.tabFacturas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                    var.ui.tabFacturas.setItem(index, 1, QtWidgets.QTableWidgetItem(fecha))
+
+                    cell_widget = QtWidgets.QWidget()
+                    lay_out = QtWidgets.QHBoxLayout(cell_widget)
+                    lay_out.setContentsMargins(0, 0, 0, 0)
+                    lay_out.addWidget(var.btnfacdel)
+                    var.btnfacdel.clicked.connect(Conexion.bajaFac)
+                    lay_out.setAlignment(QtCore.Qt.AlignVCenter)
+                    var.ui.tabFacturas.setCellWidget(index, 2, cell_widget)
+                    var.ui.tabFacturas.item(index, 0).setTextAlignment(QtCore.Qt.AlignCenter)
+                    var.ui.tabFacturas.item(index, 1).setTextAlignment(QtCore.Qt.AlignCenter)
+
+                    index += 1
+
+        except Exception as error:
+            print('Error al cargar facturas de cliente', error)
+
+    def cargaTabArtSinSelf():
+        """
+
+        Módulo que carga la tabla de artículos en la interfaz gráfica desde la base de datos.
+
+        """
+        try:
+            index = 0
+            var.ui.tabArticulos.setRowCount(index)
+            query = QtSql.QSqlQuery()
+            query.prepare('select codigo, nombre, precio, stock from articulos order by codigo')
+            if query.exec_():
+                while query.next():
+                    codigo = query.value(0)
+                    nombre = query.value(1)
+                    precio = query.value(2)
+                    stock=query.value(3)
+                    try:
+                        stock=float(stock)
+                    except Exception as error:
+                        stock='0'
+
+                    # Creamos la fila y cargamos datos
+                    var.ui.tabArticulos.setRowCount(index + 1)
+                    var.ui.tabArticulos.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
+                    var.ui.tabArticulos.setItem(index, 1, QtWidgets.QTableWidgetItem(nombre))
+                    var.ui.tabArticulos.setItem(index, 2, QtWidgets.QTableWidgetItem(precio))
+                    var.ui.tabArticulos.setItem(index, 3, QtWidgets.QTableWidgetItem(str(stock)))
+                    var.ui.tabArticulos.item(index, 2).setTextAlignment(QtCore.Qt.AlignRight)
+                    var.ui.tabArticulos.item(index, 3).setTextAlignment(QtCore.Qt.AlignRight)
+                    index += 1
+        except Exception as error:
+            print('Error al cargar tabla articulos ', error)

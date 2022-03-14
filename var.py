@@ -9,6 +9,7 @@ global ui #UI es la ventana
 global dlgaviso
 global dlgcalendar
 global dlgabrir
+global dlginfo
 global copia
 global cv
 global btnfacdel
